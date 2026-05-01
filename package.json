@@ -1,0 +1,20 @@
+{
+  "name": "reyssi-travels",
+  "version": "1.0.0",
+  "description": "Reyssi Travels - Asesoría de viajes online",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

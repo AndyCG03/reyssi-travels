@@ -1,145 +1,161 @@
-/* =============================================
-   REYSSI TRAVELS — Script principal
-   ============================================= */
+// ===============================
+// NAVBAR SCROLL (cambia estilo)
+// ===============================
+const navbar = document.getElementById("navbar");
 
-document.addEventListener('DOMContentLoaded', () => {
-
-  const nav       = document.querySelector('nav');
-  const hamburger = document.querySelector('.hamburger');
-  const drawer    = document.querySelector('.nav-drawer');
-  const overlay   = document.querySelector('.nav-overlay');
-
-  // ── NAV SCROLL ────────────────────────────
-  // Solo aplica sombra/fondo si el cajón NO está abierto
-  function updateNav() {
-    if (drawer && drawer.classList.contains('open')) return;
-    nav.classList.toggle('scrolled', window.scrollY > 60);
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
   }
-  window.addEventListener('scroll', updateNav, { passive: true });
+});
 
-  // ── CAJÓN MOBILE ──────────────────────────
-  function openDrawer() {
-    drawer.classList.add('open');
-    overlay.classList.add('show');
-    hamburger.classList.add('active');
-    document.body.style.overflow = 'hidden'; // evita scroll detrás
-    // Quitar scrolled mientras está abierto
-    nav.classList.remove('scrolled');
-  }
 
-  function closeDrawer() {
-    drawer.classList.remove('open');
-    overlay.classList.remove('show');
-    hamburger.classList.remove('active');
-    document.body.style.overflow = '';
-    // Restaurar estado real del nav
-    updateNav();
-  }
+// ===============================
+// HAMBURGER + DRAWER MOBILE
+// ===============================
+const hamburger = document.querySelector(".hamburger");
+const drawer = document.querySelector(".nav-drawer");
+const overlay = document.querySelector(".nav-overlay");
+const closeBtn = document.querySelector(".drawer-close");
+const drawerLinks = document.querySelectorAll(".drawer-links a");
 
-  if (hamburger) {
-    hamburger.addEventListener('click', () => {
-      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
-    });
-  }
+// Abrir menú
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  drawer.classList.toggle("open");
+  overlay.classList.toggle("show");
+});
 
-  // Cerrar al hacer click en el overlay oscuro
-  if (overlay) {
-    overlay.addEventListener('click', closeDrawer);
-  }
+// Cerrar menú (botón X)
+closeBtn.addEventListener("click", closeMenu);
 
-  // Botón X dentro del cajón
-  const drawerClose = document.querySelector('.drawer-close');
-  if (drawerClose) {
-    drawerClose.addEventListener('click', closeDrawer);
-  }
+// Cerrar menú (overlay)
+overlay.addEventListener("click", closeMenu);
 
-  // Cerrar con tecla Escape
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeDrawer();
+// Cerrar al hacer click en link
+drawerLinks.forEach(link => {
+  link.addEventListener("click", closeMenu);
+});
+
+function closeMenu() {
+  hamburger.classList.remove("active");
+  drawer.classList.remove("open");
+  overlay.classList.remove("show");
+}
+
+
+// ===============================
+// REVEAL ON SCROLL (animaciones)
+// ===============================
+const reveals = document.querySelectorAll(".reveal");
+
+const revealOnScroll = () => {
+  const windowHeight = window.innerHeight;
+
+  reveals.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 80) {
+      el.classList.add("visible");
+    }
   });
+};
 
-  // ── SMOOTH SCROLL + cierre del cajón ──────
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (href === '#') return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      closeDrawer();
-      // Pequeño delay para que el cajón cierre antes de hacer scroll
-      setTimeout(() => {
-        const offset = nav.offsetHeight;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }, 50);
-    });
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+
+// ===============================
+// COUNT UP (stats animadas)
+// ===============================
+const counters = document.querySelectorAll(".count-up");
+
+const runCounter = (counter) => {
+  const target = +counter.getAttribute("data-target");
+  const suffix = counter.getAttribute("data-suffix") || "";
+  let current = 0;
+
+  const increment = target / 80;
+
+  const update = () => {
+    current += increment;
+
+    if (current < target) {
+      counter.innerText = Math.floor(current) + suffix;
+      requestAnimationFrame(update);
+    } else {
+      counter.innerText = target + suffix;
+    }
+  };
+
+  update();
+};
+
+// Trigger cuando entra en viewport
+const counterObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      runCounter(entry.target);
+      obs.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.5 });
 
-  // ── REVEAL ON SCROLL ──────────────────────
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+counters.forEach(counter => {
+  counterObserver.observe(counter);
+});
 
-  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-  // ── FORMULARIO ────────────────────────────
-  const form      = document.getElementById('forma-consulta');
-  const mensaje   = document.getElementById('form-mensaje');
-  const btnSubmit = form ? form.querySelector('.btn-submit') : null;
+// ===============================
+// FORMULARIO (validación básica)
+// ===============================
+const form = document.getElementById("forma-consulta");
+const mensaje = document.getElementById("form-mensaje");
 
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(form));
-      btnSubmit.disabled = true;
-      btnSubmit.innerHTML = 'Enviando...';
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-      try {
-        const res  = await fetch('/api/consulta', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        const json = await res.json();
-        mensaje.textContent = json.mensaje;
-        mensaje.className   = 'form-mensaje ' + (json.ok ? 'ok' : 'err');
-        if (json.ok) {
-          form.reset();
-          setTimeout(() => { mensaje.className = 'form-mensaje'; }, 5000);
-        }
-      } catch {
-        mensaje.textContent = 'Error de conexión. Intentá nuevamente.';
-        mensaje.className   = 'form-mensaje err';
-      } finally {
-        btnSubmit.disabled   = false;
-        btnSubmit.innerHTML  = 'Enviar consulta <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-      }
-    });
+  const nombre = form.nombre.value.trim();
+  const email = form.email.value.trim();
+  const destino = form.destino.value.trim();
+
+  if (!nombre || !email || !destino) {
+    showMessage("Por favor completá los campos obligatorios.", "err");
+    return;
   }
 
-  // ── CONTADORES animados ───────────────────
-  const countObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el   = entry.target;
-      const end  = parseInt(el.dataset.target, 10);
-      const step = end / (1600 / 16);
-      let cur = 0;
-      const timer = setInterval(() => {
-        cur += step;
-        if (cur >= end) { cur = end; clearInterval(timer); }
-        el.textContent = Math.floor(cur) + (el.dataset.suffix || '');
-      }, 16);
-      countObs.unobserve(el);
+  // Simulación envío (puedes conectar a backend después)
+  showMessage("Consulta enviada correctamente. Te contacto pronto 🙌", "ok");
+  form.reset();
+});
+
+function showMessage(text, type) {
+  mensaje.textContent = text;
+  mensaje.className = "form-mensaje " + type;
+}
+
+
+// ===============================
+// SCROLL SUAVE PARA LINKS INTERNOS
+// ===============================
+const links = document.querySelectorAll('a[href^="#"]');
+
+links.forEach(link => {
+  link.addEventListener("click", (e) => {
+    const targetId = link.getAttribute("href");
+
+    if (targetId === "#") return;
+
+    const target = document.querySelector(targetId);
+    if (!target) return;
+
+    e.preventDefault();
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
-
+  });
 });

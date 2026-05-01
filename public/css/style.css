@@ -68,6 +68,22 @@ nav.scrolled {
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(46,123,196,0.12);
 }
+
+/* Nav azul en mobile al hacer scroll */
+@media (max-width: 768px) {
+  nav.scrolled {
+    background: rgba(30,90,150,0.97);
+    box-shadow: 0 2px 20px rgba(26,46,64,0.25);
+  }
+  nav.scrolled .hamburger span {
+    background: var(--blanco);
+  }
+  nav.scrolled .nav-logo img {
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+    height: 48px;
+  }
+}
+
 .nav-logo img {
   height: 56px; width: auto;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
@@ -164,10 +180,12 @@ nav.scrolled .hamburger span { background: var(--pizarra); }
 
 .hero-content h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-  line-height: 1.2; color: var(--blanco);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 1.15; color: var(--blanco);
   margin-bottom: 1.2rem;
   text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  letter-spacing: 0.01em;
 }
 .hero-content h1 .highlight { color: var(--dorado); }
 .hero-content p {

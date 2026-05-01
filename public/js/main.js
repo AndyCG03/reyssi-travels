@@ -11,7 +11,6 @@ window.addEventListener("scroll", () => {
   }
 });
 
-
 // ===============================
 // HAMBURGER + DRAWER MOBILE
 // ===============================
@@ -21,30 +20,41 @@ const overlay = document.querySelector(".nav-overlay");
 const closeBtn = document.querySelector(".drawer-close");
 const drawerLinks = document.querySelectorAll(".drawer-links a");
 
-// Abrir menú
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  drawer.classList.toggle("open");
-  overlay.classList.toggle("show");
-});
+// Verificar que los elementos existan antes de agregar eventos
+if (hamburger && drawer && overlay) {
+  // Abrir menú
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    drawer.classList.toggle("open");
+    overlay.classList.toggle("show");
+    // Prevenir scroll del body cuando el menú está abierto
+    if (drawer.classList.contains("open")) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  });
 
-// Cerrar menú (botón X)
-closeBtn.addEventListener("click", closeMenu);
+  // Cerrar menú (botón X)
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeMenu);
+  }
 
-// Cerrar menú (overlay)
-overlay.addEventListener("click", closeMenu);
+  // Cerrar menú (overlay)
+  overlay.addEventListener("click", closeMenu);
 
-// Cerrar al hacer click en link
-drawerLinks.forEach(link => {
-  link.addEventListener("click", closeMenu);
-});
-
-function closeMenu() {
-  hamburger.classList.remove("active");
-  drawer.classList.remove("open");
-  overlay.classList.remove("show");
+  // Cerrar al hacer click en link
+  drawerLinks.forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
 }
 
+function closeMenu() {
+  if (hamburger) hamburger.classList.remove("active");
+  if (drawer) drawer.classList.remove("open");
+  if (overlay) overlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
 
 // ===============================
 // REVEAL ON SCROLL (animaciones)
@@ -65,7 +75,6 @@ const revealOnScroll = () => {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
-
 
 // ===============================
 // COUNT UP (stats animadas)
@@ -107,35 +116,54 @@ counters.forEach(counter => {
   counterObserver.observe(counter);
 });
 
-
 // ===============================
 // FORMULARIO (validación básica)
 // ===============================
 const form = document.getElementById("forma-consulta");
 const mensaje = document.getElementById("form-mensaje");
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  const nombre = form.nombre.value.trim();
-  const email = form.email.value.trim();
-  const destino = form.destino.value.trim();
+    const nombre = form.nombre?.value.trim();
+    const email = form.email?.value.trim();
+    const destino = form.destino?.value.trim();
 
-  if (!nombre || !email || !destino) {
-    showMessage("Por favor completá los campos obligatorios.", "err");
-    return;
-  }
+    if (!nombre || !email || !destino) {
+      showMessage("Por favor completá los campos obligatorios.", "err");
+      return;
+    }
 
-  // Simulación envío (puedes conectar a backend después)
-  showMessage("Consulta enviada correctamente. Te contacto pronto 🙌", "ok");
-  form.reset();
-});
+    // Validación básica de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showMessage("Por favor ingresá un email válido.", "err");
+      return;
+    }
 
-function showMessage(text, type) {
-  mensaje.textContent = text;
-  mensaje.className = "form-mensaje " + type;
+    // Simulación envío (puedes conectar a backend después)
+    showMessage("Consulta enviada correctamente. Te contacto pronto 🙌", "ok");
+    form.reset();
+  });
 }
 
+function showMessage(text, type) {
+  if (mensaje) {
+    mensaje.textContent = text;
+    mensaje.className = "form-mensaje " + type;
+    
+    // Auto-ocultar después de 5 segundos
+    setTimeout(() => {
+      if (mensaje) {
+        mensaje.style.display = "none";
+        setTimeout(() => {
+          if (mensaje) mensaje.style.display = "";
+        }, 300);
+      }
+    }, 5000);
+  }
+}
 
 // ===============================
 // SCROLL SUAVE PARA LINKS INTERNOS
@@ -152,6 +180,9 @@ links.forEach(link => {
     if (!target) return;
 
     e.preventDefault();
+
+    // Cerrar menú móvil si está abierto
+    closeMenu();
 
     target.scrollIntoView({
       behavior: "smooth",

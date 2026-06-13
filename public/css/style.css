@@ -140,9 +140,12 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   padding: 1.1rem 2rem;
   display: flex; align-items: center; justify-content: space-between;
-  transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+  transition: background var(--transition), padding var(--transition), box-shadow var(--transition),
+              opacity 0.5s ease, transform 0.5s ease;
   background: transparent;
 }
+/* Intro del home: la navbar está oculta hasta el primer scroll */
+nav.nav-intro { opacity: 0; transform: translateY(-100%); pointer-events: none; }
 nav.scrolled {
   background: rgba(255,255,255,0.97);
   backdrop-filter: blur(10px);
@@ -249,7 +252,7 @@ nav.scrolled .hamburger span { background: var(--texto); }
 #hero {
   position: relative;
   height: 340vh;            /* longitud del scrub */
-  background: #000;
+  padding: 0;               /* anula el padding global de section (causaba franja blanca arriba) */
 }
 .hero-sticky {
   position: sticky; top: 0;
@@ -257,26 +260,22 @@ nav.scrolled .hamburger span { background: var(--texto); }
   overflow: hidden; color: var(--blanco);
   display: flex; align-items: center; justify-content: center; text-align: center;
 }
+/* El video ES el fondo del hero — sin color ni overlay (limpio) */
 .hero-video {
   position: absolute; inset: 0; z-index: 0;
   width: 100%; height: 100%; object-fit: cover;
-  background: #000;
-}
-/* Overlay neutral y liviano: oscurece apenas para legibilidad sin tapar el video */
-.hero-overlay {
-  position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.14) 42%, rgba(0,0,0,0.55) 100%);
 }
 
 .hero-content { max-width: 880px; position: relative; z-index: 2; padding: 0 1.5rem; }
 .hero-content h1 {
-  color: var(--blanco); font-size: clamp(2.4rem, 6vw, 4.6rem);
-  line-height: 1.1; text-shadow: 0 4px 30px rgba(0,0,0,0.35); margin-bottom: 1.4rem;
+  color: var(--blanco); font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+  line-height: 1.15; margin-bottom: 1.2rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5), 0 8px 36px rgba(0,0,0,0.4);
 }
-.hero-content h1 .highlight { color: var(--azul-light); }
+.hero-content h1 .highlight { color: inherit; font: inherit; font-style: normal; }
 .hero-content p {
   font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 640px; margin: 0 auto 2.4rem;
-  color: rgba(255,255,255,0.92); text-shadow: 0 2px 14px rgba(0,0,0,0.3);
+  color: rgba(255,255,255,0.95); text-shadow: 0 2px 16px rgba(0,0,0,0.6);
 }
 .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
@@ -603,22 +602,38 @@ body { animation: pageFade 0.5s ease both; }
 }
 .js .reveal.visible { opacity: 1; transform: none; }
 
-/* Entrada del hero / banners (textos) — keyframes CSS, sin depender de Motion */
+/* Entrada de textos — keyframes CSS, sin depender de Motion */
 @keyframes heroIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
-.js #hero .hero-content > *,
+
+/* Páginas internas: los textos animan al cargar */
 .js .page-hero .container > * { opacity: 0; animation: heroIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-.js #hero .hero-content > *:nth-child(1), .js .page-hero .container > *:nth-child(1) { animation-delay: 0.15s; }
-.js #hero .hero-content > *:nth-child(2), .js .page-hero .container > *:nth-child(2) { animation-delay: 0.30s; }
-.js #hero .hero-content > *:nth-child(3), .js .page-hero .container > *:nth-child(3) { animation-delay: 0.45s; }
-.js #hero .hero-content > *:nth-child(4) { animation-delay: 0.60s; }
-.js #hero .hero-scroll { opacity: 0; animation: heroIn 0.9s ease 0.8s forwards; }
+.js .page-hero .container > *:nth-child(1) { animation-delay: 0.15s; }
+.js .page-hero .container > *:nth-child(2) { animation-delay: 0.30s; }
+.js .page-hero .container > *:nth-child(3) { animation-delay: 0.45s; }
+
+/* Home hero: el video se ve solo; los textos aparecen al primer scroll (.reveal-text) */
+.js #hero .hero-content > * { opacity: 0; }
+.js #hero.reveal-text .hero-content > * { animation: heroIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.js #hero.reveal-text .hero-content > *:nth-child(1) { animation-delay: 0.05s; }
+.js #hero.reveal-text .hero-content > *:nth-child(2) { animation-delay: 0.20s; }
+.js #hero.reveal-text .hero-content > *:nth-child(3) { animation-delay: 0.35s; }
+
+/* Indicador de scroll (cue) — visible en el intro, se desvanece al scrollear */
+.hero-cue {
+  position: absolute; bottom: 2.2rem; left: 50%; z-index: 3;
+  color: rgba(255,255,255,0.9); transition: opacity 0.5s ease;
+  animation: cueBounce 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+#hero.reveal-text .hero-cue { opacity: 0; pointer-events: none; }
+@keyframes cueBounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   .js .reveal,
   .js #hero .hero-content > *,
-  .js .page-hero .container > *,
-  .js #hero .hero-scroll { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .js .page-hero .container > * { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .hero-cue { display: none; }
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -637,11 +652,7 @@ body { animation: pageFade 0.5s ease both; }
   body { font-size: 16px; }
   section { padding: 4.5rem 0; }
 
-  /* Hero: en móvil no hay scrub; queda un hero normal con el poster */
-  #hero { height: 100vh; min-height: 100svh; }
-  .hero-sticky { position: relative; height: 100vh; min-height: 100svh; }
-  .hero-scroll { display: none; }
-
+  /* El hero scroll-video también aplica en móvil (mismo efecto) */
   .confianza-grid { grid-template-columns: 1fr; gap: 0.9rem; }
 
   .propuesta-grid { grid-template-columns: 1fr; gap: 2.5rem; }

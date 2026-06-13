@@ -12,14 +12,30 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 // ===============================
 const navbar = document.getElementById("navbar");
 const heroForNav = document.getElementById("hero");
+const isHome = !!heroForNav;
 
-// Sobre el hero la navbar es transparente (para ver el efecto); se vuelve
-// sólida recién al pasarlo. En otras páginas, a partir de 50px.
-const navThreshold = () =>
-  heroForNav ? heroForNav.offsetHeight - 80 : 50;
+// Home: intro con SOLO el video. La navbar (transparente) y los textos del
+// hero aparecen al primer scroll. Otras páginas: navbar visible desde el inicio.
+if (isHome && !reduceMotion) {
+  navbar.classList.add("nav-intro");
+} else if (isHome) {
+  heroForNav.classList.add("reveal-text"); // reduced-motion: mostrar textos ya
+}
+
+// Sobre el hero la navbar es transparente; se vuelve sólida (blanca) al pasarlo.
+const navThreshold = () => (isHome ? heroForNav.offsetHeight - 80 : 50);
+const introActive = isHome && !reduceMotion;
 
 const updateNav = () => {
-  navbar.classList.toggle("scrolled", window.scrollY > navThreshold());
+  const y = window.scrollY;
+  if (introActive) {
+    // En el tope: solo el video (navbar oculta, textos fuera).
+    // Al primer scroll: aparecen header transparente + textos. Al volver, se repliega.
+    navbar.classList.toggle("nav-intro", y <= 16);
+    heroForNav.classList.toggle("reveal-text", y > 16);
+  }
+  // Blanca solo al pasar el hero; sobre el hero (aunque subas) siempre transparente.
+  navbar.classList.toggle("scrolled", y > navThreshold());
 };
 window.addEventListener("scroll", updateNav, { passive: true });
 updateNav();
@@ -111,8 +127,7 @@ if (reduceMotion || !("IntersectionObserver" in window)) {
   const video = section && section.querySelector(".hero-video");
   if (!section || !video || !video.dataset.src) return;
 
-  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-  if (reduceMotion || !isDesktop) return; // móvil / reduced → se ve el poster fijo
+  if (reduceMotion) return; // solo reduced-motion se queda con el poster fijo
 
   video.src = video.dataset.src;
   video.load();

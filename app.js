@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const nodemailer = require('nodemailer');
 const app = express();
 
@@ -8,7 +9,35 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+
+// Archivos estáticos: caché larga (1 año). Como las URLs llevan ?v=<mtime>
+// (ver helper assetVersion), al cambiar un archivo cambia su URL y el navegador
+// lo vuelve a descargar automáticamente. Sin cambios → usa caché (rápido).
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '1y',
+  etag: true,
+  lastModified: true,
+}));
+
+// Cache-busting: versión de cada asset según su fecha de modificación.
+// En las vistas: <link href="/css/style.css?v=<%= v('css/style.css') %>">
+const assetVersion = (relPath) => {
+  try {
+    return fs.statSync(path.join(__dirname, 'public', relPath)).mtimeMs.toString(36);
+  } catch {
+    return '1';
+  }
+};
+app.locals.v = assetVersion;
+
+// El HTML nunca se cachea: siempre se sirve fresco para que tome las
+// últimas versiones (?v=) de CSS/JS apenas se despliega un cambio.
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.includes('.')) {
+    res.set('Cache-Control', 'no-cache');
+  }
+  next();
+});
 
 // ─────────────────────────────────────────────
 // Transporte de email (nodemailer)

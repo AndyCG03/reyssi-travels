@@ -25,14 +25,18 @@ if (isHome && !reduceMotion) {
 // Sobre el hero la navbar es transparente; se vuelve sólida (blanca) al pasarlo.
 const navThreshold = () => (isHome ? heroForNav.offsetHeight - 80 : 50);
 const introActive = isHome && !reduceMotion;
+const waFloat = document.querySelector(".wa-float");
+
+if (introActive && waFloat) waFloat.classList.add("wa-hidden");
 
 const updateNav = () => {
   const y = window.scrollY;
   if (introActive) {
-    // En el tope: solo el video (navbar oculta, textos fuera).
+    // En el tope: solo el video (navbar oculta, textos fuera, WhatsApp oculto).
     // Al primer scroll: aparecen header transparente + textos. Al volver, se repliega.
     navbar.classList.toggle("nav-intro", y <= 16);
     heroForNav.classList.toggle("reveal-text", y > 16);
+    if (waFloat) waFloat.classList.toggle("wa-hidden", y <= 16);
   }
   // Blanca solo al pasar el hero; sobre el hero (aunque subas) siempre transparente.
   navbar.classList.toggle("scrolled", y > navThreshold());

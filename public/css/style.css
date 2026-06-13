@@ -564,7 +564,9 @@ footer { background: var(--pizarra); color: rgba(255,255,255,0.75); padding: 4.5
 /* ════════════════════════════════════════════════════════════
    WHATSAPP FLOTANTE
    ════════════════════════════════════════════════════════════ */
-.wa-float { position: fixed; bottom: 1.6rem; right: 1.6rem; z-index: 120; display: flex; align-items: center; gap: 0.7rem; }
+.wa-float { position: fixed; bottom: 1.6rem; right: 1.6rem; z-index: 120; display: flex; align-items: center; gap: 0.7rem; transition: opacity 0.4s ease, transform 0.4s ease; }
+/* Oculto durante el intro del home (hasta el primer scroll) */
+.wa-float.wa-hidden { opacity: 0; transform: translateY(20px) scale(0.9); pointer-events: none; }
 .wa-label {
   background: var(--blanco); color: var(--texto); font-size: 0.85rem; font-weight: 600;
   padding: 0.55rem 0.9rem; border-radius: 100px; box-shadow: var(--shadow);

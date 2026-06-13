@@ -1,6 +1,12 @@
 # Dependencias
 node_modules/
 
+# Videos (pesados — se suben al servidor por separado, no a git)
+public/videos/
+*.mp4
+*.mov
+*.webm
+
 # Logs
 *.log
 npm-debug.log*

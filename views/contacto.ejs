@@ -1,0 +1,92 @@
+<%- include('partials/head', { title: 'Contacto | Reyssi Travels', desc: 'Contanos tu próxima aventura. Te respondemos en menos de 24 horas, sin compromiso.', page: 'contacto' }) %>
+
+<%- include('partials/page-hero', {
+  ph_tag: 'Hablemos',
+  ph_title: 'Contanos tu próxima aventura',
+  ph_subtitle: 'Completá el formulario y te respondemos en menos de 24 horas. Sin compromiso.',
+  ph_img: 'https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=1600&q=80'
+}) %>
+
+<!-- ═══════════════════════════════════════ CONSULTORÍA / FORMULARIO ═══════════════════════════════════════ -->
+<section id="consultoria">
+  <div class="container">
+    <div class="consultoria-wrap">
+      <div class="consultoria-info reveal">
+        <span class="tag">Datos de contacto</span>
+        <div class="divider"></div>
+        <h2>Estamos a un mensaje de distancia</h2>
+        <p>Completá el formulario con tus preferencias y te respondo en menos de 24 horas con una propuesta inicial. Sin compromiso.</p>
+        <div class="contacto-items">
+          <div class="contacto-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+            <!-- ✏️ Reemplazá con tu número real -->
+            <a href="https://wa.me/5491100000000" target="_blank" rel="noopener">+54 9 11 0000-0000 (WhatsApp)</a>
+          </div>
+          <div class="contacto-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <!-- ✏️ Reemplazá con tu email real -->
+            <a href="mailto:hola@reyssitravels.com">hola@reyssitravels.com</a>
+          </div>
+          <div class="contacto-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Respuesta en menos de 24 horas</span>
+          </div>
+        </div>
+        <div style="margin-top: 2.5rem;">
+          <img src="/images/logo.png" alt="Reyssi Travels" style="height: 90px; width: auto; opacity: 0.85;" />
+        </div>
+      </div>
+
+      <div class="form-wrap reveal">
+        <form id="forma-consulta" novalidate>
+          <div class="form-grid">
+            <div class="form-row">
+              <div class="field"><label for="nombre">Nombre *</label><input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required /></div>
+              <div class="field"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" required /></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="whatsapp">WhatsApp</label><input type="tel" id="whatsapp" name="whatsapp" placeholder="+54 9 11 ..." autocomplete="tel" /></div>
+              <div class="field">
+                <label for="presupuesto">Presupuesto estimado</label>
+                <select id="presupuesto" name="presupuesto">
+                  <option value="">Seleccionar...</option>
+                  <option value="menos-1000">Menos de USD 1.000</option>
+                  <option value="1000-3000">USD 1.000 – 3.000</option>
+                  <option value="3000-6000">USD 3.000 – 6.000</option>
+                  <option value="mas-6000">Más de USD 6.000</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label for="destino">Destino o tipo de aventura *</label><input type="text" id="destino" name="destino" placeholder="Ej: Patagonia, trekking en Nepal, safari en África..." required /></div>
+            <div class="field"><label for="mensaje">Contame más sobre tu viaje ideal</label><textarea id="mensaje" name="mensaje" placeholder="Fechas aproximadas, con quién viajás, qué experiencias buscás..."></textarea></div>
+            <div id="form-mensaje" class="form-mensaje" role="status" aria-live="polite"></div>
+            <button type="submit" class="btn-submit">
+              Enviar consulta
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FAQ ═══════════════════════════════════════ -->
+<section id="faq" style="background:var(--crudo);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Preguntas frecuentes</span>
+      <div class="divider center"></div>
+      <h2>Todo lo que necesitás saber</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal"><summary>¿Cómo es el proceso si nunca contraté una asesoría de viajes?<span class="faq-plus">+</span></summary><div class="faq-body">Es muy simple: nos contás tu idea por el formulario o WhatsApp, tenemos una primera charla sin costo para entender qué buscás, y en 48 hs te enviamos una propuesta a medida. Vos decidís sin ningún compromiso.</div></details>
+      <details class="faq-item reveal"><summary>¿Trabajan con cualquier destino?<span class="faq-plus">+</span></summary><div class="faq-body">Nos especializamos en viajes de aventura y naturaleza —trekking, safaris, kayak, expediciones— pero diseñamos itinerarios para prácticamente cualquier destino del mundo según tu perfil viajero.</div></details>
+      <details class="faq-item reveal"><summary>¿Qué incluye el servicio de gestión integral?<span class="faq-plus">+</span></summary><div class="faq-body">Coordinamos vuelos, alojamientos, transfers, seguros de viaje y actividades en un único plan. Vos recibís todo organizado y con soporte durante el viaje.</div></details>
+      <details class="faq-item reveal"><summary>¿Puedo pagar en cuotas?<span class="faq-plus">+</span></summary><div class="faq-body">Sí. Trabajamos con Mercado Pago y ofrecemos opciones de financiación y pagos por etapas para que tu viaje ideal no tenga que esperar.</div></details>
+      <details class="faq-item reveal"><summary>¿Tiene algún costo la primera consulta?<span class="faq-plus">+</span></summary><div class="faq-body">No. La consulta inicial es totalmente gratuita y sin compromiso. Solo avanzamos si la propuesta realmente te entusiasma.</div></details>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

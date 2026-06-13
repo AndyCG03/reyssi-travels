@@ -1,34 +1,113 @@
 const express = require('express');
 const path = require('path');
+const nodemailer = require('nodemailer');
 const app = express();
 
-// Middleware
+// Motor de vistas (EJS) + middleware
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rutas
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
-});
+// ─────────────────────────────────────────────
+// Transporte de email (nodemailer)
+// Se configura por variables de entorno. Si no están
+// definidas, el endpoint registra la consulta pero avisa
+// que no se envió email (no se simula nada en el frontend).
+// Variables: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS,
+//            SMTP_SECURE ("true"/"false"), MAIL_TO, MAIL_FROM
+// ─────────────────────────────────────────────
+let transporter = null;
+if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+  transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT) || 465,
+    secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : true,
+    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+  });
+} else {
+  console.warn(
+    '[Reyssi] SMTP no configurado: las consultas se registran en consola pero no se envían por email. ' +
+    'Definí SMTP_HOST, SMTP_USER, SMTP_PASS (y opcional MAIL_TO) para activar el envío.'
+  );
+}
+
+const escapeHtml = (str = '') =>
+  String(str).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  })[c]);
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Rutas de páginas
+app.get('/', (req, res) => res.render('home'));
+app.get('/nosotros', (req, res) => res.render('nosotros'));
+app.get('/servicios', (req, res) => res.render('servicios'));
+app.get('/destinos', (req, res) => res.render('destinos'));
+app.get('/contacto', (req, res) => res.render('contacto'));
 
 // API: Formulario de contacto / consultoría
-app.post('/api/consulta', (req, res) => {
-  const { nombre, email, whatsapp, destino, presupuesto, mensaje } = req.body;
+app.post('/api/consulta', async (req, res) => {
+  const { nombre, email, whatsapp, destino, presupuesto, mensaje } = req.body || {};
 
-  // Validación básica
+  // Validación
   if (!nombre || !email || !destino) {
     return res.status(400).json({ ok: false, mensaje: 'Faltan campos obligatorios.' });
   }
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ ok: false, mensaje: 'El email no es válido.' });
+  }
 
-  // Aquí puedes conectar nodemailer o guardar en DB
-  // Por ahora logueamos y respondemos OK
-  console.log('Nueva consulta recibida:', { nombre, email, whatsapp, destino, presupuesto, mensaje });
+  const datos = { nombre, email, whatsapp, destino, presupuesto, mensaje };
+  console.log('Nueva consulta recibida:', datos);
 
-  res.json({
-    ok: true,
-    mensaje: `¡Gracias ${nombre}! Te contactamos en menos de 24 hs.`
-  });
+  // Si no hay SMTP configurado, registramos y devolvemos ok
+  // (el envío real requiere configurar las variables de entorno).
+  if (!transporter) {
+    return res.json({
+      ok: true,
+      mensaje: `¡Gracias ${nombre}! Recibimos tu consulta y te contactamos en menos de 24 hs.`,
+    });
+  }
+
+  // Enviar email
+  try {
+    const to = process.env.MAIL_TO || process.env.SMTP_USER;
+    const from = process.env.MAIL_FROM || `"Reyssi Travels" <${process.env.SMTP_USER}>`;
+
+    await transporter.sendMail({
+      from,
+      to,
+      replyTo: email,
+      subject: `Nueva consulta de ${nombre} — ${destino}`,
+      html: `
+        <h2>Nueva consulta desde la web</h2>
+        <p><b>Nombre:</b> ${escapeHtml(nombre)}</p>
+        <p><b>Email:</b> ${escapeHtml(email)}</p>
+        <p><b>WhatsApp:</b> ${escapeHtml(whatsapp) || '—'}</p>
+        <p><b>Destino / aventura:</b> ${escapeHtml(destino)}</p>
+        <p><b>Presupuesto:</b> ${escapeHtml(presupuesto) || '—'}</p>
+        <p><b>Mensaje:</b><br>${escapeHtml(mensaje).replace(/\n/g, '<br>') || '—'}</p>
+      `,
+    });
+
+    res.json({
+      ok: true,
+      mensaje: `¡Gracias ${nombre}! Recibimos tu consulta y te contactamos en menos de 24 hs.`,
+    });
+  } catch (err) {
+    console.error('Error al enviar el email de la consulta:', err);
+    res.status(500).json({
+      ok: false,
+      mensaje: 'No pudimos enviar tu consulta en este momento. Probá de nuevo o escribinos por WhatsApp.',
+    });
+  }
+});
+
+// 404 — cualquier ruta no encontrada vuelve al inicio
+app.use((req, res) => {
+  res.status(404).redirect('/');
 });
 
 // Puerto — Hostinger usa la variable PORT

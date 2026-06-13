@@ -1,0 +1,40 @@
+<%- include('partials/head', { title: 'Destinos | Reyssi Travels', desc: 'Patagonia, Islandia, Nepal, Costa Rica, Noruega y más. Destinos de aventura y naturaleza diseñados a medida.', page: 'destinos' }) %>
+
+<%- include('partials/page-hero', {
+  ph_tag: 'Dónde te llevamos',
+  ph_title: 'Lugares que nos quitan el aliento',
+  ph_subtitle: 'Una selección de nuestros destinos favoritos. ¿No ves el tuyo? Lo armamos igual.',
+  ph_img: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1600&q=80'
+}) %>
+
+<!-- ═══════════════════════════════════════ DESTINOS ═══════════════════════════════════════ -->
+<section id="destinos">
+  <div class="container">
+    <div class="destinos-grid">
+      <div class="destino-card reveal">
+        <span class="destino-badge">⭐ Más visitado</span>
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80" alt="Patagonia" loading="lazy" />
+        <div class="destino-overlay"><span class="tag">Argentina · Chile</span><h3>Patagonia</h3></div>
+      </div>
+      <div class="destino-card reveal">
+        <img src="https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=600&q=80" alt="Islandia" loading="lazy" />
+        <div class="destino-overlay"><span class="tag">Europa del Norte</span><h3>Islandia</h3></div>
+      </div>
+      <div class="destino-card reveal">
+        <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=600&q=80" alt="Nepal" loading="lazy" />
+        <div class="destino-overlay"><span class="tag">Asia del Sur</span><h3>Nepal</h3></div>
+      </div>
+      <div class="destino-card reveal">
+        <img src="https://images.unsplash.com/photo-1447654911919-bd9e1c0ebde1?w=600&q=80" alt="Costa Rica" loading="lazy" />
+        <div class="destino-overlay"><span class="tag">Centroamérica</span><h3>Costa Rica</h3></div>
+      </div>
+      <div class="destino-card reveal">
+        <img src="https://images.unsplash.com/photo-1489493887464-892be6d1daae?w=600&q=80" alt="Noruega" loading="lazy" />
+        <div class="destino-overlay"><span class="tag">Escandinavia</span><h3>Noruega</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta', { cta_title: 'Tu destino soñado, hecho a tu medida', cta_text: 'Contanos a dónde querés ir (o dejate sorprender) y armamos el viaje perfecto para vos.' }) %>
+<%- include('partials/footer') %>

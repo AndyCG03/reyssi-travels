@@ -2,7 +2,9 @@
 // MOTION (motion.dev) — animaciones
 // Cargado vía CDN ESM (el proyecto no usa bundler)
 // ===============================
-import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ===============================
 // NAVBAR SCROLL (cambia estilo)
@@ -63,26 +65,72 @@ function closeMenu() {
 }
 
 // ===============================
+// ENTRADA DEL HERO (Motion, al cargar)
+// El título, texto y botones aparecen en cascada
+// ===============================
+if (!reduceMotion) {
+  const heroEls = document.querySelectorAll(
+    "#hero .hero-content > *, #hero .hero-scroll, .page-hero .container > *"
+  );
+  if (heroEls.length) {
+    animate(
+      heroEls,
+      { opacity: [0, 1], transform: ["translateY(20px)", "translateY(0px)"] },
+      { duration: 0.95, delay: stagger(0.14, { start: 0.1 }), easing: [0.22, 1, 0.36, 1] }
+    );
+  }
+}
+
+// ===============================
 // REVEAL ON SCROLL (Motion)
-// Anima los elementos .reveal cuando entran en viewport
+// Grupos (grillas) → cascada escalonada · sueltos → uno a uno
 // ===============================
 const reveals = document.querySelectorAll(".reveal");
 
 // Estado inicial: ocultos y desplazados hacia abajo
 reveals.forEach(el => {
   el.style.opacity = "0";
-  el.style.transform = "translateY(40px)";
+  el.style.transform = "translateY(24px)";
 });
 
-// Al entrar en pantalla, animar a su posición final (una sola vez)
-inView(reveals, (el) => {
-  animate(
-    el,
-    { opacity: 1, transform: "translateY(0px)" },
-    { duration: 0.6, easing: "ease-out" }
-  );
-  el.classList.add("visible");
-}, { margin: "0px 0px -80px 0px" });
+if (reduceMotion) {
+  // Sin animación: mostrar todo de inmediato
+  reveals.forEach(el => {
+    el.style.opacity = "";
+    el.style.transform = "";
+    el.classList.add("visible");
+  });
+} else {
+  const show = (el, delay = 0) => {
+    animate(
+      el,
+      { opacity: [0, 1], transform: ["translateY(24px)", "translateY(0px)"] },
+      { duration: 0.7, delay, easing: [0.22, 1, 0.36, 1] }
+    );
+    el.classList.add("visible");
+  };
+
+  // Contenedores cuyos hijos .reveal aparecen en cascada
+  const groupSelector =
+    ".confianza-grid, .servicios-grid, .destinos-grid, .proceso-steps, .testimonios-grid, .faq-list";
+  const groups = document.querySelectorAll(groupSelector);
+  const grouped = new Set();
+
+  groups.forEach(group => {
+    const kids = [...group.querySelectorAll(":scope > .reveal")];
+    if (!kids.length) return;
+    kids.forEach(k => grouped.add(k));
+    inView(group, () => {
+      kids.forEach((kid, i) => show(kid, i * 0.09));
+    }, { margin: "0px 0px -80px 0px" });
+  });
+
+  // Elementos .reveal sueltos (fuera de grupos)
+  const standalone = [...reveals].filter(el => !grouped.has(el));
+  if (standalone.length) {
+    inView(standalone, (el) => show(el), { margin: "0px 0px -80px 0px" });
+  }
+}
 
 // ===============================
 // COUNT UP (stats animadas)
@@ -131,7 +179,10 @@ const form = document.getElementById("forma-consulta");
 const mensaje = document.getElementById("form-mensaje");
 
 if (form) {
-  form.addEventListener("submit", (e) => {
+  const submitBtn = form.querySelector(".btn-submit");
+  const btnText = submitBtn ? submitBtn.innerHTML : "";
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const nombre = form.nombre?.value.trim();
@@ -150,9 +201,44 @@ if (form) {
       return;
     }
 
-    // Simulación envío (puedes conectar a backend después)
-    showMessage("Consulta enviada correctamente. Te contacto pronto 🙌", "ok");
-    form.reset();
+    // Payload con todos los campos del formulario
+    const payload = {
+      nombre,
+      email,
+      destino,
+      whatsapp: form.whatsapp?.value.trim() || "",
+      presupuesto: form.presupuesto?.value || "",
+      mensaje: form.mensaje?.value.trim() || "",
+    };
+
+    // Estado "enviando"
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = "Enviando…";
+    }
+
+    try {
+      const res = await fetch("/api/consulta", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        showMessage(data.mensaje || "Consulta enviada correctamente. Te contacto pronto 🙌", "ok");
+        form.reset();
+      } else {
+        showMessage(data.mensaje || "No pudimos enviar tu consulta. Probá de nuevo o escribime por WhatsApp.", "err");
+      }
+    } catch (err) {
+      showMessage("Hubo un problema de conexión. Probá de nuevo o escribime por WhatsApp.", "err");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = btnText;
+      }
+    }
   });
 }
 

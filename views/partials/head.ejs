@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="<%= typeof desc !== 'undefined' ? desc : 'Reyssi Travels — Asesoría de viajes de aventura y naturaleza. Experiencias únicas, diseñadas a medida.' %>" />
+  <title><%= typeof title !== 'undefined' ? title : 'Reyssi Travels' %></title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'Reyssi Travels' %>" />
+  <meta property="og:description" content="<%= typeof desc !== 'undefined' ? desc : 'Viajes de aventura y naturaleza diseñados a medida.' %>" />
+  <meta property="og:type" content="website" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/images/logo.png" />
+</head>
+<body>
+<%- include('nav', { page: typeof page !== 'undefined' ? page : '' }) %>

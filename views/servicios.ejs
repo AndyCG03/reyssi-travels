@@ -1,0 +1,72 @@
+<%- include('partials/head', { title: 'Servicios | Reyssi Travels', desc: 'Itinerarios a medida, gestión integral, consultoría 1 a 1 y soporte 24/7 para tus viajes de aventura.', page: 'servicios' }) %>
+
+<%- include('partials/page-hero', {
+  ph_tag: 'Lo que ofrecemos',
+  ph_title: 'Servicios para el viajero que busca lo extraordinario',
+  ph_subtitle: 'De la primera idea al último día de viaje, nos ocupamos de todo.',
+  ph_img: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1600&q=80'
+}) %>
+
+<!-- ═══════════════════════════════════════ SERVICIOS ═══════════════════════════════════════ -->
+<section id="servicios">
+  <div class="container">
+    <div class="servicios-grid">
+      <div class="servicio-card reveal">
+        <div class="servicio-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
+        <span class="tag">Popular</span>
+        <h3>Itinerarios a medida</h3>
+        <p>Diseño rutas personalizadas basadas en tu perfil, tiempo disponible y presupuesto. Cada viaje es único, como vos.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <span class="tag">Incluido</span>
+        <h3>Gestión integral</h3>
+        <p>Vuelos, alojamientos, transfers, seguros y actividades coordinados en un solo lugar. Vos solo disfrutás.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <span class="tag">Exclusivo</span>
+        <h3>Consultoría 1 a 1</h3>
+        <p>Sesión de consultoría inicial para entender tu "ADN viajero" y presentarte opciones que realmente te emocionen.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <span class="tag">Aventura</span>
+        <h3>Experiencias únicas</h3>
+        <p>Trekking, kayak, safaris, voluntariado y experiencias de naturaleza que no encontrarás en ninguna agencia genérica.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <span class="tag">Tranquilidad</span>
+        <h3>Soporte 24/7 en viaje</h3>
+        <p>Acompañamiento en tiempo real durante tu aventura. Cualquier imprevisto tiene solución inmediata.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <span class="tag">Flexible</span>
+        <h3>Financiación en cuotas</h3>
+        <p>Pagos por etapas con Mercado Pago y opciones de financiación. Tu viaje ideal no tiene por qué esperar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PROCESO ═══════════════════════════════════════ -->
+<section id="proceso" style="background:var(--crudo);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Cómo trabajamos</span>
+      <div class="divider center"></div>
+      <h2>Tu viaje en 4 pasos simples</h2>
+    </div>
+    <div class="proceso-steps">
+      <div class="step reveal"><div class="step-num">01</div><h3>Consulta inicial</h3><p>Me contás tus sueños, fechas, presupuesto y preferencias. Completás el formulario o me escribís por WhatsApp.</p></div>
+      <div class="step reveal"><div class="step-num">02</div><h3>Propuesta a medida</h3><p>En 48 hs te envío un itinerario personalizado con opciones de alojamiento, actividades y presupuesto detallado.</p></div>
+      <div class="step reveal"><div class="step-num">03</div><h3>Ajustes y reserva</h3><p>Refinamos juntos el plan hasta que sea perfecto. Gestionamos todas las reservas y documentación necesaria.</p></div>
+      <div class="step reveal"><div class="step-num">04</div><h3>¡A viajar!</h3><p>Partís con todo confirmado y con soporte disponible durante toda tu aventura. Vos solo disfrutás el camino.</p></div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta', { cta_title: '¿Listo para diseñar tu próxima aventura?', cta_text: 'Contanos qué buscás y armamos una propuesta a tu medida, sin compromiso.' }) %>
+<%- include('partials/footer') %>

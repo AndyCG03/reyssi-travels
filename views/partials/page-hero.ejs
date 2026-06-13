@@ -1,0 +1,13 @@
+<!-- Banner compacto para páginas internas -->
+<section class="page-hero" style="background-image: linear-gradient(180deg, rgba(8,46,56,0.55), rgba(8,46,56,0.72)), url('<%= ph_img %>');">
+  <div class="container">
+    <% if (typeof ph_tag !== 'undefined' && ph_tag) { %><span class="tag"><%= ph_tag %></span><% } %>
+    <h1><%= ph_title %></h1>
+    <% if (typeof ph_subtitle !== 'undefined' && ph_subtitle) { %><p><%= ph_subtitle %></p><% } %>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+<!-- ═══════════════════════════════════════ NAV ═══════════════════════════════════════ -->
+<nav id="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png" alt="Reyssi Travels" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="/"          class="<%= page === 'inicio'    ? 'active' : '' %>">Inicio</a></li>
+    <li><a href="/nosotros"  class="<%= page === 'nosotros'  ? 'active' : '' %>">Nosotros</a></li>
+    <li><a href="/servicios" class="<%= page === 'servicios' ? 'active' : '' %>">Servicios</a></li>
+    <li><a href="/destinos"  class="<%= page === 'destinos'  ? 'active' : '' %>">Destinos</a></li>
+    <li><a href="/contacto"  class="<%= page === 'contacto'  ? 'active' : '' %>">Contacto</a></li>
+  </ul>
+  <a href="/contacto" class="nav-cta">Consultar ahora</a>
+  <button class="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Overlay oscuro detrás del cajón -->
+<div class="nav-overlay" aria-hidden="true"></div>
+
+<!-- Cajón lateral mobile -->
+<aside class="nav-drawer" role="dialog" aria-label="Menú de navegación">
+  <div class="drawer-header">
+    <img src="/images/logo.png" alt="Reyssi Travels" />
+    <button class="drawer-close" aria-label="Cerrar menú">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+  <ul class="drawer-links">
+    <li><a href="/"          class="<%= page === 'inicio'    ? 'active' : '' %>">Inicio</a></li>
+    <li><a href="/nosotros"  class="<%= page === 'nosotros'  ? 'active' : '' %>">Nosotros</a></li>
+    <li><a href="/servicios" class="<%= page === 'servicios' ? 'active' : '' %>">Servicios</a></li>
+    <li><a href="/destinos"  class="<%= page === 'destinos'  ? 'active' : '' %>">Destinos</a></li>
+    <li><a href="/contacto"  class="<%= page === 'contacto'  ? 'active' : '' %>">Contacto</a></li>
+  </ul>
+  <div class="drawer-cta">
+    <a href="/contacto">Consultar ahora</a>
+  </div>
+</aside>

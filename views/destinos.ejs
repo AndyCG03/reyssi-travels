@@ -9,16 +9,16 @@
 
 <%
   const destinos = [
-    { name:'Patagonia', region:'Argentina · Chile', continente:'America', interes:'trekking montaña', badge:'⭐ Más visitado', lat:-50.5, lng:-73.0, img:'1469474968028-56623f02e42e', desc:'Glaciares, montañas y estepa infinita. Trekking en El Chaltén y el Perito Moreno.', epoca:'Oct – Abr', duracion:'10–16 días' },
-    { name:'Machu Picchu', region:'Perú', continente:'America', interes:'trekking cultura', lat:-13.16, lng:-72.54, img:'1526392060635-9d6019884377', desc:'La ciudadela inca entre nubes. Camino Inca y el Valle Sagrado.', epoca:'May – Sep', duracion:'7–12 días' },
-    { name:'Costa Rica', region:'Centroamérica', continente:'America', interes:'naturaleza', lat:9.7, lng:-84.0, img:'1447654911919-bd9e1c0ebde1', desc:'Selva, volcanes y dos océanos. Biodiversidad y aventura pura.', epoca:'Dic – Abr', duracion:'8–12 días' },
-    { name:'Banff', region:'Canadá', continente:'America', interes:'montaña naturaleza', lat:51.18, lng:-115.57, img:'1609825488888-3a766db05542', desc:'Lagos turquesa y Montañas Rocosas. Senderismo y paisajes de postal.', epoca:'Jun – Sep', duracion:'7–10 días' },
-    { name:'Islandia', region:'Europa del Norte', continente:'Europa', interes:'auroras naturaleza', lat:64.9, lng:-19.0, img:'1585409677983-0f6c41ca9c3b', desc:'Cascadas, volcanes y auroras boreales. Ring Road y baños geotermales.', epoca:'Jun–Ago / auroras Sep–Mar', duracion:'8–12 días' },
-    { name:'Noruega', region:'Escandinavia', continente:'Europa', interes:'fiordos auroras', lat:61.0, lng:8.5, img:'1489493887464-892be6d1daae', desc:'Fiordos imponentes y pueblos de cuento. Kayak y senderismo entre acantilados.', epoca:'Jun – Ago', duracion:'7–10 días' },
-    { name:'Nepal', region:'Asia del Sur', continente:'Asia', interes:'trekking montaña', lat:28.0, lng:84.0, img:'1516690561799-46d8f74f9abf', desc:'El Himalaya en su esplendor. Campo Base del Everest o Annapurna.', epoca:'Mar–May / Oct–Nov', duracion:'14–20 días' },
-    { name:'Japón', region:'Asia Oriental', continente:'Asia', interes:'cultura montaña', lat:36.2, lng:137.6, img:'1493976040374-85c8e12f0c0e', desc:'Templos, montañas y tradición. Alpes japoneses y el Monte Fuji.', epoca:'Mar–May / Oct–Nov', duracion:'10–14 días' },
-    { name:'Tanzania', region:'África Oriental', continente:'Africa', interes:'safari naturaleza', lat:-2.33, lng:34.83, img:'1516426122078-c23e76319801', desc:'El Serengeti y la gran migración. Safari y el Kilimanjaro.', epoca:'Jun – Oct', duracion:'8–12 días' },
-    { name:'Nueva Zelanda', region:'Oceanía', continente:'Oceania', interes:'trekking naturaleza', lat:-45.03, lng:168.66, img:'1469521669194-babb45599def', desc:'Montañas, fiordos y aventura sin límites. Queenstown y Milford Sound.', epoca:'Nov – Mar', duracion:'12–18 días' }
+    { name:'Patagonia', region:'Argentina · Chile', continente:'America', interes:'trekking montaña', badge:'⭐ Más visitado', lat:-50.5, lng:-73.0, img:'1469474968028-56623f02e42e', desc:'Glaciares, montañas y estepa infinita.', epoca:'Oct – Abr', duracion:'10–16 días', lugares:['El Chaltén','Perito Moreno','Torres del Paine'] },
+    { name:'Machu Picchu', region:'Perú', continente:'America', interes:'trekking cultura', lat:-13.16, lng:-72.54, img:'1526392060635-9d6019884377', desc:'La ciudadela inca entre nubes.', epoca:'May – Sep', duracion:'7–12 días', lugares:['Camino Inca','Valle Sagrado','Cusco'] },
+    { name:'Costa Rica', region:'Centroamérica', continente:'America', interes:'naturaleza', lat:9.7, lng:-84.0, img:'1447654911919-bd9e1c0ebde1', desc:'Selva, volcanes y dos océanos.', epoca:'Dic – Abr', duracion:'8–12 días', lugares:['Volcán Arenal','Monteverde','Manuel Antonio'] },
+    { name:'Banff', region:'Canadá', continente:'America', interes:'montaña naturaleza', lat:51.18, lng:-115.57, img:'1609825488888-3a766db05542', desc:'Lagos turquesa y Montañas Rocosas.', epoca:'Jun – Sep', duracion:'7–10 días', lugares:['Lago Louise','Lago Moraine','Icefields Parkway'] },
+    { name:'Islandia', region:'Europa del Norte', continente:'Europa', interes:'auroras naturaleza', lat:64.9, lng:-19.0, img:'1585409677983-0f6c41ca9c3b', desc:'Cascadas, volcanes y auroras boreales.', epoca:'Jun–Ago / auroras Sep–Mar', duracion:'8–12 días', lugares:['Círculo Dorado','Jökulsárlón','Blue Lagoon'] },
+    { name:'Noruega', region:'Escandinavia', continente:'Europa', interes:'fiordos auroras', lat:61.0, lng:8.5, img:'1489493887464-892be6d1daae', desc:'Fiordos imponentes y pueblos de cuento.', epoca:'Jun – Ago', duracion:'7–10 días', lugares:['Geirangerfjord','Islas Lofoten','Trolltunga'] },
+    { name:'Nepal', region:'Asia del Sur', continente:'Asia', interes:'trekking montaña', lat:28.0, lng:84.0, img:'1516690561799-46d8f74f9abf', desc:'El Himalaya en su esplendor.', epoca:'Mar–May / Oct–Nov', duracion:'14–20 días', lugares:['Everest Base Camp','Annapurna','Katmandú'] },
+    { name:'Japón', region:'Asia Oriental', continente:'Asia', interes:'cultura montaña', lat:36.2, lng:137.6, img:'1493976040374-85c8e12f0c0e', desc:'Templos, montañas y tradición.', epoca:'Mar–May / Oct–Nov', duracion:'10–14 días', lugares:['Monte Fuji','Kioto','Alpes japoneses'] },
+    { name:'Tanzania', region:'África Oriental', continente:'Africa', interes:'safari naturaleza', lat:-2.33, lng:34.83, img:'1516426122078-c23e76319801', desc:'El Serengeti y la gran migración.', epoca:'Jun – Oct', duracion:'8–12 días', lugares:['Serengeti','Ngorongoro','Kilimanjaro'] },
+    { name:'Nueva Zelanda', region:'Oceanía', continente:'Oceania', interes:'trekking naturaleza', lat:-45.03, lng:168.66, img:'1469521669194-babb45599def', desc:'Montañas, fiordos y aventura sin límites.', epoca:'Nov – Mar', duracion:'12–18 días', lugares:['Milford Sound','Queenstown','Tongariro'] }
   ];
   const continentes = [['todos','Todos'],['America','América'],['Europa','Europa'],['Asia','Asia'],['Africa','África'],['Oceania','Oceanía']];
   const intereses = [['todos','Todas'],['trekking','Trekking'],['safari','Safari'],['auroras','Auroras'],['fiordos','Fiordos'],['cultura','Cultura'],['naturaleza','Naturaleza']];
@@ -55,6 +55,7 @@
               <span class="tag"><%= d.region %></span>
               <h3><%= d.name %></h3>
               <p><%= d.desc %></p>
+              <p class="destino-spots"><span>Lugares de interés:</span> <%= d.lugares.join(' · ') %></p>
               <ul class="destino-meta">
                 <li><span>Mejor época</span><strong><%= d.epoca %></strong></li>
                 <li><span>Duración</span><strong><%= d.duracion %></strong></li>
@@ -76,12 +77,12 @@
       <span class="tag">Explorá el mundo</span>
       <div class="divider center"></div>
       <h2>Dónde llegamos</h2>
-      <p style="color:var(--texto-suave); max-width:560px; margin:0 auto;">Arrastrá, hacé zoom y tocá cada punto para ver el destino.</p>
+      <p style="color:var(--texto-suave); max-width:560px; margin:0 auto;">Usá los botones <strong>+ / −</strong> para acercar y arrastrá para moverte. Tocá cada punto para ver el destino.</p>
     </div>
     <div
       id="mapa-mundi"
       class="reveal"
-      data-destinos='<%= JSON.stringify(destinos.map(function(d){ return { name:d.name, region:d.region, lat:d.lat, lng:d.lng, epoca:d.epoca, duracion:d.duracion }; })) %>'
+      data-destinos='<%= JSON.stringify(destinos.map(function(d){ return { name:d.name, region:d.region, lat:d.lat, lng:d.lng, epoca:d.epoca, duracion:d.duracion, lugares:d.lugares }; })) %>'
       aria-label="Mapa de destinos"
     ></div>
   </div>

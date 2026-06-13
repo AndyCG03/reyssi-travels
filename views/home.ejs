@@ -89,16 +89,16 @@
       const destacados = [
         { name: 'Patagonia', region: 'Argentina · Chile', badge: '⭐ Más visitado',
           img: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80',
-          desc: 'Glaciares, montañas y estepa infinita. Trekking en El Chaltén y el Perito Moreno.',
-          epoca: 'Oct – Abr', duracion: '10–16 días' },
+          desc: 'Glaciares, montañas y estepa infinita.',
+          epoca: 'Oct – Abr', duracion: '10–16 días', lugares: ['El Chaltén','Perito Moreno','Torres del Paine'] },
         { name: 'Islandia', region: 'Europa del Norte',
           img: 'https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=600&q=80',
-          desc: 'Cascadas, volcanes y auroras boreales. Ring Road y baños geotermales.',
-          epoca: 'Jun–Ago / auroras Sep–Mar', duracion: '8–12 días' },
+          desc: 'Cascadas, volcanes y auroras boreales.',
+          epoca: 'Jun–Ago / auroras Sep–Mar', duracion: '8–12 días', lugares: ['Círculo Dorado','Jökulsárlón','Blue Lagoon'] },
         { name: 'Nepal', region: 'Asia del Sur',
           img: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=600&q=80',
-          desc: 'El Himalaya en su esplendor. Trekking al Campo Base del Everest o Annapurna.',
-          epoca: 'Mar–May / Oct–Nov', duracion: '14–20 días' }
+          desc: 'El Himalaya en su esplendor.',
+          epoca: 'Mar–May / Oct–Nov', duracion: '14–20 días', lugares: ['Everest Base Camp','Annapurna','Katmandú'] }
       ];
     %>
     <div class="destinos-grid">
@@ -114,6 +114,7 @@
               <span class="tag"><%= d.region %></span>
               <h3><%= d.name %></h3>
               <p><%= d.desc %></p>
+              <p class="destino-spots"><span>Lugares de interés:</span> <%= d.lugares.join(' · ') %></p>
               <ul class="destino-meta">
                 <li><span>Mejor época</span><strong><%= d.epoca %></strong></li>
                 <li><span>Duración</span><strong><%= d.duracion %></strong></li>

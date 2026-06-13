@@ -356,6 +356,41 @@ if (window.matchMedia("(hover: none)").matches) {
 }
 
 // ===============================
+// FILTROS DE DESTINOS (continente + experiencia)
+// ===============================
+const filtrosWrap = document.querySelector(".filtros");
+if (filtrosWrap) {
+  const cards = [...document.querySelectorAll("#destinos .destino-card")];
+  const empty = document.querySelector(".destinos-empty");
+  const estado = { continente: "todos", interes: "todos" };
+
+  const aplicar = () => {
+    let visibles = 0;
+    cards.forEach(card => {
+      const okC = estado.continente === "todos" || card.dataset.continente === estado.continente;
+      const okI = estado.interes === "todos" || (card.dataset.interes || "").split(" ").includes(estado.interes);
+      const mostrar = okC && okI;
+      card.classList.toggle("is-hidden", !mostrar);
+      if (mostrar) visibles++;
+    });
+    if (empty) empty.style.display = visibles ? "none" : "block";
+  };
+
+  filtrosWrap.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const grupo = chip.dataset.group;
+      estado[grupo] = chip.dataset.value;
+      filtrosWrap.querySelectorAll('.chip[data-group="' + grupo + '"]').forEach(c => {
+        const activo = c === chip;
+        c.classList.toggle("active", activo);
+        c.setAttribute("aria-pressed", activo ? "true" : "false");
+      });
+      aplicar();
+    });
+  });
+}
+
+// ===============================
 // MAPA INTERACTIVO (Leaflet) — pines con popup por destino
 // ===============================
 const mapEl = document.getElementById("mapa-mundi");
@@ -364,33 +399,42 @@ if (mapEl && window.L) {
   try { destinos = JSON.parse(mapEl.dataset.destinos || "[]"); } catch (e) { destinos = []; }
 
   const map = L.map(mapEl, {
-    scrollWheelZoom: false,   // no secuestra el scroll de la página
-    zoomControl: true,
-    worldCopyJump: true,
+    scrollWheelZoom: false,   // zoom solo por botones → no secuestra el scroll de la página
+    doubleClickZoom: true,
+    zoomControl: false,       // agregamos el control en español más abajo
+    worldCopyJump: false,
+    maxBounds: [[-85, -180], [85, 180]],
+    maxBoundsViscosity: 1.0,
+    minZoom: 2,
   }).setView([20, 0], 2);
 
+  // Botones de zoom en español
+  L.control.zoom({ zoomInTitle: "Acercar", zoomOutTitle: "Alejar" }).addTo(map);
+
+  // noWrap: el mundo no se repite en horizontal
   L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    attribution: "&copy; OpenStreetMap, &copy; CARTO",
     subdomains: "abcd",
     maxZoom: 18,
+    noWrap: true,
+    bounds: [[-85, -180], [85, 180]],
   }).addTo(map);
 
   const pin = L.divIcon({ className: "mapa-pin", html: "<span></span>", iconSize: [16, 16], iconAnchor: [8, 8] });
   const puntos = [];
   destinos.forEach(d => {
     const m = L.marker([d.lat, d.lng], { icon: pin }).addTo(map);
+    const lugares = Array.isArray(d.lugares) ? d.lugares.join(" · ") : "";
     m.bindPopup(
       `<strong>${d.name}</strong>` +
       `<span class="pop-region">${d.region}</span><br>` +
-      `Mejor época: ${d.epoca}<br>Duración: ${d.duracion}<br>` +
+      `<b>Mejor época:</b> ${d.epoca}<br>` +
+      `<b>Duración:</b> ${d.duracion}<br>` +
+      (lugares ? `<b>Lugares de interés:</b> ${lugares}<br>` : "") +
       `<a href="/contacto">Consultar este viaje →</a>`
     );
     puntos.push([d.lat, d.lng]);
   });
 
   if (puntos.length) map.fitBounds(puntos, { padding: [50, 50], maxZoom: 4 });
-
-  // El zoom con rueda se activa al interactuar y se desactiva al salir
-  map.on("click focus", () => map.scrollWheelZoom.enable());
-  mapEl.addEventListener("mouseleave", () => map.scrollWheelZoom.disable());
 }

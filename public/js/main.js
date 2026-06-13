@@ -11,14 +11,18 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 // NAVBAR SCROLL (cambia estilo)
 // ===============================
 const navbar = document.getElementById("navbar");
+const heroForNav = document.getElementById("hero");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-});
+// Sobre el hero la navbar es transparente (para ver el efecto); se vuelve
+// sólida recién al pasarlo. En otras páginas, a partir de 50px.
+const navThreshold = () =>
+  heroForNav ? heroForNav.offsetHeight - 80 : 50;
+
+const updateNav = () => {
+  navbar.classList.toggle("scrolled", window.scrollY > navThreshold());
+};
+window.addEventListener("scroll", updateNav, { passive: true });
+updateNav();
 
 // ===============================
 // HAMBURGER + DRAWER MOBILE

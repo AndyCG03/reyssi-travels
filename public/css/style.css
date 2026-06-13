@@ -173,7 +173,6 @@ nav.scrolled .nav-logo img { filter: none; height: 48px; }
 .nav-links a.active { color: var(--blanco); }
 nav.scrolled .nav-links a { color: var(--texto); text-shadow: none; }
 nav.scrolled .nav-links a.active { color: var(--azul); font-weight: 600; }
-.drawer-links a.active { background: var(--crudo); color: var(--azul-dark); font-weight: 600; }
 
 .nav-cta {
   background: var(--gold-grad); color: var(--blanco);
@@ -250,7 +249,7 @@ nav.scrolled .hamburger span { background: var(--texto); }
 #hero {
   position: relative;
   height: 340vh;            /* longitud del scrub */
-  background: var(--azul-deep);
+  background: #000;
 }
 .hero-sticky {
   position: sticky; top: 0;
@@ -261,11 +260,12 @@ nav.scrolled .hamburger span { background: var(--texto); }
 .hero-video {
   position: absolute; inset: 0; z-index: 0;
   width: 100%; height: 100%; object-fit: cover;
-  background: var(--azul-deep);
+  background: #000;
 }
+/* Overlay neutral y liviano: oscurece apenas para legibilidad sin tapar el video */
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(12,74,110,0.5) 0%, rgba(12,74,110,0.32) 45%, rgba(8,30,46,0.8) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.14) 42%, rgba(0,0,0,0.55) 100%);
 }
 
 .hero-content { max-width: 880px; position: relative; z-index: 2; padding: 0 1.5rem; }
@@ -273,7 +273,7 @@ nav.scrolled .hamburger span { background: var(--texto); }
   color: var(--blanco); font-size: clamp(2.4rem, 6vw, 4.6rem);
   line-height: 1.1; text-shadow: 0 4px 30px rgba(0,0,0,0.35); margin-bottom: 1.4rem;
 }
-.hero-content h1 .highlight { color: var(--azul-light); font-style: italic; }
+.hero-content h1 .highlight { color: var(--azul-light); }
 .hero-content p {
   font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 640px; margin: 0 auto 2.4rem;
   color: rgba(255,255,255,0.92); text-shadow: 0 2px 14px rgba(0,0,0,0.3);
@@ -637,7 +637,9 @@ body { animation: pageFade 0.5s ease both; }
   body { font-size: 16px; }
   section { padding: 4.5rem 0; }
 
-  .hero-bg { background-attachment: scroll; }
+  /* Hero: en móvil no hay scrub; queda un hero normal con el poster */
+  #hero { height: 100vh; min-height: 100svh; }
+  .hero-sticky { position: relative; height: 100vh; min-height: 100svh; }
   .hero-scroll { display: none; }
 
   .confianza-grid { grid-template-columns: 1fr; gap: 0.9rem; }

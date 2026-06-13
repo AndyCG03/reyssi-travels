@@ -2,8 +2,9 @@
 // MOTION (motion.dev) — animaciones
 // Cargado vía CDN ESM (el proyecto no usa bundler)
 // ===============================
-import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
-
+// Motion se carga desde /js/vendor/motion.js (window.Motion). Sin CDN.
+const { animate, inView, stagger } = window.Motion || {};
+const motionReady = typeof animate === "function" && typeof inView === "function";
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ===============================
@@ -68,7 +69,7 @@ function closeMenu() {
 // ENTRADA DEL HERO (Motion, al cargar)
 // El título, texto y botones aparecen en cascada
 // ===============================
-if (!reduceMotion) {
+if (!reduceMotion && motionReady) {
   const heroEls = document.querySelectorAll(
     "#hero .hero-content > *, #hero .hero-scroll, .page-hero .container > *"
   );
@@ -93,8 +94,8 @@ reveals.forEach(el => {
   el.style.transform = "translateY(24px)";
 });
 
-if (reduceMotion) {
-  // Sin animación: mostrar todo de inmediato
+if (reduceMotion || !motionReady) {
+  // Sin animación (o Motion no disponible): mostrar todo de inmediato
   reveals.forEach(el => {
     el.style.opacity = "";
     el.style.transform = "";

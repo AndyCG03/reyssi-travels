@@ -378,45 +378,51 @@ if (filtrosWrap) {
   const empty = document.querySelector(".destinos-empty");
   const pag = document.querySelector(".paginacion");
   const PER_PAGE = 6;
-  const estado = { continente: "todos", interes: "todos", page: 1 };
+  let estado = { continente: "todos", interes: "todos", page: 1 };
 
-  const filtrar = () => cards.filter(card => {
+  const filtradas = () => cards.filter(card => {
     const okC = estado.continente === "todos" || card.dataset.continente === estado.continente;
     const okI = estado.interes === "todos" || (card.dataset.interes || "").split(" ").includes(estado.interes);
     return okC && okI;
   });
 
   const render = () => {
-    const visibles = filtrar();
-    const totalPages = Math.max(1, Math.ceil(visibles.length / PER_PAGE));
+    const lista = filtradas();
+    const totalPages = Math.max(1, Math.ceil(lista.length / PER_PAGE));
     if (estado.page > totalPages) estado.page = totalPages;
+    if (estado.page < 1) estado.page = 1;
     const start = (estado.page - 1) * PER_PAGE;
-    const enPagina = visibles.slice(start, start + PER_PAGE);
+    const visibles = lista.slice(start, start + PER_PAGE);
 
+    // Mostrar solo las de la página actual
     cards.forEach(card => {
-      const show = enPagina.includes(card);
+      const show = visibles.indexOf(card) !== -1;
       card.classList.toggle("is-hidden", !show);
-      if (show) card.classList.add("visible"); // asegura que se vean (las de otras páginas no pasan por el observer)
+      if (show) card.classList.add("visible");
     });
-    if (empty) empty.style.display = visibles.length ? "none" : "block";
+    if (empty) empty.style.display = lista.length ? "none" : "block";
 
+    // Botones de paginación (debajo de las cards)
     if (pag) {
       pag.innerHTML = "";
       if (totalPages > 1) {
-        const mkBtn = (label, page, opts = {}) => {
+        const irA = (n) => {
+          estado.page = n; render();
+          const sec = document.getElementById("destinos");
+          window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
+        };
+        const btn = (txt, n, dis, act) => {
           const b = document.createElement("button");
-          b.className = "pag-btn" + (opts.active ? " active" : "");
-          b.innerHTML = label;
-          if (opts.disabled) b.disabled = true;
-          b.addEventListener("click", () => {
-            estado.page = page; render();
-            document.getElementById("destinos").scrollIntoView({ behavior: "smooth", block: "start" });
-          });
+          b.type = "button";
+          b.className = "pag-btn" + (act ? " active" : "");
+          b.textContent = txt;
+          b.disabled = !!dis;
+          if (!dis && !act) b.addEventListener("click", () => irA(n));
           return b;
         };
-        pag.appendChild(mkBtn("‹", estado.page - 1, { disabled: estado.page === 1 }));
-        for (let i = 1; i <= totalPages; i++) pag.appendChild(mkBtn(String(i), i, { active: i === estado.page }));
-        pag.appendChild(mkBtn("›", estado.page + 1, { disabled: estado.page === totalPages }));
+        pag.appendChild(btn("‹", estado.page - 1, estado.page === 1, false));
+        for (let i = 1; i <= totalPages; i++) pag.appendChild(btn(String(i), i, false, i === estado.page));
+        pag.appendChild(btn("›", estado.page + 1, estado.page === totalPages, false));
       }
     }
   };

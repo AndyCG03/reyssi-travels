@@ -1,10 +1,10 @@
 // ===============================
-// MOTION (motion.dev) — animaciones
-// Cargado vía CDN ESM (el proyecto no usa bundler)
+// Motion (window.Motion, servido en /js/vendor/motion.js)
+// Solo se usa para el scroll-video del hero. Las animaciones de
+// entrada (textos y reveals) son CSS puro + IntersectionObserver,
+// así NUNCA dependen de que Motion cargue.
 // ===============================
-// Motion se carga desde /js/vendor/motion.js (window.Motion). Sin CDN.
-const { animate, inView, stagger } = window.Motion || {};
-const motionReady = typeof animate === "function" && typeof inView === "function";
+const Motion = window.Motion || {};
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ===============================
@@ -66,72 +66,86 @@ function closeMenu() {
 }
 
 // ===============================
-// ENTRADA DEL HERO (Motion, al cargar)
-// El título, texto y botones aparecen en cascada
-// ===============================
-if (!reduceMotion && motionReady) {
-  const heroEls = document.querySelectorAll(
-    "#hero .hero-content > *, #hero .hero-scroll, .page-hero .container > *"
-  );
-  if (heroEls.length) {
-    animate(
-      heroEls,
-      { opacity: [0, 1], transform: ["translateY(20px)", "translateY(0px)"] },
-      { duration: 0.95, delay: stagger(0.14, { start: 0.1 }), easing: [0.22, 1, 0.36, 1] }
-    );
-  }
-}
-
-// ===============================
-// REVEAL ON SCROLL (Motion)
-// Grupos (grillas) → cascada escalonada · sueltos → uno a uno
+// REVEAL ON SCROLL — IntersectionObserver + CSS transitions
+// Sin dependencia de Motion. El ocultar/transicionar lo hace el CSS
+// (clase .js en <html>); acá solo agregamos .visible al entrar en viewport.
 // ===============================
 const reveals = document.querySelectorAll(".reveal");
 
-// Estado inicial: ocultos y desplazados hacia abajo
-reveals.forEach(el => {
-  el.style.opacity = "0";
-  el.style.transform = "translateY(24px)";
-});
-
-if (reduceMotion || !motionReady) {
-  // Sin animación (o Motion no disponible): mostrar todo de inmediato
-  reveals.forEach(el => {
-    el.style.opacity = "";
-    el.style.transform = "";
-    el.classList.add("visible");
-  });
+if (reduceMotion || !("IntersectionObserver" in window)) {
+  // Mostrar todo de inmediato
+  reveals.forEach(el => el.classList.add("visible"));
 } else {
-  const show = (el, delay = 0) => {
-    animate(
-      el,
-      { opacity: [0, 1], transform: ["translateY(24px)", "translateY(0px)"] },
-      { duration: 0.7, delay, easing: [0.22, 1, 0.36, 1] }
-    );
-    el.classList.add("visible");
-  };
-
-  // Contenedores cuyos hijos .reveal aparecen en cascada
+  // Delay escalonado por grupo → efecto cascada
   const groupSelector =
     ".confianza-grid, .servicios-grid, .destinos-grid, .proceso-steps, .testimonios-grid, .faq-list";
-  const groups = document.querySelectorAll(groupSelector);
-  const grouped = new Set();
-
-  groups.forEach(group => {
-    const kids = [...group.querySelectorAll(":scope > .reveal")];
-    if (!kids.length) return;
-    kids.forEach(k => grouped.add(k));
-    inView(group, () => {
-      kids.forEach((kid, i) => show(kid, i * 0.09));
-    }, { margin: "0px 0px -80px 0px" });
+  document.querySelectorAll(groupSelector).forEach(group => {
+    [...group.querySelectorAll(":scope > .reveal")].forEach((kid, i) => {
+      kid.style.transitionDelay = (i * 90) + "ms";
+    });
   });
 
-  // Elementos .reveal sueltos (fuera de grupos)
-  const standalone = [...reveals].filter(el => !grouped.has(el));
-  if (standalone.length) {
-    inView(standalone, (el) => show(el), { margin: "0px 0px -80px 0px" });
-  }
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: "0px 0px -80px 0px", threshold: 0.08 });
+
+  reveals.forEach(el => io.observe(el));
 }
+
+// ===============================
+// HERO SCROLL-VIDEO (scrub)
+// Desktop: el video avanza con el scroll. Móvil/reduced-motion: queda el poster.
+// Usa Motion.scroll() si está disponible; si no, calcula el progreso a mano.
+// ===============================
+(function initHeroScrub() {
+  const section = document.getElementById("hero");
+  const video = section && section.querySelector(".hero-video");
+  if (!section || !video || !video.dataset.src) return;
+
+  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+  if (reduceMotion || !isDesktop) return; // móvil / reduced → se ve el poster fijo
+
+  video.src = video.dataset.src;
+  video.load();
+
+  let duration = 0;
+  let target = 0;
+  let current = 0;
+  video.addEventListener("loadedmetadata", () => { duration = video.duration || 0; });
+
+  const manualProgress = () => {
+    const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
+    const scrolled = Math.min(Math.max(-section.getBoundingClientRect().top, 0), scrollable);
+    return scrolled / scrollable;
+  };
+
+  if (typeof Motion.scroll === "function") {
+    Motion.scroll((p) => { target = (duration || 0) * p; }, {
+      target: section,
+      offset: ["start start", "end end"],
+    });
+  } else {
+    const onScroll = () => { target = (duration || 0) * manualProgress(); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Suavizado (lerp) para un scrub fluido
+  const loop = () => {
+    if (duration && video.readyState >= 1) {
+      current += (target - current) * 0.12;
+      if (Math.abs(target - current) < 0.0008) current = target;
+      try { video.currentTime = current; } catch (e) {}
+    }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
 
 // ===============================
 // COUNT UP (stats animadas)

@@ -201,64 +201,74 @@ nav.scrolled .hamburger span { background: var(--texto); }
 }
 .nav-overlay.show { display: block; opacity: 1; pointer-events: auto; }
 
+/* Cajón móvil: fondo azul navy que contrasta con la navbar blanca */
 .nav-drawer {
   position: fixed; top: 0; right: 0; bottom: 0;
-  width: min(80vw, 320px); background: var(--blanco); z-index: 150;
+  width: min(80vw, 320px); background: var(--azul-deep); z-index: 150;
   transform: translateX(100%);
   transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
   display: flex; flex-direction: column;
-  box-shadow: -10px 0 40px rgba(0,0,0,0.12);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.3);
 }
 .nav-drawer.open { transform: translateX(0); }
 .drawer-header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.4rem 1.5rem; border-bottom: 1px solid var(--gris-suave);
+  padding: 1.4rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.14);
 }
 .drawer-header img { height: 44px; width: auto; }
-.drawer-close { color: var(--texto); padding: 4px; }
+.drawer-close { color: var(--blanco); padding: 4px; }
 .drawer-links { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
 .drawer-links a {
   display: block; padding: 0.85rem 0.5rem; font-weight: 500; font-size: 1.05rem;
-  color: var(--texto); border-radius: 10px; transition: background var(--transition), color var(--transition);
+  color: rgba(255,255,255,0.88); border-radius: 10px; transition: background var(--transition), color var(--transition);
 }
-.drawer-links a:hover { background: var(--crudo); color: var(--azul-dark); }
-.drawer-cta { padding: 1.5rem; border-top: 1px solid var(--gris-suave); }
+.drawer-links a:hover { background: rgba(255,255,255,0.10); color: var(--blanco); }
+.drawer-links a.active { background: rgba(255,255,255,0.14); color: var(--blanco); font-weight: 600; }
+.drawer-cta { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.14); }
 .drawer-cta a {
-  display: block; text-align: center; background: var(--gold-grad); color: var(--blanco);
-  padding: 0.9rem; border-radius: 100px; font-weight: 600;
+  display: block; text-align: center; background: var(--azul-light); color: var(--azul-deep);
+  padding: 0.9rem; border-radius: 100px; font-weight: 700;
 }
 
 @media (min-width: 901px) {
   .nav-drawer, .nav-overlay { display: none !important; }
 }
 
-/* Nav: pasar a hamburguesa antes (el menú no entra con 6 ítems) */
+/* Nav: pasar a hamburguesa antes (el menú no entra con tantos ítems).
+   Al hacer scroll, la navbar móvil hereda el fondo BLANCO del desktop
+   (con la hamburguesa oscura). */
 @media (max-width: 900px) {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
-  nav.scrolled { background: var(--azul); }
-  nav.scrolled .nav-logo img { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); }
-  nav.scrolled .hamburger span { background: var(--blanco); }
 }
 
 /* ════════════════════════════════════════════════════════════
    HERO
    ════════════════════════════════════════════════════════════ */
+/* Scroll-video: #hero es alto; el contenido queda "pegado" (sticky) mientras
+   se hace scroll, y el video se scrubea con el progreso (ver main.js). */
 #hero {
-  position: relative; min-height: 100vh;
+  position: relative;
+  height: 340vh;            /* longitud del scrub */
+  background: var(--azul-deep);
+}
+.hero-sticky {
+  position: sticky; top: 0;
+  height: 100vh; min-height: 100svh;
+  overflow: hidden; color: var(--blanco);
   display: flex; align-items: center; justify-content: center; text-align: center;
-  padding: 7rem 1.5rem 8rem; overflow: hidden; color: var(--blanco);
 }
-.hero-bg {
-  position: absolute; inset: 0; z-index: -2;
-  background:
-    linear-gradient(180deg, rgba(12,74,110,0.55) 0%, rgba(12,74,110,0.35) 45%, rgba(12,74,110,0.75) 100%),
-    url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1920&q=80') center/cover no-repeat fixed;
-  animation: heroZoom 22s ease-in-out infinite alternate;
+.hero-video {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  background: var(--azul-deep);
 }
-@keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(12,74,110,0.5) 0%, rgba(12,74,110,0.32) 45%, rgba(8,30,46,0.8) 100%);
+}
 
-.hero-content { max-width: 880px; position: relative; z-index: 2; }
+.hero-content { max-width: 880px; position: relative; z-index: 2; padding: 0 1.5rem; }
 .hero-content h1 {
   color: var(--blanco); font-size: clamp(2.4rem, 6vw, 4.6rem);
   line-height: 1.1; text-shadow: 0 4px 30px rgba(0,0,0,0.35); margin-bottom: 1.4rem;
@@ -581,12 +591,34 @@ footer { background: var(--pizarra); color: rgba(255,255,255,0.75); padding: 4.5
 @keyframes pageFade { from { opacity: 0; } to { opacity: 1; } }
 body { animation: pageFade 0.5s ease both; }
 
-/* Fallback si Motion no carga */
-.reveal.visible { opacity: 1 !important; transform: none !important; }
+/* Reveals on scroll — CSS transitions.
+   Solo se ocultan si hay JS (clase .js en <html>); sin JS quedan visibles.
+   El IntersectionObserver de main.js agrega .visible. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.js .reveal.visible { opacity: 1; transform: none; }
+
+/* Entrada del hero / banners (textos) — keyframes CSS, sin depender de Motion */
+@keyframes heroIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+.js #hero .hero-content > *,
+.js .page-hero .container > * { opacity: 0; animation: heroIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.js #hero .hero-content > *:nth-child(1), .js .page-hero .container > *:nth-child(1) { animation-delay: 0.15s; }
+.js #hero .hero-content > *:nth-child(2), .js .page-hero .container > *:nth-child(2) { animation-delay: 0.30s; }
+.js #hero .hero-content > *:nth-child(3), .js .page-hero .container > *:nth-child(3) { animation-delay: 0.45s; }
+.js #hero .hero-content > *:nth-child(4) { animation-delay: 0.60s; }
+.js #hero .hero-scroll { opacity: 0; animation: heroIn 0.9s ease 0.8s forwards; }
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1 !important; transform: none !important; }
-  .hero-bg { background-attachment: scroll; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  .js .reveal,
+  .js #hero .hero-content > *,
+  .js .page-hero .container > *,
+  .js #hero .hero-scroll { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
 
 /* ════════════════════════════════════════════════════════════

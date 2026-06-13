@@ -8,6 +8,26 @@ const Motion = window.Motion || {};
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ===============================
+// LOADER — se oculta al terminar de cargar (con tope de seguridad)
+// ===============================
+const loader = document.getElementById("loader");
+if (loader) {
+  let hidden = false;
+  const hideLoader = () => {
+    if (hidden) return;
+    hidden = true;
+    loader.classList.add("loaded");
+    setTimeout(() => loader.remove(), 650);
+  };
+  if (document.readyState === "complete") {
+    hideLoader();
+  } else {
+    window.addEventListener("load", hideLoader);
+  }
+  setTimeout(hideLoader, 4000); // fallback por si 'load' tarda demasiado
+}
+
+// ===============================
 // NAVBAR SCROLL (cambia estilo)
 // ===============================
 const navbar = document.getElementById("navbar");
@@ -322,3 +342,55 @@ links.forEach(link => {
     });
   });
 });
+
+// ===============================
+// FLIP CARDS — tap para girar en dispositivos táctiles (sin hover)
+// ===============================
+if (window.matchMedia("(hover: none)").matches) {
+  document.querySelectorAll(".destino-card").forEach(card => {
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return; // dejar pasar el enlace del reverso
+      card.classList.toggle("flipped");
+    });
+  });
+}
+
+// ===============================
+// MAPA INTERACTIVO (Leaflet) — pines con popup por destino
+// ===============================
+const mapEl = document.getElementById("mapa-mundi");
+if (mapEl && window.L) {
+  let destinos = [];
+  try { destinos = JSON.parse(mapEl.dataset.destinos || "[]"); } catch (e) { destinos = []; }
+
+  const map = L.map(mapEl, {
+    scrollWheelZoom: false,   // no secuestra el scroll de la página
+    zoomControl: true,
+    worldCopyJump: true,
+  }).setView([20, 0], 2);
+
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    subdomains: "abcd",
+    maxZoom: 18,
+  }).addTo(map);
+
+  const pin = L.divIcon({ className: "mapa-pin", html: "<span></span>", iconSize: [16, 16], iconAnchor: [8, 8] });
+  const puntos = [];
+  destinos.forEach(d => {
+    const m = L.marker([d.lat, d.lng], { icon: pin }).addTo(map);
+    m.bindPopup(
+      `<strong>${d.name}</strong>` +
+      `<span class="pop-region">${d.region}</span><br>` +
+      `Mejor época: ${d.epoca}<br>Duración: ${d.duracion}<br>` +
+      `<a href="/contacto">Consultar este viaje →</a>`
+    );
+    puntos.push([d.lat, d.lng]);
+  });
+
+  if (puntos.length) map.fitBounds(puntos, { padding: [50, 50], maxZoom: 4 });
+
+  // El zoom con rueda se activa al interactuar y se desactiva al salir
+  map.on("click focus", () => map.scrollWheelZoom.enable());
+  mapEl.addEventListener("mouseleave", () => map.scrollWheelZoom.disable());
+}

@@ -29,26 +29,28 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════ CONFIANZA ═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════ CONFIANZA (carrusel marquee) ═══════════════════════════════════════ -->
+<%
+  const trust = [
+    { svg: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>', title: 'Atención 100% personalizada', text: 'Un solo asesor de principio a fin.' },
+    { svg: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>', title: 'Soporte 24/7 en viaje', text: 'Disponibles ante cualquier imprevisto.' },
+    { svg: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>', title: 'Pagos seguros y en cuotas', text: 'Mercado Pago y financiación flexible.' },
+    { svg: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>', title: 'Primera consulta sin cargo', text: 'Sin compromiso ni letra chica.' },
+    { svg: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>', title: 'Itinerarios a medida', text: 'Diseñados según tu perfil viajero.' },
+    { svg: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>', title: 'Turismo responsable', text: 'Operadores locales y naturaleza primero.' }
+  ];
+%>
 <section id="confianza">
-  <div class="container">
-    <div class="confianza-grid">
-      <div class="confianza-item reveal">
-        <div class="ci-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-        <div><h4>Atención 100% personalizada</h4><p>Un solo asesor de principio a fin.</p></div>
-      </div>
-      <div class="confianza-item reveal">
-        <div class="ci-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div><h4>Soporte 24/7 en viaje</h4><p>Estamos disponibles ante cualquier imprevisto.</p></div>
-      </div>
-      <div class="confianza-item reveal">
-        <div class="ci-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
-        <div><h4>Pagos seguros y en cuotas</h4><p>Mercado Pago y financiación flexible.</p></div>
-      </div>
-      <div class="confianza-item reveal">
-        <div class="ci-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-        <div><h4>Primera consulta sin cargo</h4><p>Sin compromiso ni letra chica.</p></div>
-      </div>
+  <div class="marquee" aria-label="Por qué elegirnos">
+    <div class="marquee-track">
+      <% for (let dup = 0; dup < 2; dup++) { %>
+        <% trust.forEach(function(t){ %>
+          <div class="confianza-item"<%= dup === 1 ? ' aria-hidden="true"' : '' %>>
+            <div class="ci-icon"><%- t.svg %></div>
+            <div><h4><%= t.title %></h4><p><%= t.text %></p></div>
+          </div>
+        <% }) %>
+      <% } %>
     </div>
   </div>
 </section>
@@ -83,20 +85,44 @@
       <div class="divider center"></div>
       <h2>Lugares que nos quitan el aliento</h2>
     </div>
+    <%
+      const destacados = [
+        { name: 'Patagonia', region: 'Argentina · Chile', badge: '⭐ Más visitado',
+          img: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80',
+          desc: 'Glaciares, montañas y estepa infinita. Trekking en El Chaltén y el Perito Moreno.',
+          epoca: 'Oct – Abr', duracion: '10–16 días' },
+        { name: 'Islandia', region: 'Europa del Norte',
+          img: 'https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=600&q=80',
+          desc: 'Cascadas, volcanes y auroras boreales. Ring Road y baños geotermales.',
+          epoca: 'Jun–Ago / auroras Sep–Mar', duracion: '8–12 días' },
+        { name: 'Nepal', region: 'Asia del Sur',
+          img: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=600&q=80',
+          desc: 'El Himalaya en su esplendor. Trekking al Campo Base del Everest o Annapurna.',
+          epoca: 'Mar–May / Oct–Nov', duracion: '14–20 días' }
+      ];
+    %>
     <div class="destinos-grid">
-      <div class="destino-card reveal">
-        <span class="destino-badge">⭐ Más visitado</span>
-        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80" alt="Patagonia" loading="lazy" />
-        <div class="destino-overlay"><span class="tag">Argentina · Chile</span><h3>Patagonia</h3></div>
-      </div>
-      <div class="destino-card reveal">
-        <img src="https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=600&q=80" alt="Islandia" loading="lazy" />
-        <div class="destino-overlay"><span class="tag">Europa del Norte</span><h3>Islandia</h3></div>
-      </div>
-      <div class="destino-card reveal">
-        <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=600&q=80" alt="Nepal" loading="lazy" />
-        <div class="destino-overlay"><span class="tag">Asia del Sur</span><h3>Nepal</h3></div>
-      </div>
+      <% destacados.forEach(function(d){ %>
+        <div class="destino-card reveal" tabindex="0">
+          <div class="destino-inner">
+            <div class="destino-front">
+              <% if (d.badge) { %><span class="destino-badge"><%= d.badge %></span><% } %>
+              <img src="<%= d.img %>" alt="<%= d.name %>" loading="lazy" />
+              <div class="destino-overlay"><span class="tag"><%= d.region %></span><h3><%= d.name %></h3></div>
+            </div>
+            <div class="destino-back">
+              <span class="tag"><%= d.region %></span>
+              <h3><%= d.name %></h3>
+              <p><%= d.desc %></p>
+              <ul class="destino-meta">
+                <li><span>Mejor época</span><strong><%= d.epoca %></strong></li>
+                <li><span>Duración</span><strong><%= d.duracion %></strong></li>
+              </ul>
+              <a href="/contacto" class="destino-cta">Consultar este viaje →</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
     </div>
     <div style="text-align:center; margin-top:2.5rem;">
       <a href="/destinos" class="btn-secondary" style="color:var(--azul-dark); border-color:var(--gris-suave); background:var(--blanco);">

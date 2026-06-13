@@ -15,8 +15,19 @@
   <script>document.documentElement.classList.add('js');</script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <% if (typeof page !== 'undefined' && page === 'destinos') { %>
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <% } %>
   <link rel="stylesheet" href="/css/style.css?v=<%= v('css/style.css') %>" />
   <link rel="icon" href="/images/logo.png" />
 </head>
 <body>
+<!-- Loader / preloader (se oculta al terminar de cargar) -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <img src="/images/loader-opt.webp" alt="" class="loader-img" />
+    <div class="loader-spinner"></div>
+    <p class="loader-text">Preparando tu próxima aventura…</p>
+  </div>
+</div>
 <%- include('nav', { page: typeof page !== 'undefined' ? page : '' }) %>

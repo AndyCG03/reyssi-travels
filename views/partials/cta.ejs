@@ -1,6 +1,9 @@
 <!-- Banda CTA reutilizable -->
 <section id="cta-band">
-  <div class="cta-bg"></div>
+  <video class="cta-video" autoplay muted loop playsinline preload="metadata" poster="/images/cta-poster.jpg">
+    <source src="/videos/CTA-web.mp4" type="video/mp4">
+  </video>
+  <div class="cta-overlay"></div>
   <div class="container reveal">
     <h2><%= typeof cta_title !== 'undefined' ? cta_title : 'Tu próxima gran aventura empieza con una conversación' %></h2>
     <p><%= typeof cta_text !== 'undefined' ? cta_text : 'Sin compromiso. Contanos qué soñás y te enviamos una primera propuesta en menos de 24 horas.' %></p>

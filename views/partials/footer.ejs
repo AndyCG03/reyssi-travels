@@ -48,6 +48,9 @@
 
 <!-- Motion (motion.dev) servido localmente — define window.Motion -->
 <script src="/js/vendor/motion.js?v=<%= v('js/vendor/motion.js') %>"></script>
+<% if (typeof page !== 'undefined' && page === 'destinos') { %>
+<script src="/vendor/leaflet/leaflet.js"></script>
+<% } %>
 <script type="module" src="/js/main.js?v=<%= v('js/main.js') %>"></script>
 </body>
 </html>

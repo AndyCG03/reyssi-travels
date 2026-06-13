@@ -1,40 +1,91 @@
-<%- include('partials/head', { title: 'Destinos | Reyssi Travels', desc: 'Patagonia, Islandia, Nepal, Costa Rica, Noruega y más. Destinos de aventura y naturaleza diseñados a medida.', page: 'destinos' }) %>
+<%- include('partials/head', { title: 'Destinos | Reyssi Travels', desc: 'Patagonia, Islandia, Nepal, Costa Rica, Noruega, Perú, Japón y más. Destinos de aventura y naturaleza a medida.', page: 'destinos' }) %>
 
 <%- include('partials/page-hero', {
   ph_tag: 'Dónde te llevamos',
   ph_title: 'Lugares que nos quitan el aliento',
-  ph_subtitle: 'Una selección de nuestros destinos favoritos. ¿No ves el tuyo? Lo armamos igual.',
+  ph_subtitle: 'Filtrá por continente o tipo de experiencia y descubrí tu próxima aventura.',
   ph_img: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1600&q=80'
 }) %>
 
-<!-- ═══════════════════════════════════════ DESTINOS ═══════════════════════════════════════ -->
+<%
+  const destinos = [
+    { name:'Patagonia', region:'Argentina · Chile', continente:'America', interes:'trekking montaña', badge:'⭐ Más visitado', lat:-50.5, lng:-73.0, img:'1469474968028-56623f02e42e', desc:'Glaciares, montañas y estepa infinita. Trekking en El Chaltén y el Perito Moreno.', epoca:'Oct – Abr', duracion:'10–16 días' },
+    { name:'Machu Picchu', region:'Perú', continente:'America', interes:'trekking cultura', lat:-13.16, lng:-72.54, img:'1526392060635-9d6019884377', desc:'La ciudadela inca entre nubes. Camino Inca y el Valle Sagrado.', epoca:'May – Sep', duracion:'7–12 días' },
+    { name:'Costa Rica', region:'Centroamérica', continente:'America', interes:'naturaleza', lat:9.7, lng:-84.0, img:'1447654911919-bd9e1c0ebde1', desc:'Selva, volcanes y dos océanos. Biodiversidad y aventura pura.', epoca:'Dic – Abr', duracion:'8–12 días' },
+    { name:'Banff', region:'Canadá', continente:'America', interes:'montaña naturaleza', lat:51.18, lng:-115.57, img:'1609825488888-3a766db05542', desc:'Lagos turquesa y Montañas Rocosas. Senderismo y paisajes de postal.', epoca:'Jun – Sep', duracion:'7–10 días' },
+    { name:'Islandia', region:'Europa del Norte', continente:'Europa', interes:'auroras naturaleza', lat:64.9, lng:-19.0, img:'1585409677983-0f6c41ca9c3b', desc:'Cascadas, volcanes y auroras boreales. Ring Road y baños geotermales.', epoca:'Jun–Ago / auroras Sep–Mar', duracion:'8–12 días' },
+    { name:'Noruega', region:'Escandinavia', continente:'Europa', interes:'fiordos auroras', lat:61.0, lng:8.5, img:'1489493887464-892be6d1daae', desc:'Fiordos imponentes y pueblos de cuento. Kayak y senderismo entre acantilados.', epoca:'Jun – Ago', duracion:'7–10 días' },
+    { name:'Nepal', region:'Asia del Sur', continente:'Asia', interes:'trekking montaña', lat:28.0, lng:84.0, img:'1516690561799-46d8f74f9abf', desc:'El Himalaya en su esplendor. Campo Base del Everest o Annapurna.', epoca:'Mar–May / Oct–Nov', duracion:'14–20 días' },
+    { name:'Japón', region:'Asia Oriental', continente:'Asia', interes:'cultura montaña', lat:36.2, lng:137.6, img:'1493976040374-85c8e12f0c0e', desc:'Templos, montañas y tradición. Alpes japoneses y el Monte Fuji.', epoca:'Mar–May / Oct–Nov', duracion:'10–14 días' },
+    { name:'Tanzania', region:'África Oriental', continente:'Africa', interes:'safari naturaleza', lat:-2.33, lng:34.83, img:'1516426122078-c23e76319801', desc:'El Serengeti y la gran migración. Safari y el Kilimanjaro.', epoca:'Jun – Oct', duracion:'8–12 días' },
+    { name:'Nueva Zelanda', region:'Oceanía', continente:'Oceania', interes:'trekking naturaleza', lat:-45.03, lng:168.66, img:'1469521669194-babb45599def', desc:'Montañas, fiordos y aventura sin límites. Queenstown y Milford Sound.', epoca:'Nov – Mar', duracion:'12–18 días' }
+  ];
+  const continentes = [['todos','Todos'],['America','América'],['Europa','Europa'],['Asia','Asia'],['Africa','África'],['Oceania','Oceanía']];
+  const intereses = [['todos','Todas'],['trekking','Trekking'],['safari','Safari'],['auroras','Auroras'],['fiordos','Fiordos'],['cultura','Cultura'],['naturaleza','Naturaleza']];
+%>
+
+<!-- ═══════════════════════════════════════ DESTINOS (filtros + flip cards) ═══════════════════════════════════════ -->
 <section id="destinos">
   <div class="container">
-    <div class="destinos-grid">
-      <div class="destino-card reveal">
-        <span class="destino-badge">⭐ Más visitado</span>
-        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80" alt="Patagonia" loading="lazy" />
-        <div class="destino-overlay"><span class="tag">Argentina · Chile</span><h3>Patagonia</h3></div>
+    <div class="filtros reveal">
+      <div class="filtro-grupo">
+        <span class="filtro-label">Continente</span>
+        <% continentes.forEach(function(c, i){ %>
+          <button class="chip<%= i === 0 ? ' active' : '' %>" data-group="continente" data-value="<%= c[0] %>"><%= c[1] %></button>
+        <% }) %>
       </div>
-      <div class="destino-card reveal">
-        <img src="https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=600&q=80" alt="Islandia" loading="lazy" />
-        <div class="destino-overlay"><span class="tag">Europa del Norte</span><h3>Islandia</h3></div>
-      </div>
-      <div class="destino-card reveal">
-        <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=600&q=80" alt="Nepal" loading="lazy" />
-        <div class="destino-overlay"><span class="tag">Asia del Sur</span><h3>Nepal</h3></div>
-      </div>
-      <div class="destino-card reveal">
-        <img src="https://images.unsplash.com/photo-1447654911919-bd9e1c0ebde1?w=600&q=80" alt="Costa Rica" loading="lazy" />
-        <div class="destino-overlay"><span class="tag">Centroamérica</span><h3>Costa Rica</h3></div>
-      </div>
-      <div class="destino-card reveal">
-        <img src="https://images.unsplash.com/photo-1489493887464-892be6d1daae?w=600&q=80" alt="Noruega" loading="lazy" />
-        <div class="destino-overlay"><span class="tag">Escandinavia</span><h3>Noruega</h3></div>
+      <div class="filtro-grupo">
+        <span class="filtro-label">Experiencia</span>
+        <% intereses.forEach(function(t, i){ %>
+          <button class="chip<%= i === 0 ? ' active' : '' %>" data-group="interes" data-value="<%= t[0] %>"><%= t[1] %></button>
+        <% }) %>
       </div>
     </div>
+
+    <div class="destinos-grid destinos-uniform">
+      <% destinos.forEach(function(d){ %>
+        <div class="destino-card reveal" tabindex="0" data-continente="<%= d.continente %>" data-interes="<%= d.interes %>">
+          <div class="destino-inner">
+            <div class="destino-front">
+              <% if (d.badge) { %><span class="destino-badge"><%= d.badge %></span><% } %>
+              <img src="https://images.unsplash.com/photo-<%= d.img %>?w=700&q=80" alt="<%= d.name %>" loading="lazy" />
+              <div class="destino-overlay"><span class="tag"><%= d.region %></span><h3><%= d.name %></h3></div>
+            </div>
+            <div class="destino-back">
+              <span class="tag"><%= d.region %></span>
+              <h3><%= d.name %></h3>
+              <p><%= d.desc %></p>
+              <ul class="destino-meta">
+                <li><span>Mejor época</span><strong><%= d.epoca %></strong></li>
+                <li><span>Duración</span><strong><%= d.duracion %></strong></li>
+              </ul>
+              <a href="/contacto" class="destino-cta">Consultar este viaje →</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <p class="destinos-empty">No hay destinos con esos filtros. Probá otra combinación o <a href="/contacto">escribinos</a> — lo armamos igual.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ MAPA INTERACTIVO ═══════════════════════════════════════ -->
+<section id="mapa">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Explorá el mundo</span>
+      <div class="divider center"></div>
+      <h2>Dónde llegamos</h2>
+      <p style="color:var(--texto-suave); max-width:560px; margin:0 auto;">Arrastrá, hacé zoom y tocá cada punto para ver el destino.</p>
+    </div>
+    <div
+      id="mapa-mundi"
+      class="reveal"
+      data-destinos='<%= JSON.stringify(destinos.map(function(d){ return { name:d.name, region:d.region, lat:d.lat, lng:d.lng, epoca:d.epoca, duracion:d.duracion }; })) %>'
+      aria-label="Mapa de destinos"
+    ></div>
   </div>
 </section>
 
 <%- include('partials/cta', { cta_title: 'Tu destino soñado, hecho a tu medida', cta_text: 'Contanos a dónde querés ir (o dejate sorprender) y armamos el viaje perfecto para vos.' }) %>
-<%- include('partials/footer') %>
+<%- include('partials/footer', { page: 'destinos' }) %>

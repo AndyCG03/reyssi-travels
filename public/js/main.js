@@ -1,4 +1,10 @@
 // ===============================
+// MOTION (motion.dev) — animaciones
+// Cargado vía CDN ESM (el proyecto no usa bundler)
+// ===============================
+import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+// ===============================
 // NAVBAR SCROLL (cambia estilo)
 // ===============================
 const navbar = document.getElementById("navbar");
@@ -57,24 +63,26 @@ function closeMenu() {
 }
 
 // ===============================
-// REVEAL ON SCROLL (animaciones)
+// REVEAL ON SCROLL (Motion)
+// Anima los elementos .reveal cuando entran en viewport
 // ===============================
 const reveals = document.querySelectorAll(".reveal");
 
-const revealOnScroll = () => {
-  const windowHeight = window.innerHeight;
+// Estado inicial: ocultos y desplazados hacia abajo
+reveals.forEach(el => {
+  el.style.opacity = "0";
+  el.style.transform = "translateY(40px)";
+});
 
-  reveals.forEach(el => {
-    const elementTop = el.getBoundingClientRect().top;
-
-    if (elementTop < windowHeight - 80) {
-      el.classList.add("visible");
-    }
-  });
-};
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
+// Al entrar en pantalla, animar a su posición final (una sola vez)
+inView(reveals, (el) => {
+  animate(
+    el,
+    { opacity: 1, transform: "translateY(0px)" },
+    { duration: 0.6, easing: "ease-out" }
+  );
+  el.classList.add("visible");
+}, { margin: "0px 0px -80px 0px" });
 
 // ===============================
 // COUNT UP (stats animadas)

@@ -33,32 +33,33 @@ if (loader) {
 const navbar = document.getElementById("navbar");
 const heroForNav = document.getElementById("hero");
 const isHome = !!heroForNav;
+const isMobileView = window.matchMedia("(max-width: 768px)").matches;
 
-// Home: intro con SOLO el video. La navbar (transparente) y los textos del
-// hero aparecen al primer scroll. Otras páginas: navbar visible desde el inicio.
-if (isHome && !reduceMotion) {
-  navbar.classList.add("nav-intro");
-} else if (isHome) {
-  heroForNav.classList.add("reveal-text"); // reduced-motion: mostrar textos ya
+// El intro "solo el video → aparece al primer scroll" es para DESKTOP.
+// En móvil el video se reproduce solo y los textos se muestran de entrada.
+const introActive = isHome && !reduceMotion && !isMobileView;
+const waFloat = document.querySelector(".wa-float");
+
+if (isHome) {
+  if (introActive) {
+    navbar.classList.add("nav-intro");
+    if (waFloat) waFloat.classList.add("wa-hidden");
+  } else {
+    heroForNav.classList.add("reveal-text"); // móvil / reduced: textos visibles ya
+  }
 }
 
 // Sobre el hero la navbar es transparente; se vuelve sólida (blanca) al pasarlo.
 const navThreshold = () => (isHome ? heroForNav.offsetHeight - 80 : 50);
-const introActive = isHome && !reduceMotion;
-const waFloat = document.querySelector(".wa-float");
-
-if (introActive && waFloat) waFloat.classList.add("wa-hidden");
 
 const updateNav = () => {
   const y = window.scrollY;
   if (introActive) {
-    // En el tope: solo el video (navbar oculta, textos fuera, WhatsApp oculto).
-    // Al primer scroll: aparecen header transparente + textos. Al volver, se repliega.
     navbar.classList.toggle("nav-intro", y <= 16);
     heroForNav.classList.toggle("reveal-text", y > 16);
     if (waFloat) waFloat.classList.toggle("wa-hidden", y <= 16);
   }
-  // Blanca solo al pasar el hero; sobre el hero (aunque subas) siempre transparente.
+  if (isHome) heroForNav.classList.toggle("hero-scrolled", y > 40); // oculta el indicador de scroll
   navbar.classList.toggle("scrolled", y > navThreshold());
 };
 window.addEventListener("scroll", updateNav, { passive: true });
@@ -151,8 +152,21 @@ if (reduceMotion || !("IntersectionObserver" in window)) {
   const video = section && section.querySelector(".hero-video");
   if (!section || !video || !video.dataset.src) return;
 
-  if (reduceMotion) return; // solo reduced-motion se queda con el poster fijo
+  if (reduceMotion) return; // reduced-motion: queda el poster fijo
 
+  // MÓVIL: reproducir el video liviano en loop (fluido) — sin scrub (el seek es entrecortado en móviles)
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    video.src = video.dataset.srcMobile || video.dataset.src;
+    video.loop = true;
+    video.muted = true;
+    video.setAttribute("playsinline", "");
+    const tryPlay = () => { const pr = video.play(); if (pr && pr.catch) pr.catch(() => {}); };
+    if (video.readyState >= 2) tryPlay();
+    else video.addEventListener("loadeddata", tryPlay, { once: true });
+    return;
+  }
+
+  // DESKTOP: scrub con el scroll
   video.src = video.dataset.src;
   video.load();
 
@@ -362,32 +376,66 @@ const filtrosWrap = document.querySelector(".filtros");
 if (filtrosWrap) {
   const cards = [...document.querySelectorAll("#destinos .destino-card")];
   const empty = document.querySelector(".destinos-empty");
-  const estado = { continente: "todos", interes: "todos" };
+  const pag = document.querySelector(".paginacion");
+  const PER_PAGE = 6;
+  const estado = { continente: "todos", interes: "todos", page: 1 };
 
-  const aplicar = () => {
-    let visibles = 0;
+  const filtrar = () => cards.filter(card => {
+    const okC = estado.continente === "todos" || card.dataset.continente === estado.continente;
+    const okI = estado.interes === "todos" || (card.dataset.interes || "").split(" ").includes(estado.interes);
+    return okC && okI;
+  });
+
+  const render = () => {
+    const visibles = filtrar();
+    const totalPages = Math.max(1, Math.ceil(visibles.length / PER_PAGE));
+    if (estado.page > totalPages) estado.page = totalPages;
+    const start = (estado.page - 1) * PER_PAGE;
+    const enPagina = visibles.slice(start, start + PER_PAGE);
+
     cards.forEach(card => {
-      const okC = estado.continente === "todos" || card.dataset.continente === estado.continente;
-      const okI = estado.interes === "todos" || (card.dataset.interes || "").split(" ").includes(estado.interes);
-      const mostrar = okC && okI;
-      card.classList.toggle("is-hidden", !mostrar);
-      if (mostrar) visibles++;
+      const show = enPagina.includes(card);
+      card.classList.toggle("is-hidden", !show);
+      if (show) card.classList.add("visible"); // asegura que se vean (las de otras páginas no pasan por el observer)
     });
-    if (empty) empty.style.display = visibles ? "none" : "block";
+    if (empty) empty.style.display = visibles.length ? "none" : "block";
+
+    if (pag) {
+      pag.innerHTML = "";
+      if (totalPages > 1) {
+        const mkBtn = (label, page, opts = {}) => {
+          const b = document.createElement("button");
+          b.className = "pag-btn" + (opts.active ? " active" : "");
+          b.innerHTML = label;
+          if (opts.disabled) b.disabled = true;
+          b.addEventListener("click", () => {
+            estado.page = page; render();
+            document.getElementById("destinos").scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+          return b;
+        };
+        pag.appendChild(mkBtn("‹", estado.page - 1, { disabled: estado.page === 1 }));
+        for (let i = 1; i <= totalPages; i++) pag.appendChild(mkBtn(String(i), i, { active: i === estado.page }));
+        pag.appendChild(mkBtn("›", estado.page + 1, { disabled: estado.page === totalPages }));
+      }
+    }
   };
 
   filtrosWrap.querySelectorAll(".chip").forEach(chip => {
     chip.addEventListener("click", () => {
       const grupo = chip.dataset.group;
       estado[grupo] = chip.dataset.value;
+      estado.page = 1;
       filtrosWrap.querySelectorAll('.chip[data-group="' + grupo + '"]').forEach(c => {
         const activo = c === chip;
         c.classList.toggle("active", activo);
         c.setAttribute("aria-pressed", activo ? "true" : "false");
       });
-      aplicar();
+      render();
     });
   });
+
+  render();
 }
 
 // ===============================
@@ -420,6 +468,29 @@ if (mapEl && window.L) {
     bounds: [[-85, -180], [85, 180]],
   }).addTo(map);
 
+  // Modal de detalle del destino
+  const modal = document.getElementById("destino-modal");
+  const setText = (sel, val) => { const el = modal && modal.querySelector(sel); if (el) el.textContent = val || ""; };
+  const abrirModal = (d) => {
+    if (!modal) return;
+    const img = modal.querySelector("#dm-img");
+    if (img) { img.src = "https://images.unsplash.com/photo-" + d.img + "?w=800&q=80"; img.alt = d.name; }
+    setText("#dm-region", d.region);
+    setText("#dm-nombre", d.name);
+    setText("#dm-desc", d.desc);
+    setText("#dm-epoca", d.epoca);
+    setText("#dm-duracion", d.duracion);
+    const spots = modal.querySelector("#dm-spots");
+    if (spots) { spots.innerHTML = ""; (d.lugares || []).forEach(l => { const li = document.createElement("li"); li.textContent = l; spots.appendChild(li); }); }
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+  };
+  const cerrarModal = () => { if (modal) { modal.hidden = true; document.body.style.overflow = ""; } };
+  if (modal) {
+    modal.querySelectorAll("[data-close]").forEach(el => el.addEventListener("click", cerrarModal));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) cerrarModal(); });
+  }
+
   const pin = L.divIcon({ className: "mapa-pin", html: "<span></span>", iconSize: [16, 16], iconAnchor: [8, 8] });
   const puntos = [];
   destinos.forEach(d => {
@@ -431,8 +502,10 @@ if (mapEl && window.L) {
       `<b>Mejor época:</b> ${d.epoca}<br>` +
       `<b>Duración:</b> ${d.duracion}<br>` +
       (lugares ? `<b>Lugares de interés:</b> ${lugares}<br>` : "") +
-      `<a href="/contacto">Consultar este viaje →</a>`
+      `<span class="pop-hint">Tocá el punto para ver más →</span>`
     );
+    m.on("mouseover", () => m.openPopup());   // hover → card con info
+    m.on("click", () => abrirModal(d));        // click → detalle + lugares recomendados
     puntos.push([d.lat, d.lng]);
   });
 

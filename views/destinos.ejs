@@ -66,6 +66,7 @@
         </div>
       <% }) %>
     </div>
+    <nav class="paginacion" aria-label="Paginación de destinos"></nav>
     <p class="destinos-empty">No hay destinos con esos filtros. Probá otra combinación o <a href="/contacto">escribinos</a> — lo armamos igual.</p>
   </div>
 </section>
@@ -82,11 +83,34 @@
     <div
       id="mapa-mundi"
       class="reveal"
-      data-destinos='<%= JSON.stringify(destinos.map(function(d){ return { name:d.name, region:d.region, lat:d.lat, lng:d.lng, epoca:d.epoca, duracion:d.duracion, lugares:d.lugares }; })) %>'
+      data-destinos='<%= JSON.stringify(destinos.map(function(d){ return { name:d.name, region:d.region, lat:d.lat, lng:d.lng, epoca:d.epoca, duracion:d.duracion, lugares:d.lugares, img:d.img, desc:d.desc }; })) %>'
       aria-label="Mapa de destinos"
     ></div>
   </div>
 </section>
+
+<!-- Modal de detalle de destino (se abre desde el mapa) -->
+<div id="destino-modal" class="destino-modal" hidden>
+  <div class="destino-modal-backdrop" data-close></div>
+  <div class="destino-modal-card" role="dialog" aria-modal="true" aria-labelledby="dm-nombre">
+    <button class="destino-modal-close" aria-label="Cerrar" data-close>&times;</button>
+    <div class="destino-modal-img"><img id="dm-img" src="" alt="" /></div>
+    <div class="destino-modal-body">
+      <span class="tag" id="dm-region"></span>
+      <h3 id="dm-nombre"></h3>
+      <p id="dm-desc"></p>
+      <ul class="destino-meta">
+        <li><span>Mejor época</span><strong id="dm-epoca"></strong></li>
+        <li><span>Duración</span><strong id="dm-duracion"></strong></li>
+      </ul>
+      <h4 class="dm-spots-title">Lugares recomendados</h4>
+      <ul class="dm-spots" id="dm-spots"></ul>
+      <a href="/contacto" class="btn-primary">Consultar este viaje
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
 
 <%- include('partials/cta', { cta_title: 'Tu destino soñado, hecho a tu medida', cta_text: 'Contanos a dónde querés ir (o dejate sorprender) y armamos el viaje perfecto para vos.' }) %>
 <%- include('partials/footer', { page: 'destinos' }) %>

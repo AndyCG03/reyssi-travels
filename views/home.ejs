@@ -6,7 +6,8 @@
     <!-- El video se carga por JS solo en desktop (data-src); en móvil se ve el poster -->
     <video class="hero-video" muted playsinline preload="none"
            poster="/images/hero-poster.jpg"
-           data-src="/videos/hero-web.mp4"></video>
+           data-src="/videos/hero-web-min.mp4"
+           data-src-mobile="/videos/hero-mobile.mp4"></video>
     <div class="hero-content">
       <h1>Viajes que <span class="highlight">transforman</span><br>la manera de ver el mundo</h1>
       <p>Diseñamos experiencias de aventura y naturaleza completamente a medida. Cada ruta, cada detalle, pensado para vos.</p>
@@ -101,7 +102,7 @@
           epoca: 'Mar–May / Oct–Nov', duracion: '14–20 días', lugares: ['Everest Base Camp','Annapurna','Katmandú'] }
       ];
     %>
-    <div class="destinos-grid">
+    <div class="destinos-grid destinos-uniform">
       <% destacados.forEach(function(d){ %>
         <div class="destino-card reveal" tabindex="0">
           <div class="destino-inner">

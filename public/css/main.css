@@ -22,7 +22,7 @@
   align-items: center;
   gap: 10px;
 }
-.logo img{ height: 40px; width: 40px; border-radius: 50%; }
+.logo img{ height: 36px; width: auto; }
 .logo-mark{ display:none; }
 .header.is-solid .logo-word{ filter: none; }
 .logo-word{

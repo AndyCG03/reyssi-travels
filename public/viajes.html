@@ -23,11 +23,11 @@
     </a>
     <nav>
       <ul class="nav-links">
+        <li><a href="/destinos">Destinos</a></li>
+        <li><a href="/ofertas">Ofertas</a></li>
         <li><a href="/viajes" class="active">Viajes</a></li>
         <li><a href="/#blog">Blog</a></li>
         <li><a href="/#contacto">Contacto</a></li>
-        <li><a href="/#nosotros">Nosotros</a></li>
-        <li><a href="/destinos">Destinos</a></li>
       </ul>
     </nav>
     <a href="https://wa.me/525512345678" class="btn-whatsapp" target="_blank" rel="noopener">
@@ -41,74 +41,54 @@
   </div>
   <div class="mobile-menu" id="mobileMenu">
       <ul>
+        <li><a href="/destinos">Destinos</a></li>
+        <li><a href="/ofertas">Ofertas</a></li>
         <li><a href="/viajes">Viajes</a></li>
         <li><a href="/#blog">Blog</a></li>
         <li><a href="/#contacto">Contacto</a></li>
-        <li><a href="/#nosotros">Nosotros</a></li>
-        <li><a href="/destinos">Destinos</a></li>
       </ul>
   </div>
 </header>
 
-<!-- ===================== PAGE HERO ===================== -->
-<section class="page-hero">
+<!-- ===================== PAQUETES DE VIAJES (iframes mayorista) ===================== -->
+<!--
+  Paquetes alimentados por iframes del mayorista turístico.
+  Los iframes se actualizan automáticamente.
+  Para cambiar colores/tipografía, edita /js/mega-travel.js
+-->
+<section class="section mega-travel-section">
   <div class="container">
-    <div class="breadcrumb"><a href="/">Inicio</a> / Viajes</div>
-    <span class="section-eyebrow reveal">Planes completos</span>
-    <h1 class="reveal">Todos los viajes</h1>
-    <p class="reveal">Paquetes con varios destinos, vuelos, hospedaje y traslados incluidos, listos para vivir.</p>
-  </div>
-</section>
-
-<!-- ===================== FILTROS ===================== -->
-<section class="filtros-bar">
-  <div class="container">
-    <div class="filtros-inner">
-      <div class="filtro-search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="buscador" placeholder="Buscar viaje o destino...">
-      </div>
-      <div class="filtros-grupo">
-        <select class="filtro-select" id="filtroContinente">
-          <option value="">Continente</option>
-          <option>Asia</option>
-          <option>Europa</option>
-          <option>América</option>
-          <option>África</option>
-          <option>Oceanía</option>
-        </select>
-        <select class="filtro-select" id="filtroCategoria">
-          <option value="">Categoría</option>
-          <option>Playa</option>
-          <option>Aventura</option>
-          <option>Cultura</option>
-          <option>Naturaleza</option>
-        </select>
-        <select class="filtro-select" id="filtroPrecio">
-          <option value="">Precio</option>
-          <option value="0-30000">Hasta $30,000</option>
-          <option value="30000-45000">$30,000 – $45,000</option>
-          <option value="45000-999999">Más de $45,000</option>
-        </select>
-        <select class="filtro-select" id="filtroOrden">
-          <option value="">Ordenar por</option>
-          <option value="precio-asc">Precio: menor a mayor</option>
-          <option value="precio-desc">Precio: mayor a menor</option>
-          <option value="duracion-asc">Duración: más corto</option>
-          <option value="duracion-desc">Duración: más largo</option>
-        </select>
-        <button class="filtro-reset" id="resetFiltros">Limpiar</button>
+    <div class="section-head reveal">
+      <div>
+        <h2>Paquetes de viajes</h1>
+        <p style="color: var(--gris-texto); margin-top: 8px;">Selecciona una región para ver la programación vigente</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ===================== RESULTADOS ===================== -->
-<section class="resultados-section">
-  <div class="container">
-    <p class="resultados-info"><strong id="totalResultados">0</strong> viajes encontrados</p>
-    <div class="viajes-catalogo-grid" id="viajesGrid">
-      <!-- Se llena vía JS -->
+    <div class="mega-tabs reveal" id="megaTabs">
+      <button class="mega-tab is-active" data-target="ofertas">Nuestras Mejores Ofertas</button>
+      <button class="mega-tab" data-target="promos">Promociones Vigentes</button>
+      <button class="mega-tab" data-target="1">Europa</button>
+      <button class="mega-tab" data-target="4">Asia</button>
+      <button class="mega-tab" data-target="7">Sudamérica</button>
+      <button class="mega-tab" data-target="8">EE. UU.</button>
+      <button class="mega-tab" data-target="9">Centroamérica</button>
+      <button class="mega-tab" data-target="10">Cuba y Caribe</button>
+      <button class="mega-tab" data-target="5">África</button>
+      <button class="mega-tab" data-target="6">Pacífico</button>
+      <button class="mega-tab" data-target="3">Canadá</button>
+      <button class="mega-tab" data-target="2">Medio Oriente</button>
+      <button class="mega-tab" data-target="13">Cruceros</button>
+      <button class="mega-tab" data-target="11">Nacionales</button>
+      <button class="mega-tab" data-target="12">Eventos Especiales</button>
+    </div>
+
+    <div class="mega-iframe-wrapper reveal" id="megaIframeWrapper">
+      <div class="mega-loading is-visible" id="megaLoading">
+        <div class="mega-loading-spinner"></div>
+        <p>Cargando viajes…</p>
+      </div>
+      <iframe id="megaIframe" loading="lazy" title="Paquetes Mega Travel"></iframe>
     </div>
   </div>
 </section>
@@ -156,9 +136,9 @@
       <div class="footer-col">
         <h4>Nosotros</h4>
         <ul>
-          <li><a href="#">Quiénes somos</a></li>
-          <li><a href="#">Términos y condiciones</a></li>
-          <li><a href="#">Aviso de privacidad</a></li>
+
+          <li><a href="/terminos">Términos y condiciones</a></li>
+          <li><a href="/privacidad">Aviso de privacidad</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -179,12 +159,12 @@
       </div>
     </div>
     <div class="footer-bottom">
-      © 2024 Reyssi. Todos los derechos reservados.
+      &copy; 2026 Reyssi. Todos los derechos reservados.
     </div>
   </div>
 </footer>
 
 <script src="/js/animations.js"></script>
-<script src="/js/viajes-filters.js"></script>
+<script src="/js/mega-travel.js"></script>
 </body>
 </html>

@@ -146,7 +146,7 @@
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
 }
-.destino-full-img{ height: 190px; position: relative; }
+.destino-full-img{ aspect-ratio: 3 / 2; width: 100%; height: auto; position: relative; }
 .destino-tag{
   position: absolute;
   top: 14px; left: 14px;

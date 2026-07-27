@@ -1,0 +1,104 @@
+/* ===================== PAGE HEADER ===================== */
+.legal-hero{
+  padding: 156px 0 0;
+  background: var(--gris-suave);
+}
+.legal-hero .breadcrumb{
+  font-size: 0.82rem;
+  color: var(--gris-texto);
+  margin-bottom: 14px;
+}
+.legal-hero .breadcrumb a{ color: var(--azul-rey); font-weight: 600; }
+.legal-hero h1{
+  font-family: var(--font-body);
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: var(--azul-oscuro);
+  margin: 0 0 10px;
+}
+.legal-hero p{
+  color: var(--gris-texto);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0;
+}
+
+/* ===================== LEGAL CONTENT ===================== */
+.legal-section{
+  padding: 60px 0 80px;
+  background: var(--blanco);
+}
+.legal-content{
+  max-width: 800px;
+  margin: 0 auto;
+}
+.legal-card{
+  background: var(--blanco);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s var(--ease-premium);
+}
+.legal-card:hover{
+  box-shadow: var(--shadow-md);
+}
+.legal-card-header{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.legal-card-icon{
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--azul-claro);
+  color: var(--azul-rey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.legal-card-icon svg{
+  width: 20px;
+  height: 20px;
+}
+.legal-card h2{
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--azul-oscuro);
+  margin: 0;
+}
+.legal-card p{
+  margin: 0;
+  color: var(--gris-texto);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+.legal-card p + p{
+  margin-top: 12px;
+}
+
+/* ===================== LEGACY FALLBACK ===================== */
+.legal-text{
+  color: var(--gris-texto);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.legal-text h2{
+  color: var(--azul-oscuro);
+  font-size: 1.2rem;
+  margin-top: 32px;
+}
+
+@media (max-width: 780px){
+  .legal-hero{ padding: 130px 0 0; }
+  .legal-section{ padding: 40px 0 60px; }
+  .legal-card{ padding: 24px; }
+}
+@media (max-width: 460px){
+  .legal-card{ padding: 20px; }
+  .legal-card-header{ gap: 12px; }
+}

@@ -1,19 +1,22 @@
-const carrusel = document.getElementById('destinosCarrusel');
-const prevBtn = document.getElementById('carruselPrev');
-const nextBtn = document.getElementById('carruselNext');
+function initCarrusel(id, cardClass){
+  const carrusel = document.getElementById(id);
+  const prevBtn = document.getElementById(id.replace('Carrusel', 'CarruselPrev'));
+  const nextBtn = document.getElementById(id.replace('Carrusel', 'CarruselNext'));
 
-if(carrusel && prevBtn && nextBtn){
-  const getStep = () => {
-    const card = carrusel.querySelector('.destino-card');
-    if(!card) return 320;
-    const style = getComputedStyle(card);
-    return card.offsetWidth + parseFloat(style.marginRight || 20) + 20;
-  };
-
-  prevBtn.addEventListener('click', () => {
-    carrusel.scrollBy({ left: -getStep(), behavior: 'smooth' });
-  });
-  nextBtn.addEventListener('click', () => {
-    carrusel.scrollBy({ left: getStep(), behavior: 'smooth' });
-  });
+  if(carrusel && prevBtn && nextBtn){
+    const getStep = () => {
+      const card = carrusel.querySelector(cardClass);
+      if(!card) return 320;
+      return card.offsetWidth + 20;
+    };
+    prevBtn.addEventListener('click', () => {
+      carrusel.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      carrusel.scrollBy({ left: getStep(), behavior: 'smooth' });
+    });
+  }
 }
+
+initCarrusel('destinosCarrusel', '.destino-card');
+initCarrusel('viajesCarrusel', '.viaje-card');

@@ -154,7 +154,7 @@
   transition: transform 0.4s var(--ease-premium), box-shadow 0.4s var(--ease-premium);
 }
 .destino-incluido-item:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.destino-incluido-item .img-placeholder{ height: 90px; }
+.destino-incluido-item .img-placeholder{ aspect-ratio: 3 / 2; width: 100%; height: auto; }
 .destino-incluido-item .img-placeholder svg{ width: 24px; height: 24px; }
 .destino-incluido-nombre{
   padding: 10px 12px;

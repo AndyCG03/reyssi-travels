@@ -6,7 +6,7 @@
   transition: transform 0.4s var(--ease-premium), box-shadow 0.4s var(--ease-premium);
 }
 .destino-rel-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.destino-rel-img{ height: 160px; }
+.destino-rel-img{ aspect-ratio: 3 / 2; width: 100%; height: auto; }
 .destino-rel-body{ padding: 16px 18px 20px; }
 .destino-rel-pais{
   display: block;

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todos los destinos — Reyssi Travels</title>
+<meta name="description" content="Explora todos nuestros destinos y filtra por continente, categoría y precio.">
+<link rel="icon" href="/img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/destinos.css">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header is-solid header-static" id="siteHeader">
+  <div class="container">
+    <a href="/" class="logo">
+      <img src="/img/logo.png" alt="Reyssi Travels">
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/#experiencias">Experiencias</a></li>
+        <li><a href="/viajes">Viajes</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/#contacto">Contacto</a></li>
+        <li><a href="/#nosotros">Nosotros</a></li>
+        <li><a href="/destinos" class="active">Destinos</a></li>
+      </ul>
+    </nav>
+    <a href="https://wa.me/525512345678" class="btn-whatsapp" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg class="icon-burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="/#experiencias">Experiencias</a></li>
+      <li><a href="/viajes">Viajes</a></li>
+      <li><a href="/#blog">Blog</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+      <li><a href="/#nosotros">Nosotros</a></li>
+      <li><a href="/destinos">Destinos</a></li>
+    </ul>
+    <a href="https://wa.me/525512345678" class="btn-whatsapp" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- ===================== PAGE HERO ===================== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Inicio</a> / Destinos</div>
+    <span class="section-eyebrow reveal">Catálogo completo</span>
+    <h1 class="reveal">Todos los destinos</h1>
+    <p class="reveal">Explora nuestro catálogo completo de itinerarios y encuentra el viaje perfecto para ti.</p>
+  </div>
+</section>
+
+<!-- ===================== FILTROS ===================== -->
+<section class="filtros-bar">
+  <div class="container">
+    <div class="filtros-inner">
+      <div class="filtro-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="buscador" placeholder="Buscar destino o país...">
+      </div>
+      <div class="filtros-grupo">
+        <select class="filtro-select" id="filtroContinente">
+          <option value="">Continente</option>
+          <option>Asia</option>
+          <option>Europa</option>
+          <option>América</option>
+          <option>África</option>
+          <option>Oceanía</option>
+        </select>
+        <select class="filtro-select" id="filtroCategoria">
+          <option value="">Categoría</option>
+          <option>Playa</option>
+          <option>Aventura</option>
+          <option>Cultura</option>
+          <option>Naturaleza</option>
+        </select>
+        <select class="filtro-select" id="filtroPrecio">
+          <option value="">Precio</option>
+          <option value="0-30000">Hasta $30,000</option>
+          <option value="30000-45000">$30,000 – $45,000</option>
+          <option value="45000-999999">Más de $45,000</option>
+        </select>
+        <select class="filtro-select" id="filtroOrden">
+          <option value="">Ordenar por</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="duracion-asc">Duración: más corto</option>
+          <option value="duracion-desc">Duración: más largo</option>
+        </select>
+        <button class="filtro-reset" id="resetFiltros">Limpiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESULTADOS ===================== -->
+<section class="resultados-section">
+  <div class="container">
+    <p class="resultados-info"><strong id="totalResultados">0</strong> destinos encontrados</p>
+    <div class="destinos-grid" id="destinosGrid">
+      <!-- Se llena vía JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BANNER ===================== -->
+<section class="cta-banner">
+  <div class="container">
+    <div>
+      <h2>¿No encuentras tu destino ideal?</h2>
+      <p>Escríbenos por WhatsApp y diseñamos un itinerario a tu medida.</p>
+    </div>
+    <a href="https://wa.me/525512345678" class="btn-white" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Z"/></svg>
+      Cotizar por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img src="/img/logo.png" alt="Reyssi Travels">
+        </a>
+        <p>Creamos experiencias únicas para viajeros que buscan más viajes.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="/#experiencias">Experiencias</a></li>
+          <li><a href="/viajes">Viajes</a></li>
+          <li><a href="/#blog">Blog</a></li>
+          <li><a href="/#contacto">Contacto</a></li>
+          <li><a href="/destinos">Destinos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Nosotros</h4>
+        <ul>
+          <li><a href="#">Quiénes somos</a></li>
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Aviso de privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul class="footer-contact">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+52 55 1234 5678</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>hola@viajesreyssi.com</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Ciudad de México, México</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:0.85rem; margin:0 0 6px; line-height:1.5;">Recibe ofertas y consejos de viaje.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Tu correo electrónico" required>
+          <button type="submit" aria-label="Suscribirse">→</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 Reyssi. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+<script src="/js/animations.js"></script>
+<script src="/js/filters.js"></script>
+</body>
+</html>

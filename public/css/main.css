@@ -82,6 +82,12 @@
   background: #1877ab;
 }
 
+.header-actions{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 /* ===================== HERO ===================== */
 /* ===================== HERO ===================== */
 .hero{
@@ -710,8 +716,9 @@
   .nav-links{ display: none; }
   .menu-toggle{ display: flex; }
   .mobile-menu{ display: flex; }
-  .hero{ height: clamp(560px, 90vh, 700px); }
+  .hero{ height: clamp(600px, 94vh, 760px); }
   .hero-content{ padding-bottom: 64px; }
+  .header-actions{ gap: 4px; }
   .trust-grid{ grid-template-columns: 1fr; }
   .destino-card-link{ flex: 0 0 82%; }
   .destino-card{ height: 240px; }
@@ -722,6 +729,8 @@
   .section-head{ flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 @media (max-width: 460px){
+  .header-actions{ gap: 0; }
   .header .container .btn-whatsapp span{ display: none; }
-  .header .container .btn-whatsapp{ padding: 10px 14px; }
+  .header .container .btn-whatsapp{ padding: 8px; border-radius: 50%; width: 36px; height: 36px; justify-content: center; }
+  .header .container .btn-whatsapp svg{ width: 18px; height: 18px; }
 }

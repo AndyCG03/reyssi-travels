@@ -19,20 +19,12 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/destinos', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'destinos.html'));
+app.get('/terminos', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'terminos.html'));
 });
 
-app.get('/viajes', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'viajes.html'));
-});
-
-app.get('/viaje-detalle', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'viaje-detalle.html'));
-});
-
-app.get('/destino-detalle', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'destino-detalle.html'));
+app.get('/privacidad', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'privacidad.html'));
 });
 
 app.listen(PORT, () => {

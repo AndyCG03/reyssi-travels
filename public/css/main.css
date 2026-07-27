@@ -150,18 +150,18 @@
   margin-bottom: 18px;
 }
 .hero h1{
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: clamp(2.8rem, 4.8vw, 3.2rem);
   line-height: 1.08;
   font-weight: 700;
   margin: 0 0 20px;
   letter-spacing: -0.5px;
+  color: var(--blanco);
 }
 .hero h1 em{
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  color: #8FD8FF;
+  font: inherit;
+  font-style: inherit;
+  color: inherit;
 }
 .hero p{
   font-size: 1.02rem;
@@ -681,14 +681,15 @@
   color: rgba(255,255,255,0.7);
   padding: 64px 0 28px;
 }
-.footer-grid{
+.footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 32px;
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .footer-logo{ height: 48px; width: auto; }
+.footer-brand .logo img{ height: 68px; width: auto; }
 .footer-brand .logo-word{ color: var(--blanco); }
 .footer-brand p{
   font-size: 0.85rem;
@@ -750,6 +751,177 @@
   font-size: 0.78rem;
 }
 
+/* ===================== CONTACT FORM ===================== */
+.contacto-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.contacto-info-card,
+.contacto-form-card{
+  background: var(--blanco);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--radius-md);
+  padding: 32px;
+}
+.contacto-info-card h2,
+.contacto-form-card h2{
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--azul-oscuro);
+  margin: 0 0 8px;
+}
+.contacto-info-card > p,
+.contacto-form-card > p{
+  color: var(--gris-texto);
+  font-size: 0.92rem;
+  margin: 0 0 28px;
+  line-height: 1.6;
+}
+.contacto-item{
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gris-borde);
+}
+.contacto-item:last-of-type{ border-bottom: none; }
+.contacto-item-icon{
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--azul-claro);
+  color: var(--azul-rey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contacto-item-icon svg{ width: 18px; height: 18px; }
+.contacto-item-content strong{
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--azul-oscuro);
+  margin-bottom: 3px;
+}
+.contacto-item-content span{
+  font-size: 0.9rem;
+  color: var(--gris-texto);
+  line-height: 1.5;
+}
+.contacto-item-content a{
+  color: var(--azul-rey);
+  font-weight: 600;
+}
+.contacto-item-content a:hover{ text-decoration: underline; }
+.form-grupo{ margin-bottom: 20px; }
+.form-grupo label{
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--azul-oscuro);
+  margin-bottom: 6px;
+}
+.form-grupo input,
+.form-grupo textarea,
+.form-grupo select{
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--gris-oscuro);
+  background: var(--blanco);
+  transition: border-color 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium);
+  box-sizing: border-box;
+}
+.form-grupo input:focus,
+.form-grupo textarea:focus,
+.form-grupo select:focus{
+  outline: none;
+  border-color: var(--azul-rey);
+  box-shadow: 0 0 0 4px rgba(28,135,201,0.12);
+}
+.form-grupo textarea{
+  resize: vertical;
+  min-height: 120px;
+}
+.form-grupo-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.btn-enviar{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--azul-rey);
+  color: var(--blanco);
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-premium), transform 0.3s var(--ease-premium);
+}
+.btn-enviar:hover{
+  background: var(--azul-oscuro);
+  transform: translateY(-1px);
+}
+.btn-enviar svg{ width: 16px; height: 16px; }
+.form-success{
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.form-success.is-visible{ display: block; }
+.form-success svg{
+  width: 48px;
+  height: 48px;
+  color: #22c55e;
+  margin-bottom: 12px;
+}
+.form-success h3{
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--azul-oscuro);
+  margin: 0 0 6px;
+}
+.form-success p{
+  color: var(--gris-texto);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ===================== WHATSAPP WIDGET ===================== */
+.whatsapp-widget{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--azul-rey);
+  color: #fff;
+  box-shadow: 0 18px 30px rgba(28, 135, 201, 0.28);
+  z-index: 110;
+  transition: transform 0.25s var(--ease-premium), box-shadow 0.25s var(--ease-premium);
+}
+.whatsapp-widget:hover{
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 22px 36px rgba(28, 135, 201, 0.34);
+}
+
 /* ===================== MOBILE MENU ===================== */
 .menu-toggle{
   display: none;
@@ -799,11 +971,7 @@
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px){
   .trust-grid{ grid-template-columns: repeat(2, 1fr); }
-  .destino-card-link{ flex: 0 0 calc(50% - 10px); }
-  .viaje-card-link{ flex: 0 0 calc(50% - 10px); }
-  .viajes-grid{ grid-template-columns: repeat(2, 1fr); }
   .testimonios-grid{ grid-template-columns: 1fr; }
-  .inspirate-grid{ grid-template-columns: repeat(3, 1fr); }
   .footer-grid{ grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 780px){
@@ -813,20 +981,20 @@
   .hero{ height: clamp(660px, 100vh, 920px); }
   .hero-content{ padding: 30px 0 32px; }
   .header .container{ gap: 0; justify-content: flex-start; }
-  .header .container .btn-whatsapp{ margin-left: auto; }
   .trust-grid{ grid-template-columns: 1fr; }
-  .destino-card-link{ flex: 0 0 82%; }
-  .viaje-card-link{ flex: 0 0 82%; }
-  .viajes-grid{ grid-template-columns: 1fr; }
-  .inspirate-grid{ grid-template-columns: repeat(2, 1fr); }
   .cta-banner .container{ flex-direction: column; text-align: center; }
   .footer-grid{ grid-template-columns: 1fr; }
   .section-head{ flex-direction: column; align-items: flex-start; gap: 8px; }
+  .contacto-grid{ grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 460px){
-  .header .container .btn-whatsapp span{ display: none; }
-  .header .container .btn-whatsapp{ padding: 8px; border-radius: 50%; width: 36px; height: 36px; justify-content: center; }
-  .header .container .btn-whatsapp svg{ width: 18px; height: 18px; }
+  .form-grupo-row{ grid-template-columns: 1fr; }
+  .whatsapp-widget{
+    right: 14px;
+    bottom: 14px;
+    width: 52px;
+    height: 52px;
+  }
 }
 
 /* ===================== MEGA TRAVELER ===================== */

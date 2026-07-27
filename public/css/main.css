@@ -535,10 +535,35 @@
 
 /* ===================== CTA BANNER ===================== */
 .cta-banner{
-  background: var(--azul-rey);
+  background: linear-gradient(165deg, var(--azul-medianoche) 0%, var(--azul-oscuro) 60%, #0d3352 100%);
   color: var(--blanco);
-  padding: 56px 0;
+  padding: 72px 0;
   text-align: left;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.cta-banner::before{
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(28,135,201,0.08) 0%, transparent 65%);
+  top: -220px;
+  right: -120px;
+  pointer-events: none;
+}
+.cta-banner::after{
+  content: '';
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(28,135,201,0.05) 0%, transparent 65%);
+  bottom: -140px;
+  left: -80px;
+  pointer-events: none;
 }
 .cta-banner .container{
   display: flex;
@@ -546,33 +571,40 @@
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 .cta-banner h2{
-  font-family: var(--font-body);
-  font-size: 1.6rem;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
   font-weight: 700;
   margin: 0 0 8px;
+  line-height: 1.25;
 }
 .cta-banner p{
   margin: 0;
-  color: rgba(255,255,255,0.85);
-  font-size: 0.95rem;
+  color: rgba(255,255,255,0.65);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 .btn-white{
   background: var(--blanco);
   color: var(--azul-oscuro);
-  padding: 14px 28px;
+  padding: 16px 34px;
   border-radius: 999px;
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  transition: transform 0.4s var(--ease-premium), box-shadow 0.4s var(--ease-premium);
+  gap: 10px;
+  transition: all 0.4s var(--ease-premium);
+  box-shadow: 0 4px 24px rgba(11,42,74,0.25);
+  white-space: nowrap;
 }
 .btn-white:hover{
   transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 12px 36px rgba(11,42,74,0.35);
+  background: var(--azul-claro);
 }
 
 /* ===================== FOOTER ===================== */
@@ -588,6 +620,7 @@
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
+.footer-logo{ height: 48px; width: auto; }
 .footer-brand .logo-word{ color: var(--blanco); }
 .footer-brand p{
   font-size: 0.85rem;
@@ -693,10 +726,7 @@
   font-weight: 500;
   color: var(--azul-oscuro);
 }
-.mobile-menu .btn-whatsapp{
-  margin-top: auto;
-  justify-content: center;
-}
+
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px){
@@ -712,9 +742,10 @@
   .nav-links{ display: none; }
   .menu-toggle{ display: flex; }
   .mobile-menu{ display: flex; }
-  .hero{ height: clamp(600px, 94vh, 760px); }
+  .hero{ height: clamp(660px, 100vh, 920px); }
   .hero-content{ padding-bottom: 64px; }
-  .header .container{ gap: 0; }
+  .header .container{ gap: 0; justify-content: flex-start; }
+  .header .container .btn-whatsapp{ margin-left: auto; }
   .trust-grid{ grid-template-columns: 1fr; }
   .destino-card-link{ flex: 0 0 82%; }
   .destino-card{ height: 240px; }

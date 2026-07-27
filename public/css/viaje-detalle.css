@@ -114,7 +114,10 @@
 
 /* ===================== LAYOUT GENERAL ===================== */
 .detalle-body{
-  padding: 56px 0 80px;
+  padding: 56px 24px 80px;
+}
+@media (max-width: 460px){
+  .detalle-body{ padding-right: 16px; padding-left: 16px; }
 }
 .detalle-grid{
   display: grid;
@@ -135,6 +138,7 @@
   font-size: 1rem;
   line-height: 1.7;
   color: var(--gris-texto);
+  margin-top: 12px;
 }
 
 /* ===================== DESTINOS INCLUIDOS ===================== */

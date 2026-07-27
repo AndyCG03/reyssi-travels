@@ -828,3 +828,48 @@
   .header .container .btn-whatsapp{ padding: 8px; border-radius: 50%; width: 36px; height: 36px; justify-content: center; }
   .header .container .btn-whatsapp svg{ width: 18px; height: 18px; }
 }
+
+/* ===================== MEGA TRAVELER ===================== */
+.mega-traveler-wrapper {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  padding: 4px;
+  transition: box-shadow 0.4s var(--ease-premium), transform 0.4s var(--ease-premium);
+}
+
+.mega-traveler-wrapper:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.mega-traveler-wrapper iframe {
+  width: 100%;
+  height: 650px;
+  border: none;
+  border-radius: calc(var(--radius-lg) - 4px);
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .mega-traveler-wrapper iframe {
+    height: 550px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mega-traveler-wrapper iframe {
+    height: 480px;
+  }
+
+  .mega-traveler-wrapper {
+    padding: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mega-traveler-wrapper iframe {
+    height: 400px;
+  }
+}

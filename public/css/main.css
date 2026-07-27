@@ -86,7 +86,7 @@
 /* ===================== HERO ===================== */
 .hero{
   position: relative;
-  height: clamp(560px, 82vh, 720px);
+  height: clamp(620px, 92vh, 860px);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -337,9 +337,15 @@
   scrollbar-width: none;
 }
 .carrusel::-webkit-scrollbar{ display: none; }
-.destino-card{
-  scroll-snap-align: start;
+.destino-card-link{
+  display: block;
+  text-decoration: none;
+  color: inherit;
   flex: 0 0 calc(25% - 15px);
+  scroll-snap-align: start;
+}
+.destino-card-link .destino-card{ flex: 1; }
+.destino-card{
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
@@ -693,7 +699,8 @@
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px){
   .trust-grid{ grid-template-columns: repeat(2, 1fr); }
-  .destino-card{ flex: 0 0 calc(50% - 10px); height: 260px; }
+  .destino-card-link{ flex: 0 0 calc(50% - 10px); }
+  .destino-card{ height: 260px; }
   .viajes-grid{ grid-template-columns: repeat(2, 1fr); }
   .testimonios-grid{ grid-template-columns: 1fr; }
   .inspirate-grid{ grid-template-columns: repeat(3, 1fr); }
@@ -703,9 +710,11 @@
   .nav-links{ display: none; }
   .menu-toggle{ display: flex; }
   .mobile-menu{ display: flex; }
-  .hero-content{ padding-bottom: 56px; }
+  .hero{ height: clamp(560px, 90vh, 700px); }
+  .hero-content{ padding-bottom: 64px; }
   .trust-grid{ grid-template-columns: 1fr; }
-  .destino-card{ flex: 0 0 82%; height: 240px; }
+  .destino-card-link{ flex: 0 0 82%; }
+  .destino-card{ height: 240px; }
   .viajes-grid{ grid-template-columns: 1fr; }
   .inspirate-grid{ grid-template-columns: repeat(2, 1fr); }
   .cta-banner .container{ flex-direction: column; text-align: center; }

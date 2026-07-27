@@ -41,7 +41,7 @@ function render(lista){
           ${d.dias} días · ${d.noches} noches
         </div>
         <div class="viaje-precio">Desde <strong>$${formatoMXN(d.precio)} MXN</strong></div>
-        <a href="https://wa.me/525512345678" target="_blank" rel="noopener" class="btn-ver">Ver viaje</a>
+        <a href="/destino-detalle?id=${d.id}" class="btn-ver">Ver destino</a>
       </div>
     </article>
   `).join('');

@@ -198,8 +198,9 @@
   .filtros-grupo{ margin-left: 0; width: 100%; }
 }
 @media (max-width: 720px){
-  .destinos-grid{ grid-template-columns: 1fr; }
+  .destinos-grid{ grid-template-columns: 1fr; padding-left: 0; padding-right: 0; }
   .filtros-grupo{ flex-direction: column; align-items: stretch; width: 100%; }
   #filtroContinente, #filtroCategoria, #filtroPrecio, #filtroOrden{ width: 100%; }
   .filtro-reset{ width: 100%; }
+  .destino-full-body{ padding: 16px; }
 }

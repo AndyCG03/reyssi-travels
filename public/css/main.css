@@ -668,7 +668,7 @@
   left: 0; right: 0;
   background: var(--blanco);
   box-shadow: var(--shadow-md);
-  padding: 8px 24px 24px;
+  padding: 8px 24px 32px;
   flex-direction: column;
   gap: 4px;
   opacity: 0;
@@ -692,7 +692,7 @@
   color: var(--azul-oscuro);
 }
 .mobile-menu .btn-whatsapp{
-  margin-top: 16px;
+  margin-top: auto;
   justify-content: center;
 }
 

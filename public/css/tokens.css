@@ -74,6 +74,9 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   margin: 0 auto;
   padding: 0 24px;
 }
+@media (max-width: 460px){
+  .container{ padding: 0 16px; }
+}
 
 /* Scroll reveal */
 .reveal{

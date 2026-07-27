@@ -12,6 +12,23 @@
 <link rel="stylesheet" href="/css/tokens.css">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/viajes.css">
+<style>
+.ofertas-iframe-wrapper{
+  background: var(--blanco);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.ofertas-iframe{
+  width: 100%;
+  min-height: 600px;
+  border: none;
+  display: block;
+}
+@media (max-width: 720px){
+  .ofertas-iframe{ min-height: 800px; }
+}
+</style>
 </head>
 <body>
 
@@ -67,30 +84,8 @@
       </div>
     </div>
 
-    <div class="mega-tabs reveal" id="megaTabs">
-      <button class="mega-tab is-active" data-target="ofertas">Nuestras Mejores Ofertas</button>
-      <button class="mega-tab" data-target="promos">Promociones Vigentes</button>
-      <button class="mega-tab" data-target="1">Europa</button>
-      <button class="mega-tab" data-target="4">Asia</button>
-      <button class="mega-tab" data-target="7">Sudamérica</button>
-      <button class="mega-tab" data-target="8">EE. UU.</button>
-      <button class="mega-tab" data-target="9">Centroamérica</button>
-      <button class="mega-tab" data-target="10">Cuba y Caribe</button>
-      <button class="mega-tab" data-target="5">África</button>
-      <button class="mega-tab" data-target="6">Pacífico</button>
-      <button class="mega-tab" data-target="3">Canadá</button>
-      <button class="mega-tab" data-target="2">Medio Oriente</button>
-      <button class="mega-tab" data-target="13">Cruceros</button>
-      <button class="mega-tab" data-target="11">Nacionales</button>
-      <button class="mega-tab" data-target="12">Eventos Especiales</button>
-    </div>
-
-    <div class="mega-iframe-wrapper reveal" id="megaIframeWrapper">
-      <div class="mega-loading is-visible" id="megaLoading">
-        <div class="mega-loading-spinner"></div>
-        <p>Cargando viajes…</p>
-      </div>
-      <iframe id="megaIframe" loading="lazy" title="Paquetes Mega Travel"></iframe>
+    <div class="ofertas-iframe-wrapper reveal">
+      <iframe class="ofertas-iframe" loading="lazy" title="Nuestras Mejores Ofertas" src="https://www.megatravel.com.mx/tools/ofertas-viaje.php?txtColor=4B5563&amp;lblTPaq=4B5563&amp;lblTRange=4B5563&amp;lblNumRange=1C87C9&amp;itemBack=F7F9FB&amp;itemHov=E2E8F0&amp;txtColorHov=0B2A4A&amp;ff=9"></iframe>
     </div>
   </div>
 </section>
@@ -164,6 +159,5 @@
 </footer>
 
 <script src="/js/animations.js"></script>
-<script src="/js/mega-travel.js"></script>
 </body>
 </html>

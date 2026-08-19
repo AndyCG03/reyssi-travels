@@ -46,7 +46,7 @@
     promos:  { url: BASE_DEST, params: DEST_COLORS }
   };
 
-  [1,3,4,5,6,7,8,9,10,11,12,13].forEach(function(d) {
+  [1,2,3,4,5,6,7,8,9,10,11,12,13].forEach(function(d) {
     TABS[d] = { url: BASE_DEST, params: Object.assign({}, DEST_COLORS, { Dest: d }) };
   });
 

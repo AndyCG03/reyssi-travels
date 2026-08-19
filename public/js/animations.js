@@ -65,3 +65,22 @@ if(menuToggle && mobileMenu){
     if(window.innerWidth > 780) closeMenu();
   });
 }
+
+// Las promociones de la home abren directamente el catalogo completo.
+document.querySelectorAll('#promociones .mega-slider-item').forEach(item => {
+  item.setAttribute('role', 'link');
+  item.setAttribute('tabindex', '0');
+  item.setAttribute('aria-label', 'Ver paquetes de viaje');
+
+  const openCatalog = () => {
+    window.location.href = '/viajes#catalogo';
+  };
+
+  item.addEventListener('click', openCatalog);
+  item.addEventListener('keydown', event => {
+    if(event.key === 'Enter' || event.key === ' '){
+      event.preventDefault();
+      openCatalog();
+    }
+  });
+});

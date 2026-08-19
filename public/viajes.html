@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viajes y paquetes | Reyssi Travels</title>
+  <meta name="description" content="Explora promociones y paquetes de viaje de Reyssi Travels. Encuentra tu proxima aventura o personaliza un itinerario a tu medida.">
+  <meta name="theme-color" content="#071B30">
+  <link rel="icon" href="/img/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/viajes.css">
+  <link rel="stylesheet" href="/css/viajes-page.css">
+</head>
+<body>
+  <header class="header is-solid header-static" id="siteHeader">
+    <div class="container">
+      <a href="/" class="logo" aria-label="Reyssi Travels, inicio">
+        <img src="/img/logo-blanco.png" alt="Reyssi Travels">
+      </a>
+      <nav aria-label="Navegacion principal">
+        <ul class="nav-links">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/#trust">Por que confiar</a></li>
+          <li><a href="/#promociones">Promociones</a></li>
+          <li><a class="active" href="#catalogo">Paquetes</a></li>
+          <li><a href="/#testimonios">Clientes</a></li>
+          <li><a href="/#formulario-contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+        <svg class="icon-burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/#trust">Por que confiar</a></li>
+        <li><a href="/#promociones">Promociones</a></li>
+        <li><a href="#catalogo">Paquetes</a></li>
+        <li><a href="/#testimonios">Clientes</a></li>
+        <li><a href="/#formulario-contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="viajes-hero">
+      <div class="viajes-hero-bg" aria-hidden="true"></div>
+      <div class="viajes-route" aria-hidden="true">
+        <span class="route-line"></span>
+        <span class="route-stop route-stop-one"></span>
+        <span class="route-stop route-stop-two"></span>
+        <span class="route-stop route-stop-three"></span>
+      </div>
+      <div class="container viajes-hero-inner">
+        <div class="viajes-hero-copy reveal">
+          <span class="section-eyebrow">Tu proxima historia empieza aqui</span>
+          <h1>Viajes que se sienten <em>tuyos.</em></h1>
+          <p>Descubre ofertas vigentes y paquetes listos para convertir tus ganas de viajar en una experiencia inolvidable.</p>
+          <div class="viajes-hero-actions">
+            <a class="btn btn-primary" href="#catalogo">Explorar paquetes</a>
+            <a class="btn btn-outline" href="https://wa.me/525512345678?text=Hola%2C%20quiero%20personalizar%20mi%20paquete%20de%20viaje%20con%20Reyssi%20Travels." target="_blank" rel="noopener">Personalizar mi viaje</a>
+          </div>
+        </div>
+        <div class="viajes-hero-note reveal" aria-hidden="true">
+          <span>12 regiones</span>
+          <strong>Una sola ruta</strong>
+          <small>Planeada para ti</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section viajes-promos" id="promociones">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-eyebrow">Ofertas exclusivas</span>
+            <h2>Promociones del momento</h2>
+            <p class="section-subtitle">Actualizadas diariamente con oportunidades para viajar mejor.</p>
+          </div>
+          <a class="ver-todos" href="#catalogo">Ver todos los paquetes</a>
+        </div>
+        <div class="mega-slider-grid reveal">
+          <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo1.jpg" alt="Promocion de viaje 1" loading="lazy"><div class="mega-slider-overlay"><span class="mega-slider-tag">Oferta</span></div></div>
+          <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo2.jpg" alt="Promocion de viaje 2" loading="lazy"><div class="mega-slider-overlay"><span class="mega-slider-tag">Oferta</span></div></div>
+          <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo3.jpg" alt="Promocion de viaje 3" loading="lazy"><div class="mega-slider-overlay"><span class="mega-slider-tag">Oferta</span></div></div>
+          <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo4.jpg" alt="Promocion de viaje 4" loading="lazy"><div class="mega-slider-overlay"><span class="mega-slider-tag">Oferta</span></div></div>
+          <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo5.jpg" alt="Promocion de viaje 5" loading="lazy"><div class="mega-slider-overlay"><span class="mega-slider-tag">Oferta</span></div></div>
+          <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo6.jpg" alt="Promocion de viaje 6" loading="lazy"><div class="mega-slider-overlay"><span class="mega-slider-tag">Oferta</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="viajes-catalogo" id="catalogo">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-eyebrow">Catalogo vivo</span>
+            <h2>Todos los paquetes</h2>
+            <p class="section-subtitle">Filtra por region y encuentra la ruta que mejor encaja contigo.</p>
+          </div>
+          <span class="catalogo-status"><i></i> Disponibilidad actualizada</span>
+        </div>
+        <div class="mega-tabs reveal" id="megaTabs">
+          <button class="mega-tab is-active" data-target="ofertas">Mejores ofertas</button>
+          <button class="mega-tab" data-target="promos">Promociones vigentes</button>
+          <button class="mega-tab" data-target="1">Europa</button>
+          <button class="mega-tab" data-target="2">Medio Oriente</button>
+          <button class="mega-tab" data-target="3">Canada</button>
+          <button class="mega-tab" data-target="4">Asia</button>
+          <button class="mega-tab" data-target="5">Africa</button>
+          <button class="mega-tab" data-target="6">Pacifico</button>
+          <button class="mega-tab" data-target="7">Sudamerica</button>
+          <button class="mega-tab" data-target="8">Estados Unidos</button>
+          <button class="mega-tab" data-target="9">Centroamerica</button>
+          <button class="mega-tab" data-target="10">Cuba y Caribe</button>
+          <button class="mega-tab" data-target="11">Nacionales</button>
+          <button class="mega-tab" data-target="12">Eventos especiales</button>
+          <button class="mega-tab" data-target="13">Cruceros</button>
+        </div>
+      </div>
+      <div class="mega-catalogo-frame reveal" id="megaIframeWrapper">
+        <div class="mega-loading is-visible" id="megaLoading">
+          <div class="mega-loading-spinner"></div>
+          <p>Cargando paquetes...</p>
+        </div>
+        <iframe id="megaIframe" loading="eager" title="Catalogo completo de paquetes Reyssi Travels"></iframe>
+      </div>
+    </section>
+
+    <section class="viajes-personaliza">
+      <div class="container">
+        <div class="personaliza-mark" aria-hidden="true">&#10022;</div>
+        <div class="personaliza-copy reveal">
+          <span class="section-eyebrow">Tu forma de viajar</span>
+          <h2>Si no existe el paquete perfecto, lo creamos contigo.</h2>
+          <p>Cu&eacute;ntanos fechas, destinos y la manera en que quieres vivirlos. Nuestro equipo convertir&aacute; tus ideas en un itinerario a tu medida.</p>
+        </div>
+        <div class="personaliza-actions reveal">
+          <a class="btn btn-white" href="https://wa.me/525512345678?text=Hola%2C%20quiero%20personalizar%20mi%20paquete%20de%20viaje%20con%20Reyssi%20Travels." target="_blank" rel="noopener">Personalizar mi paquete</a>
+          <a class="personaliza-link" href="#catalogo">Ver todos los paquetes <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo"><img src="/img/logo-blanco.png" alt="Reyssi Travels"></a>
+          <p>Creamos experiencias unicas para viajeros que buscan mas viajes.</p>
+        </div>
+        <div class="footer-col"><h4>Explora</h4><ul><li><a href="/">Inicio</a></li><li><a href="/#promociones">Promociones</a></li><li><a href="#catalogo">Paquetes</a></li><li><a href="/destinos">Destinos</a></li></ul></div>
+        <div class="footer-col"><h4>Nosotros</h4><ul><li><a href="/terminos">Terminos y condiciones</a></li><li><a href="/privacidad">Aviso de privacidad</a></li></ul></div>
+        <div class="footer-col"><h4>Contacto</h4><ul class="footer-contact"><li>+52 55 1234 5678</li><li><a href="mailto:hola@viajesreyssi.com">hola@viajesreyssi.com</a></li><li>Ciudad de Mexico, Mexico</li></ul></div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Reyssi. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-widget" href="https://wa.me/525512345678" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 1 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.14.82.84-3.06-.19-.32a8.13 8.13 0 0 1-1.27-4.27c0-4.5 3.66-8.16 8.16-8.16a8.11 8.11 0 0 1 8.15 8.16c0 4.5-3.66 8.15-8.06 8.15Zm4.48-6.11c-.24-.12-1.44-.71-1.67-.8-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.96-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11-.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+  </a>
+  <script src="/js/animations.js"></script>
+  <script src="/js/mega-travel.js"></script>
+</body>
+</html>

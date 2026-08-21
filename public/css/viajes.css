@@ -252,6 +252,8 @@
   min-height: 500px;
   transition: box-shadow 0.4s var(--ease-premium);
 }
+/* Fallback para navegadores antiguos: el iframe no depende del efecto reveal. */
+.mega-iframe-wrapper.reveal{ opacity: 1; transform: none; }
 .mega-iframe-wrapper.is-loaded:hover{
   box-shadow: var(--shadow-md);
 }

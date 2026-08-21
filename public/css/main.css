@@ -94,6 +94,14 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   z-index: 100;
   padding: 18px 0;
   transition: background 0.5s var(--ease-premium), box-shadow 0.5s var(--ease-premium), padding 0.4s var(--ease-premium);
+  /* Evita las lineas de repintado al hacer scroll: fija el header a su propia
+     capa de composicion en vez de dejar que el navegador recalcule el
+     backdrop-filter en cada frame junto con el resto de la pagina. */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .header.is-solid{
   background: rgba(7, 27, 48, 0.76);
@@ -1026,8 +1034,8 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   position: fixed;
   right: 40px;
   bottom: 40px;
-  width: 56px;
-  height: 56px;
+  width: 67px;
+  height: 67px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1043,6 +1051,8 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   box-shadow: 0 22px 36px rgba(28, 135, 201, 0.34);
 }
 .whatsapp-widget svg{
+  width: 26px;
+  height: 26px;
   transform-origin: center;
   animation: whatsappInvite 5s ease-in-out infinite;
 }
@@ -1106,6 +1116,10 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   overflow-y: auto;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  /* Evita costuras de repintado en el blur al abrir/cerrar o hacer scroll dentro del menu. */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .mobile-menu.is-open {

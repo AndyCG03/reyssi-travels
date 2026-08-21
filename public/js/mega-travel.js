@@ -67,14 +67,16 @@
   function switchTab(tabKey) {
     currentTab = tabKey;
     tabs.forEach(function(t) { t.classList.toggle('is-active', t.dataset.target === tabKey); });
-    loading.classList.add('is-visible');
+    if (loading) loading.classList.add('is-visible');
     iframe.classList.remove('is-loaded');
     wrapper.classList.remove('is-loaded');
     iframe.src = buildUrl(tabKey);
   }
 
+  if (!iframe) return;
+
   iframe.addEventListener('load', function() {
-    loading.classList.remove('is-visible');
+    if (loading) loading.classList.remove('is-visible');
     iframe.classList.add('is-loaded');
     wrapper.classList.add('is-loaded');
   });

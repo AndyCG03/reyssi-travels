@@ -1,5 +1,27 @@
 // Header con efecto glass al hacer scroll
 const header = document.getElementById('siteHeader');
+
+// Overlay premium para transiciones entre páginas.
+(function initRouteLoader(){
+  const loader = document.createElement('div');
+  loader.className = 'route-loader';
+  loader.setAttribute('role', 'status');
+  loader.setAttribute('aria-live', 'polite');
+  loader.setAttribute('aria-label', 'Cargando');
+  loader.innerHTML = '<div class="route-loader__content"><img class="route-loader__logo" src="/img/logo-blanco.png" alt="Reyssi Travels"><div class="route-loader__line" aria-hidden="true"></div></div>';
+  document.body.appendChild(loader);
+  const show = () => loader.classList.add('is-visible');
+  const hide = () => loader.classList.remove('is-visible');
+  window.addEventListener('pageshow', hide);
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href]');
+    if(!link || link.target === '_blank' || link.hasAttribute('download') || event.defaultPrevented) return;
+    const url = new URL(link.href, window.location.href);
+    if(url.origin !== window.location.origin || url.pathname === window.location.pathname && url.hash) return;
+    show();
+  });
+  window.addEventListener('pagehide', show);
+})();
 const headerIsStatic = header && header.classList.contains('header-static');
 function updateHeader(){
   if(!header) return;

@@ -11,7 +11,10 @@ const header = document.getElementById('siteHeader');
   loader.innerHTML = '<div class="route-loader__content"><img class="route-loader__logo" src="/img/logo-blanco.png" alt="Reyssi Travels"><div class="route-loader__line" aria-hidden="true"></div></div>';
   document.body.appendChild(loader);
   const show = () => loader.classList.add('is-visible');
-  const hide = () => loader.classList.remove('is-visible');
+  const hide = () => window.setTimeout(() => loader.classList.remove('is-visible'), 120);
+  show();
+  if(document.readyState === 'complete') hide();
+  else window.addEventListener('load', hide, { once: true });
   window.addEventListener('pageshow', hide);
   document.addEventListener('click', event => {
     const link = event.target.closest('a[href]');

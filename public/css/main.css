@@ -1310,7 +1310,7 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   }
   #promociones .mega-slider-grid{
     display: flex;
-    gap: 12px;
+    gap: 0;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
@@ -1319,7 +1319,9 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   }
   #promociones .mega-slider-grid::-webkit-scrollbar{ display: none; }
   #promociones .mega-slider-item{
-    flex: 0 0 calc(100% - 24px);
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
     min-width: 0;
     aspect-ratio: 790 / 290;
     scroll-snap-align: center;

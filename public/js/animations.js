@@ -84,3 +84,36 @@ document.querySelectorAll('#promociones .mega-slider-item').forEach(item => {
     }
   });
 });
+
+// Datos de contacto centralizados para todas las páginas del sitio.
+(function configureContactLinks(){
+  const whatsapp = 'https://wa.me/525514846761';
+  const email = 'reyssitravels@gmail.com';
+  const social = {
+    Instagram: 'https://www.instagram.com/reyssi.travels',
+    Facebook: 'https://facebook.com/profile.php?id=100076144146928',
+    TikTok: 'https://www.tiktok.com/@reyssi.travels'
+  };
+  const replaceLegacyEmail = node => {
+    if(node.nodeType === Node.TEXT_NODE && node.nodeValue.includes('hola@viajesreyssi.com')){
+      node.nodeValue = node.nodeValue.replaceAll('hola@viajesreyssi.com', email);
+    }
+    node.childNodes && node.childNodes.forEach(replaceLegacyEmail);
+  };
+  replaceLegacyEmail(document.body);
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
+    link.href = link.href.replace(/https:\/\/wa\.me\/[^?]+/, whatsapp);
+    if(link.textContent.includes('+52')) link.textContent = '+52 55 1484 6761';
+  });
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.href = `mailto:${email}`;
+    if(link.textContent.includes('@')) link.textContent = email;
+  });
+  document.querySelectorAll('.social-row a[aria-label]').forEach(link => {
+    const url = social[link.getAttribute('aria-label')];
+    if(url){ link.href = url; link.target = '_blank'; link.rel = 'noopener'; }
+  });
+  document.querySelectorAll('.footer-contact li').forEach(item => {
+    if(item.textContent.includes('+52 55')) item.childNodes[item.childNodes.length - 1].textContent = '+52 55 1484 6761';
+  });
+})();

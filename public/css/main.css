@@ -770,10 +770,19 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   gap: 12px;
 }
 .mega-slider-overlay::after{
-  content: 'Ver paquetes \2192';
+  display: none;
+}
+.mega-slider-link{
   color: var(--blanco);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.mega-slider-link:hover,
+.mega-slider-link:focus-visible{
+  color: var(--blanco);
+  text-decoration: underline;
 }
 .mega-slider-item[role="link"]{ cursor: pointer; }
 .mega-slider-item[role="link"]:focus-visible{ outline: 3px solid var(--azul-rey); outline-offset: 4px; }
@@ -787,6 +796,11 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+#promociones .mega-slider-tag{ display: none; }
+.mega-promotions-carousels{
+  display: grid;
+  gap: 20px;
 }
 
 /* ===================== MEGA TRAVELER ===================== */
@@ -835,6 +849,7 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   transition: background 0.3s var(--ease-premium), transform 0.3s var(--ease-premium);
 }
 .social-row a:hover{ background: var(--azul-rey); transform: translateY(-3px); }
+.social-row a[aria-label="YouTube"]{ display: none; }
 .footer-col h4{
   color: var(--blanco);
   font-size: 0.85rem;
@@ -1051,8 +1066,8 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   box-shadow: 0 22px 36px rgba(28, 135, 201, 0.34);
 }
 .whatsapp-widget svg{
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   transform-origin: center;
   animation: whatsappInvite 5s ease-in-out infinite;
 }
@@ -1287,6 +1302,41 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   .mega-traveler-wrapper { padding: 2px; }
 }
 
+@media (max-width: 767px){
+  #promociones .mega-promotions-carousels{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  #promociones .mega-slider-grid{
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 0 4px;
+  }
+  #promociones .mega-slider-grid::-webkit-scrollbar{ display: none; }
+  #promociones .mega-slider-item{
+    flex: 0 0 calc(100% - 24px);
+    min-width: 0;
+    aspect-ratio: 790 / 290;
+    scroll-snap-align: center;
+  }
+  #promociones .mega-slider-item:hover{ transform: none; }
+  #promociones .mega-slider-overlay{
+    display: flex;
+    padding: 14px 16px;
+  }
+  #promociones .mega-slider-overlay::after{
+    display: none;
+  }
+  #promociones .mega-slider-overlay{ padding: 6px 8px; }
+  #promociones .mega-slider-link{ font-size: 0.62rem; }
+  #promociones .mega-slider-tag{ display: none; }
+}
+
 @media (max-width: 480px){
   
 
@@ -1299,22 +1349,12 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
   .whatsapp-widget{
     right: 14px;
     bottom: 14px;
-    width: 52px;
-    height: 52px;
+    width: 64px;
+    height: 64px;
   }
-  .mega-slider-grid{
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-  }
-  .mega-slider-grid::-webkit-scrollbar{ display: none; }
-  .mega-slider-item{
-    flex: 0 0 82%;
-    scroll-snap-align: start;
+  .whatsapp-widget svg{
+    width: 32px;
+    height: 32px;
   }
   .mega-slider-tag{
     font-size: 0.65rem;

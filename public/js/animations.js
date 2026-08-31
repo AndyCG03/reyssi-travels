@@ -1,6 +1,21 @@
 // Header con efecto glass al hacer scroll
 const header = document.getElementById('siteHeader');
 
+// La revista solo se carga cuando el proveedor confirma que está disponible.
+(function initMagazine(){
+  const section = document.querySelector('[data-magazine-section]');
+  if(!section) return;
+  const frame = section.querySelector('iframe[data-src]');
+  fetch('/api/megatraveler-status', { headers: { Accept: 'application/json' } })
+    .then(response => response.ok ? response.json() : { available: false })
+    .then(status => {
+      if(!status.available || !frame) return;
+      frame.src = frame.dataset.src;
+      section.hidden = false;
+    })
+    .catch(() => {});
+})();
+
 // Overlay premium para transiciones entre páginas.
 (function initRouteLoader(){
   const loader = document.createElement('div');

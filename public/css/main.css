@@ -755,6 +755,7 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
 
 /* ===================== REVISTA DIGITAL ===================== */
 .home-revista{ background: var(--blanco); }
+.home-revista[hidden]{ display: none; }
 .home-revista-head{ max-width: 720px; margin-bottom: 28px; }
 .home-revista-head h2{ font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--azul-oscuro); margin: 0 0 12px; }
 .home-revista-head p{ color: var(--gris-texto); line-height: 1.7; margin: 0; }

@@ -1,21 +1,6 @@
 // Header con efecto glass al hacer scroll
 const header = document.getElementById('siteHeader');
 
-// La revista solo se carga cuando el proveedor confirma que está disponible.
-(function initMagazine(){
-  const section = document.querySelector('[data-magazine-section]');
-  if(!section) return;
-  const frame = section.querySelector('iframe[data-src]');
-  fetch('/api/megatraveler-status', { headers: { Accept: 'application/json' } })
-    .then(response => response.ok ? response.json() : { available: false })
-    .then(status => {
-      if(!status.available || !frame) return;
-      frame.src = frame.dataset.src;
-      section.hidden = false;
-    })
-    .catch(() => {});
-})();
-
 // Overlay premium para transiciones entre páginas.
 (function initRouteLoader(){
   const loader = document.createElement('div');
@@ -128,15 +113,15 @@ document.querySelectorAll('#promociones .mega-slider-item').forEach(item => {
 // Datos de contacto centralizados para todas las páginas del sitio.
 (function configureContactLinks(){
   const whatsapp = 'https://wa.me/525514846761';
-  const email = 'reyssitravels@gmail.com';
+  const email = 'reservas@reyssitravels.com';
   const social = {
     Instagram: 'https://www.instagram.com/reyssi.travels',
     Facebook: 'https://facebook.com/profile.php?id=100076144146928',
     TikTok: 'https://www.tiktok.com/@reyssi.travels'
   };
   const replaceLegacyEmail = node => {
-    if(node.nodeType === Node.TEXT_NODE && node.nodeValue.includes('hola@viajesreyssi.com')){
-      node.nodeValue = node.nodeValue.replaceAll('hola@viajesreyssi.com', email);
+    if(node.nodeType === Node.TEXT_NODE && node.nodeValue.includes('reservas@reyssitravels.com')){
+      node.nodeValue = node.nodeValue.replaceAll('reservas@reyssitravels.com', email);
     }
     node.childNodes && node.childNodes.forEach(replaceLegacyEmail);
   };

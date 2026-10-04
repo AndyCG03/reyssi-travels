@@ -3,21 +3,29 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Hero con fotos de Pixabay ----------
-     La foto local (Hero.webp) siempre está debajo, así que el hero se ve
-     aunque alguna foto externa no cargue. Solo se añaden las que cargan. */
+     Solo destinos que están en las promociones vigentes de Mega Travel
+     (paquetes que sí vendemos). Si cambian las promociones, actualiza esta lista.
+     La foto local (Hero.webp) queda debajo solo como respaldo mientras carga
+     la primera foto o si ninguna carga; no entra en la rotación.
+     Las fotos se cargan una tras otra para no saturar la conexión en móvil. */
   const slidesBox = document.getElementById('heroSlides');
   const destLabel = document.getElementById('heroDest');
   const dotsBox = document.getElementById('heroDots');
   const PIXABAY = [
-    { src: 'https://cdn.pixabay.com/photo/2016/11/29/04/19/ocean-1867285_1280.jpg', place: 'Playas del Caribe' },
-    { src: 'https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_1280.jpg', place: 'Maldivas' },
-    { src: 'https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_1280.jpg', place: 'Polinesia, Pacífico' },
-    { src: 'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg', place: 'Montañas de Canadá' },
-    { src: 'https://cdn.pixabay.com/photo/2016/11/14/03/38/achterwasser-1822668_1280.jpg', place: 'Atardeceres de Europa' }
+    { src: 'https://cdn.pixabay.com/photo/2015/10/14/17/57/paris-988112_1280.jpg', place: 'París, Francia' },
+    { src: 'https://cdn.pixabay.com/photo/2016/11/29/12/12/architecture-1869398_1280.jpg', place: 'Kioto, Japón' },
+    { src: 'https://cdn.pixabay.com/photo/2025/03/31/21/30/italy-9505450_1280.jpg', place: 'Roma, Italia' },
+    { src: 'https://cdn.pixabay.com/photo/2016/08/08/06/55/thailand-1577767_1280.jpg', place: 'Phuket, Tailandia' },
+    { src: 'https://cdn.pixabay.com/photo/2016/12/27/09/24/grand-canal-1933559_1280.jpg', place: 'Venecia, Italia' },
+    { src: 'https://cdn.pixabay.com/photo/2016/11/19/15/03/buildings-1839726_1280.jpg', place: 'Dubái, Emiratos Árabes' },
+    { src: 'https://cdn.pixabay.com/photo/2020/04/01/07/46/desert-4990324_1280.jpg', place: 'Sahara, Marruecos' },
+    { src: 'https://cdn.pixabay.com/photo/2023/07/05/18/13/mountains-8108961_1280.jpg', place: 'Fiordos de Noruega' },
+    { src: 'https://cdn.pixabay.com/photo/2014/11/01/18/46/dubrovnik-512798_1280.jpg', place: 'Dubrovnik, Croacia' },
+    { src: 'https://cdn.pixabay.com/photo/2017/12/16/16/37/great-wall-of-china-3022907_1280.jpg', place: 'Gran Muralla, China' }
   ];
 
   if(slidesBox){
-    const slides = [{ el: null, place: destLabel ? destLabel.textContent : '' }];
+    const slides = [];
     let index = 0;
     let timer = null;
 
@@ -50,18 +58,29 @@
       if(!reduceMotion && slides.length > 1) timer = setInterval(() => go(index + 1), 6500);
     };
 
-    PIXABAY.forEach(item => {
+    const loadNext = n => {
+      if(n >= PIXABAY.length) return;
+      const item = PIXABAY[n];
       const img = new Image();
       img.alt = '';
       img.decoding = 'async';
+      if(n === 0) img.fetchPriority = 'high';
       img.onload = () => {
         slidesBox.appendChild(img);
         slides.push({ el: img, place: item.place });
+        if(slides.length === 1){
+          // Primera foto: se muestra de inmediato y reemplaza al respaldo local
+          if(destLabel) destLabel.textContent = item.place;
+          requestAnimationFrame(() => img.classList.add('is-active'));
+        }
         renderDots();
-        restart();
+        if(!timer) restart();
+        loadNext(n + 1);
       };
+      img.onerror = () => loadNext(n + 1);
       img.src = item.src;
-    });
+    };
+    loadNext(0);
   }
 
   /* ---------- Cinta de destinos: se duplica para un bucle continuo ---------- */

@@ -141,4 +141,29 @@ document.querySelectorAll('#promociones .mega-slider-item').forEach(item => {
   document.querySelectorAll('.footer-contact li').forEach(item => {
     if(item.textContent.includes('+52 55')) item.childNodes[item.childNodes.length - 1].textContent = '+52 55 1484 6761';
   });
+
+  // Formulario de contacto: arma el mensaje y lo abre en WhatsApp.
+  // (Sin JavaScript, el formulario sigue enviándose por correo con su action.)
+  const form = document.getElementById('contactForm');
+  if(form){
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const value = name => (form.elements[name] && form.elements[name].value || '').trim();
+      const lines = [
+        '¡Hola, Reyssi Travels! Quiero información para un viaje.',
+        '',
+        `*Nombre:* ${value('nombre')}`,
+        `*Correo:* ${value('email')}`
+      ];
+      if(value('telefono')) lines.push(`*Teléfono:* ${value('telefono')}`);
+      if(value('interes')) lines.push(`*Me interesa:* ${value('interes')}`);
+      lines.push('', `*Mensaje:* ${value('mensaje')}`);
+      const url = `${whatsapp}?text=${encodeURIComponent(lines.join('\n'))}`;
+      // Con 'noopener' window.open siempre devuelve null, así que se corta el opener a mano
+      const win = window.open(url, '_blank');
+      if(win) win.opener = null; else window.location.href = url;
+      const success = document.getElementById('formSuccess');
+      if(success){ form.style.display = 'none'; success.classList.add('is-visible'); }
+    });
+  }
 })();

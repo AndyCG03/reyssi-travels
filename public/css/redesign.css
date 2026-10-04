@@ -381,3 +381,41 @@ html, body{ overflow-x: clip; }
   .nav-links a::after{ left: 14px; right: 14px; }
   .logo img{ height: 42px; }
 }
+
+/* Cinta de destinos: horizontal, azul oscuro */
+.dest-marquee{
+  transform: none; width: 100%; margin: 0;
+  background: var(--azul-oscuro); box-shadow: none;
+}
+.dest-marquee__track span::after{ color: var(--sol); opacity: .9; }
+@media (max-width: 780px){ .dest-marquee{ transform: none; margin: 0; } }
+
+/* Socios comerciales */
+.socios{ background: var(--gris-suave); }
+.socios-grid{
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px;
+}
+.socio{
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 84px; padding: 16px 18px; text-align: center;
+  background: #fff; border: 1px solid var(--gris-borde); border-radius: var(--radius-md);
+  color: var(--azul-oscuro); opacity: .82;
+  transition: transform .4s var(--ease-premium), box-shadow .4s var(--ease-premium), color .3s, opacity .3s;
+}
+.socio:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); color: var(--azul-rey); opacity: 1; }
+.socio-logo{
+  flex: none; width: 30px; height: 30px; background: currentColor;
+  -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat;
+}
+.socio-name{ font-weight: 700; font-size: 1.05rem; letter-spacing: -.2px; line-height: 1.15; }
+@media (max-width: 480px){
+  .socios-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .socio{ min-height: 72px; padding: 12px; gap: 8px; }
+  .socio-logo{ width: 24px; height: 24px; }
+  .socio-name{ font-size: .95rem; }
+}
+.socios-grid{ display: flex; flex-wrap: wrap; justify-content: center; }
+.socio{ flex: 0 1 calc((100% - 70px) / 6); min-width: 150px; }
+@media (max-width: 1024px){ .socio{ flex-basis: calc((100% - 42px) / 4); } }
+@media (max-width: 480px){ .socio{ flex-basis: calc((100% - 10px) / 2); min-width: 0; } }

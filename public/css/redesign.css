@@ -374,3 +374,10 @@ html, body{ overflow-x: clip; }
   .dest-marquee__track span{ font-size: 1.1rem; padding-inline: 14px; gap: 28px; }
   .dest-marquee__track{ animation-duration: 30s; }
 }
+
+/* Menú de escritorio un poco más grande */
+@media (min-width: 781px){
+  .nav-links a{ font-size: 1.15rem; padding: 8px 14px; }
+  .nav-links a::after{ left: 14px; right: 14px; }
+  .logo img{ height: 42px; }
+}

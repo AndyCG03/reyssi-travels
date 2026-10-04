@@ -65,7 +65,7 @@
   }
 
   /* ---------- Cinta de destinos: se duplica para un bucle continuo ---------- */
-  document.querySelectorAll('.dest-marquee__track').forEach(track => {
+  document.querySelectorAll('.dest-marquee__track, .socios-track').forEach(track => {
     track.innerHTML += track.innerHTML;
   });
 

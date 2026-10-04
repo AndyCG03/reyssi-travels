@@ -42,8 +42,9 @@
   };
 
   var TABS = {
-    ofertas: { url: BASE_OFERTAS, params: OFERTAS_COLORS },
-    promos:  { url: BASE_DEST, params: DEST_COLORS }
+    // 'Promociones vigentes' (vi.php sin Dest) redirige a la misma lista que ofertas,
+    // por eso solo queda esta pestaña.
+    ofertas: { url: BASE_OFERTAS, params: OFERTAS_COLORS }
   };
 
   [1,2,3,4,5,6,7,8,9,10,11,12,13].forEach(function(d) {
@@ -90,4 +91,26 @@
   });
 
   switchTab('ofertas');
+
+  // El catálogo de Mega Travel tiene su propio scroll. Mientras no llene la
+  // pantalla, una capa transparente encima hace que el scroll baje la página;
+  // cuando ya está acoplado bajo el menú, la capa se quita y el scroll sigue
+  // dentro del catálogo. Tocar la capa lleva directo al catálogo.
+  var shield = document.getElementById('megaShield');
+  if (shield) {
+    var headerHeight = function() {
+      return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 0;
+    };
+    var isDocked = function() {
+      var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      return atBottom || wrapper.getBoundingClientRect().top <= headerHeight() + 2;
+    };
+    var sync = function() { shield.hidden = isDocked(); };
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    shield.addEventListener('click', function() {
+      window.scrollTo({ top: window.scrollY + wrapper.getBoundingClientRect().top - headerHeight(), behavior: 'smooth' });
+    });
+    sync();
+  }
 })();

@@ -1,3 +1,5 @@
+// Textos traducibles: window.__t(clave, respaldo) lo define el servidor (i18n.js).
+window.__t = window.__t || function(k, fb){ return fb; };
 // Mejoras de navegación del rediseño: salto al contenido, barra de progreso,
 // sección activa en el menú y botón para volver arriba.
 (function(){
@@ -9,7 +11,7 @@
     const skip = document.createElement('a');
     skip.className = 'skip-link';
     skip.href = '#' + main.id;
-    skip.textContent = 'Saltar al contenido';
+    skip.textContent = __t('ui.skip', 'Saltar al contenido');
     document.body.prepend(skip);
   }
 
@@ -21,7 +23,7 @@
   const toTop = document.createElement('button');
   toTop.className = 'to-top';
   toTop.type = 'button';
-  toTop.setAttribute('aria-label', 'Volver arriba');
+  toTop.setAttribute('aria-label', __t('ui.to_top', 'Volver arriba'));
   toTop.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
   toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   document.body.appendChild(toTop);

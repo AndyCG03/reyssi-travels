@@ -1,3 +1,5 @@
+// Textos traducibles: window.__t(clave, respaldo) lo define el servidor (i18n.js).
+window.__t = window.__t || function(k, fb){ return fb; };
 // Header con efecto glass al hacer scroll
 const header = document.getElementById('siteHeader');
 
@@ -7,7 +9,7 @@ const header = document.getElementById('siteHeader');
   loader.className = 'route-loader';
   loader.setAttribute('role', 'status');
   loader.setAttribute('aria-live', 'polite');
-  loader.setAttribute('aria-label', 'Cargando');
+  loader.setAttribute('aria-label', __t('ui.loading', 'Cargando'));
   loader.innerHTML = '<div class="route-loader__content"><img class="route-loader__logo" src="/img/logo-blanco.png" alt="Reyssi Travels"><div class="route-loader__line" aria-hidden="true"></div></div>';
   document.body.appendChild(loader);
   const show = () => loader.classList.add('is-visible');
@@ -95,7 +97,7 @@ if(menuToggle && mobileMenu){
 document.querySelectorAll('#promociones .mega-slider-item').forEach(item => {
   item.setAttribute('role', 'link');
   item.setAttribute('tabindex', '0');
-  item.setAttribute('aria-label', 'Ver paquetes de viaje');
+  item.setAttribute('aria-label', __t('ui.see_packages_aria', 'Ver paquetes de viaje'));
 
   const openCatalog = () => {
     window.location.href = '/viajes#catalogo';
@@ -141,4 +143,29 @@ document.querySelectorAll('#promociones .mega-slider-item').forEach(item => {
   document.querySelectorAll('.footer-contact li').forEach(item => {
     if(item.textContent.includes('+52 55')) item.childNodes[item.childNodes.length - 1].textContent = '+52 55 1484 6761';
   });
+
+  // Formulario de contacto: arma el mensaje y lo abre en WhatsApp.
+  // (Sin JavaScript, el formulario sigue enviándose por correo con su action.)
+  const form = document.getElementById('contactForm');
+  if(form){
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const value = name => (form.elements[name] && form.elements[name].value || '').trim();
+      const lines = [
+        __t('wa.greeting', '¡Hola, Reyssi Travels! Quiero información para un viaje.'),
+        '',
+        `*${__t('wa.name', 'Nombre')}:* ${value('nombre')}`,
+        `*${__t('wa.email', 'Correo')}:* ${value('email')}`
+      ];
+      if(value('telefono')) lines.push(`*${__t('wa.phone', 'Teléfono')}:* ${value('telefono')}`);
+      if(value('interes')) lines.push(`*${__t('wa.interest', 'Me interesa')}:* ${value('interes')}`);
+      lines.push('', `*${__t('wa.message', 'Mensaje')}:* ${value('mensaje')}`);
+      const url = `${whatsapp}?text=${encodeURIComponent(lines.join('\n'))}`;
+      // Con 'noopener' window.open siempre devuelve null, así que se corta el opener a mano
+      const win = window.open(url, '_blank');
+      if(win) win.opener = null; else window.location.href = url;
+      const success = document.getElementById('formSuccess');
+      if(success){ form.style.display = 'none'; success.classList.add('is-visible'); }
+    });
+  }
 })();

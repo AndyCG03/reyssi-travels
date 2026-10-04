@@ -752,8 +752,6 @@ button::-moz-focus-inner{ border: 0; padding: 0; }
 .home-paquetes-actions{ display: flex; flex-wrap: wrap; gap: 12px; flex-shrink: 0; }
 .home-paquetes-secondary{ color: var(--blanco); border-color: rgba(255,255,255,0.58); }
 .home-paquetes-secondary:hover{ color: var(--blanco); background: rgba(255,255,255,0.12); }
-.legacy-home-paquetes{ display: none; }
-.legacy-cta-final{ display: none; }
 
 
 /* ===================== MEGA SLIDER ===================== */

@@ -1,31 +1,33 @@
+// Textos traducibles: window.__t(clave, respaldo) lo define el servidor (i18n.js).
+window.__t = window.__t || function(k, fb){ return fb; };
 // Dinamismo del rediseño: hero con fotos que rotan, cinta de destinos y carruseles.
 (function(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Hero con fotos de Pixabay ----------
-     La foto local (Hero.webp) siempre está debajo, así que el hero se ve
-     aunque alguna foto externa no cargue. Solo se añaden las que cargan. */
+  /* ---------- Hero con fotos de Pixabay (descargadas en /img/hero, WebP) ----------
+     Solo destinos que están en las promociones vigentes de Mega Travel
+     (paquetes que sí vendemos). Si cambian las promociones, actualiza esta lista.
+     La foto local (Hero.webp) queda debajo solo como respaldo mientras carga
+     la primera foto o si ninguna carga; no entra en la rotación.
+     Las fotos se cargan una tras otra para no saturar la conexión en móvil. */
   const slidesBox = document.getElementById('heroSlides');
   const destLabel = document.getElementById('heroDest');
   const dotsBox = document.getElementById('heroDots');
-  /* Solo destinos de las promociones de Mega Travel que sí operamos.
-     Coloca cada foto (descargada de Pixabay) en /img/hero/ con el nombre
-     indicado; las que aún no existan simplemente no se muestran. */
   const PIXABAY = [
-    { src: '/img/hero/capadocia.jpg', place: 'Capadocia, Turquía' },
-    { src: '/img/hero/estambul.jpg', place: 'Estambul, Turquía' },
-    { src: '/img/hero/dubai.jpg', place: 'Dubái, Emiratos Árabes' },
-    { src: '/img/hero/kioto.jpg', place: 'Kioto, Japón' },
-    { src: '/img/hero/seul.jpg', place: 'Seúl, Corea del Sur' },
-    { src: '/img/hero/madrid.jpg', place: 'Madrid, España' },
-    { src: '/img/hero/lisboa.jpg', place: 'Lisboa, Portugal' },
-    { src: '/img/hero/praga.jpg', place: 'Praga, República Checa' },
-    { src: '/img/hero/roma.jpg', place: 'Roma, Italia' },
-    { src: '/img/hero/fiordos.jpg', place: 'Fiordos, Noruega' }
+    { src: '/img/hero/paris.webp', place: __t('places.paris', 'París, Francia') },
+    { src: '/img/hero/kioto.webp', place: __t('places.kioto', 'Kioto, Japón') },
+    { src: '/img/hero/roma.webp', place: __t('places.roma', 'Roma, Italia') },
+    { src: '/img/hero/phuket.webp', place: __t('places.phuket', 'Phuket, Tailandia') },
+    { src: '/img/hero/venecia.webp', place: __t('places.venecia', 'Venecia, Italia') },
+    { src: '/img/hero/dubai.webp', place: __t('places.dubai', 'Dubái, Emiratos Árabes') },
+    { src: '/img/hero/sahara.webp', place: __t('places.sahara', 'Sahara, Marruecos') },
+    { src: '/img/hero/noruega.webp', place: __t('places.noruega', 'Fiordos de Noruega') },
+    { src: '/img/hero/dubrovnik.webp', place: __t('places.dubrovnik', 'Dubrovnik, Croacia') },
+    { src: '/img/hero/gran-muralla.webp', place: __t('places.gran_muralla', 'Gran Muralla, China') }
   ];
 
   if(slidesBox){
-    const slides = [{ el: null, place: destLabel ? destLabel.textContent : '' }];
+    const slides = [];
     let index = 0;
     let timer = null;
 
@@ -58,18 +60,35 @@
       if(!reduceMotion && slides.length > 1) timer = setInterval(() => go(index + 1), 6500);
     };
 
-    PIXABAY.forEach(item => {
+    const loadNext = n => {
+      if(n >= PIXABAY.length) return;
+      const item = PIXABAY[n];
       const img = new Image();
       img.alt = '';
       img.decoding = 'async';
+      if(n === 0) img.fetchPriority = 'high';
       img.onload = () => {
         slidesBox.appendChild(img);
         slides.push({ el: img, place: item.place });
+        if(slides.length === 1){
+          // Primera foto: se muestra de inmediato y reemplaza al respaldo local
+          if(destLabel) destLabel.textContent = item.place;
+          requestAnimationFrame(() => img.classList.add('is-active'));
+        }
         renderDots();
-        restart();
+        if(!timer) restart();
+        continueAfter(n + 1);
       };
+      img.onerror = () => continueAfter(n + 1);
       img.src = item.src;
-    });
+    };
+    // Las fotos 2..N esperan al evento load: si no, retrasan ese evento
+    // (y con él la pantalla de carga) hasta bajar todas las fotos del hero.
+    const continueAfter = n => {
+      if(document.readyState === 'complete') loadNext(n);
+      else window.addEventListener('load', () => setTimeout(() => loadNext(n), 0), { once: true });
+    };
+    loadNext(0);
   }
 
   /* ---------- Cinta de destinos: se duplica para un bucle continuo ---------- */
@@ -88,8 +107,8 @@
     const nav = document.createElement('div');
     nav.className = 'carousel-nav';
     nav.innerHTML = '<div class="carousel-dots"></div><div class="carousel-arrows">' +
-      '<button type="button" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg></button>' +
-      '<button type="button" aria-label="Siguiente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button></div>';
+      '<button type="button" aria-label="' + __t('ui.prev', 'Anterior') + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg></button>' +
+      '<button type="button" aria-label="' + __t('ui.next', 'Siguiente') + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button></div>';
     track.after(nav);
     const dots = nav.querySelector('.carousel-dots');
     const [prev, next] = nav.querySelectorAll('.carousel-arrows button');
@@ -97,7 +116,7 @@
     items.forEach((item, i) => {
       const d = document.createElement('button');
       d.type = 'button';
-      d.setAttribute('aria-label', 'Ir a ' + (i + 1));
+      d.setAttribute('aria-label', __t('ui.go_to', 'Ir a') + ' ' + (i + 1));
       d.addEventListener('click', () => scrollToItem(i));
       dots.appendChild(d);
     });

@@ -506,3 +506,10 @@ html, body{ overflow-x: clip; }
   .socios-track .socio-name{ font-size: 1.05rem; }
   .socio--wordmark .socio-logo{ width: calc(32px * var(--r, 3)); max-width: 160px; height: 32px; }
 }
+
+/* "historias" del hero en el azul claro de la paleta */
+.hero h1 em{ color: var(--cielo); }
+
+/* Cinta de lugares: azul oscuro, lugares y aviones en blanco */
+.dest-marquee{ background: var(--azul-oscuro); color: #fff; }
+.dest-marquee__track span::after{ color: #fff; opacity: .9; }

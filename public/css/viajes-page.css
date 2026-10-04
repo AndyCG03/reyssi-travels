@@ -43,7 +43,7 @@
   margin: 0 0 24px;
   letter-spacing: 0;
 }
-.viajes-hero h1 em{ color: #8bd4f4; font-style: italic; }
+.viajes-hero h1 em{ color: #8bd4f4; font-style: normal; }
 .viajes-hero p{
   max-width: 520px;
   color: rgba(255,255,255,0.78);

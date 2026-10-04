@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{_lang.current}}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Página no encontrada | Reyssi Travels</title>
+<title>{{notfound.title}}</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,14 +36,12 @@
   .btn-outline{ border: 1px solid rgba(255,255,255,.45); color: #fff; }
   .btn-outline:hover{ border-color: #fff; }
   .lang{ margin-top: 40px; display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.08); }
-  .lang button{
-    border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  .lang a{
+    border: 0; border-radius: 999px; padding: 6px 14px; text-decoration: none;
     font: inherit; font-weight: 600; color: rgba(255,255,255,.75); background: transparent;
   }
-  .lang button[aria-pressed="true"]{ background: #fff; color: var(--azul-oscuro, #0B2A4A); }
+  .lang a[aria-current="true"]{ background: #fff; color: var(--azul-oscuro, #0B2A4A); }
   :focus-visible{ outline: 2px solid var(--cielo); outline-offset: 3px; }
-  [data-lang]{ display: none; }
-  html[lang="es"] [data-lang="es"], html[lang="en"] [data-lang="en"]{ display: revert; }
   @media (prefers-reduced-motion: reduce){ .btn{ transition: none; } .btn:hover{ transform: none; } }
 </style>
 </head>
@@ -52,39 +50,22 @@
   <a href="/" aria-label="Reyssi Travels"><img class="logo" src="/img/logo-blanco.png" alt="Reyssi Travels"></a>
   <div class="code" aria-hidden="true">404<span class="plane">✈</span></div>
 
-  <h1 data-lang="es">Este destino no está en el mapa</h1>
-  <h1 data-lang="en">This destination isn't on the map</h1>
-  <p data-lang="es">La página que buscas no existe o cambió de lugar. Te ayudamos a retomar el rumbo.</p>
-  <p data-lang="en">The page you're looking for doesn't exist or has moved. Let us help you get back on course.</p>
+  <h1>{{notfound.heading}}</h1>
+  <p>{{notfound.text}}</p>
 
   <div class="actions">
-    <a class="btn btn-primary" href="/"><span data-lang="es">Volver al inicio</span><span data-lang="en">Back to home</span></a>
-    <a class="btn btn-outline" href="/viajes"><span data-lang="es">Ver paquetes</span><span data-lang="en">See packages</span></a>
-    <a class="btn btn-outline" href="https://wa.me/525514846761" target="_blank" rel="noopener"><span data-lang="es">Escríbenos por WhatsApp</span><span data-lang="en">Message us on WhatsApp</span></a>
+    <a class="btn btn-primary" href="/">{{notfound.home}}</a>
+    <a class="btn btn-outline" href="/viajes">{{notfound.packages}}</a>
+    <a class="btn btn-outline" href="https://wa.me/525514846761" target="_blank" rel="noopener">{{notfound.whatsapp}}</a>
   </div>
 
-  <div class="lang" role="group" aria-label="Idioma / Language">
-    <button type="button" data-set="es" aria-pressed="true">Español</button>
-    <button type="button" data-set="en" aria-pressed="false">English</button>
-  </div>
+  <nav class="lang" aria-label="Idioma / Language">
+    <a href="?lang=es" hreflang="es" lang="es" data-l="es">Español</a>
+    <a href="?lang=en" hreflang="en" lang="en" data-l="en">English</a>
+  </nav>
 </main>
 <script>
-(function(){
-  var TITLES = { es: 'Página no encontrada | Reyssi Travels', en: 'Page not found | Reyssi Travels' };
-  function setLang(lang){
-    document.documentElement.lang = lang;
-    document.title = TITLES[lang];
-    document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.set === lang)); });
-    try { localStorage.setItem('lang', lang); } catch (e) {}
-  }
-  var saved = null;
-  try { saved = localStorage.getItem('lang'); } catch (e) {}
-  var browser = (navigator.language || 'es').toLowerCase().indexOf('en') === 0 ? 'en' : 'es';
-  setLang(saved === 'es' || saved === 'en' ? saved : browser);
-  document.querySelectorAll('.lang button').forEach(function(b){
-    b.addEventListener('click', function(){ setLang(b.dataset.set); });
-  });
-})();
+document.querySelectorAll('.lang a').forEach(function(a){ if(a.dataset.l === document.documentElement.lang) a.setAttribute('aria-current', 'true'); });
 </script>
 </body>
 </html>

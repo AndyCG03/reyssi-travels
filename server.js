@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const i18n = require('./i18n');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,20 +40,40 @@ function versionOf(relPath) {
   }
 }
 
-function sendPage(res, file, status = 200) {
-  const html = fs.readFileSync(path.join(PUBLIC, file), 'utf8')
+const SITE = 'https://reyssitravels.com';
+
+function sendPage(req, res, file, status = 200) {
+  const lang = i18n.resolveLang(req, res);
+  const pagePath = status === 200 ? req.path.replace(/\.html$/, '').replace(/\/index$/, '/') : null;
+  let html = i18n.translate(fs.readFileSync(path.join(PUBLIC, file), 'utf8'), lang)
     .replace(/(href|src)="(\/(?:css|js)\/[^"?#]+\.(?:css|js))"/g, (match, attr, url) => {
       const v = versionOf(url.slice(1));
       return v ? `${attr}="${url}?v=${v}"` : match;
     });
-  res.status(status).set('Cache-Control', 'no-cache, must-revalidate').type('html').send(html);
+  // Textos para el JS del navegador + versiones de la página en cada idioma (SEO)
+  let head = i18n.clientScript(lang);
+  if (pagePath) {
+    const alt = l => `${SITE}${pagePath}${l === i18n.DEFAULT ? '' : `?lang=${l}`}`;
+    head += i18n.SUPPORTED.map(l => `<link rel="alternate" hreflang="${l}" href="${alt(l)}">`).join('')
+      + `<link rel="alternate" hreflang="x-default" href="${alt(i18n.DEFAULT)}">`;
+    if (lang !== i18n.DEFAULT) {
+      html = html.replace(/(<link rel="canonical" href=")([^"]+)(")/, (m, a, href, b) => `${a}${href}?lang=${lang}${b}`);
+    }
+  }
+  html = html.replace('</head>', `${head}\n</head>`);
+  res.status(status)
+    .set({ 'Cache-Control': 'no-cache, must-revalidate', 'Content-Language': lang, 'Vary': 'Cookie' })
+    .type('html').send(html);
 }
 
 // ---------- Páginas ----------
 const PAGES = { '': 'index.html', index: 'index.html', viajes: 'viajes.html', terminos: 'terminos.html', privacidad: 'privacidad.html' };
 app.get(/^\/(index|viajes|terminos|privacidad)?(?:\.html)?\/?$/, (req, res) => {
-  sendPage(res, PAGES[req.params[0] || '']);
+  sendPage(req, res, PAGES[req.params[0] || '']);
 });
+
+// Cualquier otro .html es una plantilla interna (p. ej. 404.html): no se sirve tal cual.
+app.get(/\.html$/i, (req, res) => sendPage(req, res, '404.html', 404));
 
 // ---------- Archivos estáticos con caché ----------
 app.use(express.static(PUBLIC, {
@@ -71,7 +92,7 @@ app.use(express.static(PUBLIC, {
 
 // ---------- 404 ----------
 app.use((req, res) => {
-  sendPage(res, '404.html', 404);
+  sendPage(req, res, '404.html', 404);
 });
 
 app.listen(PORT, () => {

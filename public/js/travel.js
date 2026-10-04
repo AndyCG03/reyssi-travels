@@ -1,3 +1,5 @@
+// Textos traducibles: window.__t(clave, respaldo) lo define el servidor (i18n.js).
+window.__t = window.__t || function(k, fb){ return fb; };
 // Dinamismo del rediseño: hero con fotos que rotan, cinta de destinos y carruseles.
 (function(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -12,16 +14,16 @@
   const destLabel = document.getElementById('heroDest');
   const dotsBox = document.getElementById('heroDots');
   const PIXABAY = [
-    { src: '/img/hero/paris.webp', place: 'París, Francia' },
-    { src: '/img/hero/kioto.webp', place: 'Kioto, Japón' },
-    { src: '/img/hero/roma.webp', place: 'Roma, Italia' },
-    { src: '/img/hero/phuket.webp', place: 'Phuket, Tailandia' },
-    { src: '/img/hero/venecia.webp', place: 'Venecia, Italia' },
-    { src: '/img/hero/dubai.webp', place: 'Dubái, Emiratos Árabes' },
-    { src: '/img/hero/sahara.webp', place: 'Sahara, Marruecos' },
-    { src: '/img/hero/noruega.webp', place: 'Fiordos de Noruega' },
-    { src: '/img/hero/dubrovnik.webp', place: 'Dubrovnik, Croacia' },
-    { src: '/img/hero/gran-muralla.webp', place: 'Gran Muralla, China' }
+    { src: '/img/hero/paris.webp', place: __t('places.paris', 'París, Francia') },
+    { src: '/img/hero/kioto.webp', place: __t('places.kioto', 'Kioto, Japón') },
+    { src: '/img/hero/roma.webp', place: __t('places.roma', 'Roma, Italia') },
+    { src: '/img/hero/phuket.webp', place: __t('places.phuket', 'Phuket, Tailandia') },
+    { src: '/img/hero/venecia.webp', place: __t('places.venecia', 'Venecia, Italia') },
+    { src: '/img/hero/dubai.webp', place: __t('places.dubai', 'Dubái, Emiratos Árabes') },
+    { src: '/img/hero/sahara.webp', place: __t('places.sahara', 'Sahara, Marruecos') },
+    { src: '/img/hero/noruega.webp', place: __t('places.noruega', 'Fiordos de Noruega') },
+    { src: '/img/hero/dubrovnik.webp', place: __t('places.dubrovnik', 'Dubrovnik, Croacia') },
+    { src: '/img/hero/gran-muralla.webp', place: __t('places.gran_muralla', 'Gran Muralla, China') }
   ];
 
   if(slidesBox){
@@ -105,8 +107,8 @@
     const nav = document.createElement('div');
     nav.className = 'carousel-nav';
     nav.innerHTML = '<div class="carousel-dots"></div><div class="carousel-arrows">' +
-      '<button type="button" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg></button>' +
-      '<button type="button" aria-label="Siguiente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button></div>';
+      '<button type="button" aria-label="' + __t('ui.prev', 'Anterior') + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg></button>' +
+      '<button type="button" aria-label="' + __t('ui.next', 'Siguiente') + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button></div>';
     track.after(nav);
     const dots = nav.querySelector('.carousel-dots');
     const [prev, next] = nav.querySelectorAll('.carousel-arrows button');
@@ -114,7 +116,7 @@
     items.forEach((item, i) => {
       const d = document.createElement('button');
       d.type = 'button';
-      d.setAttribute('aria-label', 'Ir a ' + (i + 1));
+      d.setAttribute('aria-label', __t('ui.go_to', 'Ir a') + ' ' + (i + 1));
       d.addEventListener('click', () => scrollToItem(i));
       dots.appendChild(d);
     });

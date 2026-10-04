@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{_lang.current}}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reyssi Travels - Viajes que se convierten en historias</title>
-<meta name="description" content="Reyssi Travels diseña paquetes, promociones y viajes personalizados con atención experta, contacto rápido y asesoría para reservar tu próxima aventura.">
-<meta name="keywords" content="viajes, paquetes turísticos, promociones de viajes, agencia de viajes, Reyssi Travels, Mega Travel, viajes personalizados, reservaciones de viaje, viajes a México, viajes internacionales">
+<title>{{meta.home.title}}</title>
+<meta name="description" content="{{meta.home.description}}">
+<meta name="keywords" content="{{meta.home.keywords}}">
 <meta name="author" content="Reyssi Travels">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#1C87C9">
 <link rel="canonical" href="https://reyssitravels.com/">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="es_MX">
+<meta property="og:locale" content="{{meta.og_locale}}">
 <meta property="og:site_name" content="Reyssi Travels">
-<meta property="og:title" content="Reyssi Travels - Viajes que se convierten en historias">
-<meta property="og:description" content="Paquetes, promociones y asesoría personalizada para tu próximo viaje con Reyssi Travels.">
+<meta property="og:title" content="{{meta.home.title}}">
+<meta property="og:description" content="{{meta.home.og_description}}">
 <meta property="og:url" content="https://reyssitravels.com/">
 <meta property="og:image" content="https://reyssitravels.com/img/Hero.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Reyssi Travels - Viajes que se convierten en historias">
-<meta name="twitter:description" content="Paquetes, promociones y asesoría personalizada para tu próximo viaje con Reyssi Travels.">
+<meta name="twitter:title" content="{{meta.home.title}}">
+<meta name="twitter:description" content="{{meta.home.og_description}}">
 <meta name="twitter:image" content="https://reyssitravels.com/img/Hero.webp">
-<meta property="og:image:alt" content="Experiencias de viaje con Reyssi Travels">
-<meta name="twitter:image:alt" content="Experiencias de viaje con Reyssi Travels">
+<meta property="og:image:alt" content="{{meta.home.image_alt}}">
+<meta name="twitter:image:alt" content="{{meta.home.image_alt}}">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -31,7 +31,7 @@
   "url":"https://reyssitravels.com/",
   "logo":"https://reyssitravels.com/img/logo.png",
   "image":"https://reyssitravels.com/img/Hero.webp",
-  "description":"Agencia de viajes especializada en paquetes, promociones y experiencias personalizadas.",
+  "description":"{{meta.home.ld_description}}",
   "telephone":"+525514846761",
   "email":"reservas@reyssitravels.com",
   "sameAs":["https://www.instagram.com/reyssi.travels","https://facebook.com/profile.php?id=100076144146928","https://www.tiktok.com/@reyssi.travels"],
@@ -56,29 +56,29 @@
     </a>
     <nav>
       <ul class="nav-links">
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#trust">Por qué confiar</a></li>
-        <li><a href="#promociones">Promociones</a></li>
-        <li><a href="/viajes">Viajes</a></li>
-        <li><a href="#testimonios">Clientes</a></li>
-        <li><a href="#socios">Socios</a></li>
-        <li><a href="#formulario-contacto">Contacto</a></li>
+        <li><a href="#hero">{{nav.home}}</a></li>
+        <li><a href="#trust">{{nav.trust}}</a></li>
+        <li><a href="#promociones">{{nav.promos}}</a></li>
+        <li><a href="/viajes">{{nav.trips}}</a></li>
+        <li><a href="#testimonios">{{nav.clients}}</a></li>
+        <li><a href="#socios">{{nav.partners}}</a></li>
+        <li><a href="#formulario-contacto">{{nav.contact}}</a></li><li class="nav-lang"><a href="?lang={{_lang.other}}" hreflang="{{_lang.other}}" lang="{{_lang.other}}" aria-label="{{lang.switch_aria}}">{{lang.switch}}</a></li>
       </ul>
     </nav>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+    <button class="menu-toggle" id="menuToggle" aria-label="{{nav.open_menu}}" aria-expanded="false">
       <svg class="icon-burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <ul>
-      <li><a href="#hero">Inicio</a></li>
-      <li><a href="#trust">Por qué confiar</a></li>
-      <li><a href="#promociones">Promociones</a></li>
-      <li><a href="/viajes">Viajes</a></li>
-      <li><a href="#testimonios">Clientes</a></li>
-        <li><a href="#socios">Socios</a></li>
-      <li><a href="#formulario-contacto">Contacto</a></li>
+      <li><a href="#hero">{{nav.home}}</a></li>
+      <li><a href="#trust">{{nav.trust}}</a></li>
+      <li><a href="#promociones">{{nav.promos}}</a></li>
+      <li><a href="/viajes">{{nav.trips}}</a></li>
+      <li><a href="#testimonios">{{nav.clients}}</a></li>
+        <li><a href="#socios">{{nav.partners}}</a></li>
+      <li><a href="#formulario-contacto">{{nav.contact}}</a></li><li class="nav-lang"><a href="?lang={{_lang.other}}" hreflang="{{_lang.other}}" lang="{{_lang.other}}" aria-label="{{lang.switch_aria}}">{{lang.switch}}</a></li>
     </ul>
   </div>
 </header>
@@ -89,11 +89,11 @@
   <div class="container">
     <div class="hero-content">
       <span class="hero-eyebrow reveal">Reyssi Travels</span>
-      <h1 class="reveal">Viajes que se<br>convierten en<br><em>historias.</em></h1>
-      <p class="reveal">Diseñamos experiencias únicas para viajeros que buscan más que un destino, buscan recuerdos.</p>
+      <h1 class="reveal">{{hero.title}}</h1>
+      <p class="reveal">{{hero.text}}</p>
       <div class="hero-actions reveal">
-        <a href="#formulario-contacto" class="btn btn-primary">Planea tu viaje</a>
-        <a href="/viajes" class="btn btn-outline" aria-label="Ver paquetes de viaje">Ver paquetes →</a>
+        <a href="#formulario-contacto" class="btn btn-primary">{{hero.cta_plan}}</a>
+        <a href="/viajes" class="btn btn-outline" aria-label="{{hero.cta_packages_aria}}">{{hero.cta_packages}}</a>
       </div>
       <div class="hero-dest" aria-hidden="true"><span class="hero-dest__pin"></span><span id="heroDest"></span><span class="hero-dest__dots" id="heroDots"></span></div>
     </div>
@@ -102,42 +102,42 @@
 
 <div class="dest-marquee" aria-hidden="true">
   <div class="dest-marquee__track">
-    <span>Europa</span><span>Japón</span><span>Italia</span><span>Tailandia</span><span>Medio Oriente</span><span>Canadá</span><span>Asia</span><span>África</span><span>Pacífico</span><span>Sudamérica</span><span>Estados Unidos</span><span>Centroamérica</span><span>Cuba y Caribe</span><span>Cruceros</span>
+    <span>{{regions.europe}}</span><span>{{regions.japan}}</span><span>{{regions.italy}}</span><span>{{regions.thailand}}</span><span>{{regions.middle_east}}</span><span>{{regions.canada}}</span><span>{{regions.asia}}</span><span>{{regions.africa}}</span><span>{{regions.pacific}}</span><span>{{regions.south_america}}</span><span>{{regions.usa}}</span><span>{{regions.central_america}}</span><span>{{regions.cuba_caribbean}}</span><span>{{regions.cruises}}</span>
   </div>
 </div>
 
 <section class="trust" id="trust">
   <div class="container">
-    <span class="trust-eyebrow reveal">Viaja tranquilo, nosotros nos encargamos</span>
-    <h2 class="reveal">¿Por qué confiar en nosotros?</h2>
+    <span class="trust-eyebrow reveal">{{trust.eyebrow}}</span>
+    <h2 class="reveal">{{trust.title}}</h2>
     <div class="trust-grid">
       <div class="trust-item reveal">
         <div class="trust-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
         </div>
-        <h3>Atención personalizada</h3>
-        <p>Te acompañamos antes, durante y después de tu viaje.</p>
+        <h3>{{trust.i1_title}}</h3>
+        <p>{{trust.i1_text}}</p>
       </div>
       <div class="trust-item reveal">
         <div class="trust-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
-        <h3>Pagos seguros</h3>
-        <p>Tus pagos están protegidos y respaldados.</p>
+        <h3>{{trust.i2_title}}</h3>
+        <p>{{trust.i2_text}}</p>
       </div>
       <div class="trust-item reveal">
         <div class="trust-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
         </div>
-        <h3>Asistencia 24/7</h3>
-        <p>Estamos contigo en todo momento de tu viaje.</p>
+        <h3>{{trust.i3_title}}</h3>
+        <p>{{trust.i3_text}}</p>
       </div>
       <div class="trust-item reveal">
         <div class="trust-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 4-6 2v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>
         </div>
-        <h3>Viajes a tu medida</h3>
-        <p>Itinerarios diseñados para ti, según tus sueños y necesidades.</p>
+        <h3>{{trust.i4_title}}</h3>
+        <p>{{trust.i4_text}}</p>
       </div>
     </div>
   </div>
@@ -147,26 +147,26 @@
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <span class="section-eyebrow">Ofertas exclusivas</span>
-        <h2>Promociones del momento</h2>
-        <p style="color: var(--gris-texto); margin-top: 8px;">Actualizadas diariamente con las mejores ofertas.</p>
+        <span class="section-eyebrow">{{promos.eyebrow}}</span>
+        <h2>{{promos.title}}</h2>
+        <p style="color: var(--gris-texto); margin-top: 8px;">{{promos.text}}</p>
       </div>
     </div>
     <div class="mega-promotions-carousels reveal" data-home-promotions>
       <div class="mega-slider-grid" data-promotion-carousel>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo1.jpg" alt="Oferta de viaje promocional a un destino internacional" loading="lazy"></div>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo2.jpg" alt="Paquete vacacional promocional con hotel y actividades" loading="lazy"></div>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo3.jpg" alt="Promoción de escapada turística y experiencias de viaje" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo1.jpg" alt="{{promos.alt1}}" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo2.jpg" alt="{{promos.alt2}}" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo3.jpg" alt="{{promos.alt3}}" loading="lazy"></div>
       </div>
       <div class="mega-slider-grid" data-promotion-carousel>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo4.jpg" alt="Oferta especial para reservar un paquete de vacaciones" loading="lazy"></div>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo5.jpg" alt="Promoción de viaje para descubrir nuevos destinos" loading="lazy"></div>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo6.jpg" alt="Paquete turístico promocional para tu próxima aventura" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo4.jpg" alt="{{promos.alt4}}" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo5.jpg" alt="{{promos.alt5}}" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo6.jpg" alt="{{promos.alt6}}" loading="lazy"></div>
       </div>
       <div class="mega-slider-grid" data-promotion-carousel>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo7.jpg" alt="Promoción de vacaciones familiares y actividades guiadas" loading="lazy"></div>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo8.jpg" alt="Oferta de viaje para una escapada inolvidable" loading="lazy"></div>
-      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo9.jpg" alt="Promoción de paquete turístico con experiencias únicas" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo7.jpg" alt="{{promos.alt7}}" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo8.jpg" alt="{{promos.alt8}}" loading="lazy"></div>
+      <div class="mega-slider-item"><img src="https://cafe-mt.b-cdn.net/mtmediacafe/mega-slider/promo9.jpg" alt="{{promos.alt9}}" loading="lazy"></div>
       </div>
     </div>
   </div>
@@ -176,8 +176,8 @@
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <span class="section-eyebrow">Testimonios</span>
-        <h2>Lo que dicen nuestros clientes</h2>
+        <span class="section-eyebrow">{{testimonials.eyebrow}}</span>
+        <h2>{{testimonials.title}}</h2>
       </div>
     </div>
     <div class="testimonios-grid">
@@ -187,7 +187,7 @@
           <div><h3>Mariana G.</h3><p>Monterrey, MX</p></div>
         </div>
         <div class="estrellas"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg></div>
-        <p class="quote">El viaje a Japón superó todas mis expectativas. La atención y los detalles fueron increíbles.</p>
+        <p class="quote">{{testimonials.q1}}</p>
       </div>
       <div class="testimonio-card reveal">
         <div class="testimonio-head">
@@ -195,7 +195,7 @@
           <div><h3>Carlos R.</h3><p>Guadalajara, MX</p></div>
         </div>
         <div class="estrellas"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg></div>
-        <p class="quote">Italia fue un sueño hecho realidad. Todo estuvo perfectamente planeado.</p>
+        <p class="quote">{{testimonials.q2}}</p>
       </div>
       <div class="testimonio-card reveal">
         <div class="testimonio-head">
@@ -203,7 +203,7 @@
           <div><h3>Ana P.</h3><p>Ciudad de México, MX</p></div>
         </div>
         <div class="estrellas"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15.09 9l7.16.62-5.42 4.71L18.36 21 12 17.27 5.64 21l1.53-6.67L1.75 9.6 8.91 9 12 2.5Z"/></svg></div>
-        <p class="quote">Tailandia nos cambió la vida. Una experiencia que nunca olvidaremos.</p>
+        <p class="quote">{{testimonials.q3}}</p>
       </div>
     </div>
   </div>
@@ -213,8 +213,8 @@
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <span class="section-eyebrow">Socios comerciales</span>
-        <h2>Viajamos con los mejores</h2>
+        <span class="section-eyebrow">{{partners.eyebrow}}</span>
+        <h2>{{partners.title}}</h2>
       </div>
     </div>
     <div class="socios-rows reveal">
@@ -229,29 +229,29 @@
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <span class="section-eyebrow">Contacto</span>
-        <h2>Envíanos un mensaje</h2>
+        <span class="section-eyebrow">{{nav.contact}}</span>
+        <h2>{{contact.title}}</h2>
       </div>
     </div>
     <div class="contacto-grid reveal">
       <div class="contacto-info-card">
-        <h2>Información de contacto</h2>
-        <p>Estamos disponibles para resolver tus dudas y ayudarte a planear el viaje de tus sueños.</p>
+        <h2>{{contact.info_title}}</h2>
+        <p>{{contact.info_text}}</p>
         <div class="contacto-item">
           <div class="contacto-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Z"/></svg></div>
           <div class="contacto-item-content"><strong>WhatsApp</strong><span><a href="https://wa.me/525514846761" target="_blank" rel="noopener">+52 55 1484 6761</a></span></div>
         </div>
         <div class="contacto-item">
           <div class="contacto-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></div>
-          <div class="contacto-item-content"><strong>Correo electrónico</strong><span><a href="mailto:reservas@reyssitravels.com">reservas@reyssitravels.com</a></span></div>
+          <div class="contacto-item-content"><strong>{{contact.email_label}}</strong><span><a href="mailto:reservas@reyssitravels.com">reservas@reyssitravels.com</a></span></div>
         </div>
         <div class="contacto-item">
           <div class="contacto-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div class="contacto-item-content"><strong>Ubicación</strong><span>Ciudad de México, México</span></div>
+          <div class="contacto-item-content"><strong>{{contact.location_label}}</strong><span>{{contact.location}}</span></div>
         </div>
       </div>
       <div class="contacto-form-card">
-        <p>Déjanos tus datos y te contactaremos en menos de 24 horas.</p>
+        <p>{{contact.form_intro}}</p>
         <form id="contactForm" action="https://formsubmit.co/reservas@reyssitravels.com" method="POST">
           <input type="hidden" name="_subject" value="Nuevo mensaje desde Reyssi Travels">
           <input type="hidden" name="_template" value="table">
@@ -259,44 +259,44 @@
           <input type="hidden" name="_next" value="https://reyssitravels.com/#formulario-contacto">
           <div class="form-grupo-row">
             <div class="form-grupo">
-              <label for="nombre">Nombre completo</label>
-              <input type="text" id="nombre" name="nombre" required placeholder="Ej. María García">
+              <label for="nombre">{{form.name}}</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="{{form.name_ph}}">
             </div>
             <div class="form-grupo">
-              <label for="email">Correo electrónico</label>
-              <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
+              <label for="email">{{contact.email_label}}</label>
+              <input type="email" id="email" name="email" required placeholder="{{form.email_ph}}">
             </div>
           </div>
           <div class="form-grupo-row">
             <div class="form-grupo">
-              <label for="telefono">Teléfono</label>
+              <label for="telefono">{{form.phone}}</label>
               <input type="tel" id="telefono" name="telefono" placeholder="+52 55 1234 5678">
             </div>
             <div class="form-grupo">
-              <label for="interes">¿Qué te interesa?</label>
+              <label for="interes">{{form.interest}}</label>
               <select id="interes" name="interes">
-                <option value="">Selecciona una opción</option>
-                <option>Paquetes de viaje</option>
-                <option>Vuelos</option>
-                <option>Hoteles</option>
-                <option>Tour personalizado</option>
-                <option>Otro</option>
+                <option value="">{{form.opt_select}}</option>
+                <option>{{form.opt_packages}}</option>
+                <option>{{form.opt_flights}}</option>
+                <option>{{form.opt_hotels}}</option>
+                <option>{{form.opt_tour}}</option>
+                <option>{{form.opt_other}}</option>
               </select>
             </div>
           </div>
           <div class="form-grupo">
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" required placeholder="Cuéntanos sobre el viaje que tienes en mente..."></textarea>
+            <label for="mensaje">{{form.message}}</label>
+            <textarea id="mensaje" name="mensaje" required placeholder="{{form.message_ph}}"></textarea>
           </div>
           <button type="submit" class="btn-enviar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Enviar por WhatsApp
+            {{form.submit}}
           </button>
         </form>
         <div class="form-success" id="formSuccess">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <h3>¡Listo! Te abrimos WhatsApp</h3>
-          <p>Solo presiona enviar en WhatsApp y te responderemos a la brevedad.</p>
+          <h3>{{form.success_title}}</h3>
+          <p>{{form.success_text}}</p>
         </div>
       </div>
     </div>
@@ -306,13 +306,13 @@
 <section class="home-paquetes-cta" id="paquetes">
   <div class="container">
     <div class="home-paquetes-copy reveal">
-      <span class="section-eyebrow">Paquetes a tu medida</span>
-      <h2>Tu próxima aventura empieza con una buena idea.</h2>
-      <p>Explora todos nuestros paquetes o cuéntanos qué tienes en mente y lo diseñamos contigo.</p>
+      <span class="section-eyebrow">{{cta.eyebrow}}</span>
+      <h2>{{cta.title}}</h2>
+      <p>{{cta.text}}</p>
     </div>
     <div class="home-paquetes-actions reveal">
-      <a class="btn btn-primary" href="https://wa.me/525514846761?text=Hola%2C%20quiero%20personalizar%20mi%20paquete%20de%20viaje%20con%20Reyssi%20Travels." target="_blank" rel="noopener">Personalizar mi paquete</a>
-      <a class="btn btn-outline home-paquetes-secondary" href="/viajes">Ver todos los paquetes</a>
+      <a class="btn btn-primary" href="https://wa.me/525514846761?text={{url:wa.customize}}" target="_blank" rel="noopener">{{cta.customize}}</a>
+      <a class="btn btn-outline home-paquetes-secondary" href="/viajes">{{cta.all_packages}}</a>
     </div>
   </div>
 </section>
@@ -324,7 +324,7 @@
         <a href="#hero" class="logo">
           <img src="/img/logo-blanco.png" alt="Reyssi Travels">
         </a>
-        <p>Creamos experiencias únicas para viajeros que buscan más viajes.</p>
+        <p>{{footer.tagline}}</p>
         <div class="social-row">
           <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.7 0 3 .01 4.1.06 1.1.05 1.8.22 2.4.46.6.25 1.1.58 1.6 1.08.5.5.83 1 1.08 1.6.24.6.41 1.3.46 2.4.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4a4.3 4.3 0 0 1-1.08 1.6 4.3 4.3 0 0 1-1.6 1.08c-.6.24-1.3.41-2.4.46-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.1-.05-1.8-.22-2.4-.46a4.3 4.3 0 0 1-1.6-1.08 4.3 4.3 0 0 1-1.08-1.6c-.24-.6-.41-1.3-.46-2.4C2.01 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.1.22-1.8.46-2.4.25-.6.58-1.1 1.08-1.6.5-.5 1-.83 1.6-1.08.6-.24 1.3-.41 2.4-.46C9 2.01 9.3 2 12 2Zm0 1.8c-2.65 0-2.97.01-4 .06-.97.05-1.5.2-1.84.34-.46.18-.8.4-1.15.75-.35.35-.57.69-.75 1.15-.14.35-.29.87-.34 1.84-.05 1.03-.06 1.35-.06 4s.01 2.97.06 4c.05.97.2 1.5.34 1.84.18.46.4.8.75 1.15.35.35.69.57 1.15.75.35.14.87.29 1.84.34 1.03.05 1.35.06 4 .06s2.97-.01 4-.06c.97-.05 1.5-.2 1.84-.34.46-.18.8-.4 1.15-.75.35-.35.57-.69.75-1.15.14-.35.29-.87.34-1.84.05-1.03.06-1.35.06-4s-.01-2.97-.06-4c-.05-.97-.2-1.5-.34-1.84a3 3 0 0 0-.75-1.15 3 3 0 0 0-1.15-.75c-.35-.14-.87-.29-1.84-.34-1.03-.05-1.35-.06-4-.06Zm0 3.4a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 1.8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.1-2a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"/></svg></a>
           <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v7h3v-7H16l1-3h-3.5V9.5c0-.3.2-.5.5-.5Z"/></svg></a>
@@ -333,46 +333,46 @@
         </div>
       </div>
       <div class="footer-col">
-        <h3>Enlaces</h3>
+        <h3>{{footer.links}}</h3>
         <ul>
-          <li><a href="#hero">Inicio</a></li>
-          <li><a href="#trust">Por qué confiar</a></li>
-          <li><a href="#promociones">Promociones</a></li>
-          <li><a href="/viajes">Viajes</a></li>
-          <li><a href="#testimonios">Clientes</a></li>
-        <li><a href="#socios">Socios</a></li>
-          <li><a href="#formulario-contacto">Contacto</a></li>
+          <li><a href="#hero">{{nav.home}}</a></li>
+          <li><a href="#trust">{{nav.trust}}</a></li>
+          <li><a href="#promociones">{{nav.promos}}</a></li>
+          <li><a href="/viajes">{{nav.trips}}</a></li>
+          <li><a href="#testimonios">{{nav.clients}}</a></li>
+        <li><a href="#socios">{{nav.partners}}</a></li>
+          <li><a href="#formulario-contacto">{{nav.contact}}</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h3>Nosotros</h3>
+        <h3>{{footer.about}}</h3>
         <ul>
-          <li><a href="/terminos">Términos y condiciones</a></li>
-          <li><a href="/privacidad">Aviso de privacidad</a></li>
+          <li><a href="/terminos">{{footer.terms}}</a></li>
+          <li><a href="/privacidad">{{footer.privacy}}</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h3>Contacto</h3>
+        <h3>{{nav.contact}}</h3>
         <ul class="footer-contact">
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Z"/></svg>+52 55 1484 6761</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>reservas@reyssitravels.com</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Ciudad de México, México</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{contact.location}}</li>
         </ul>
       </div>
     </div>
     <div class="footer-rnt">
-      <span>Registro Nacional de Turismo <strong>No. 04090051209f</strong> · Agencia de viajes · Vigencia al 01/07/2028</span>
-      <button type="button" class="rnt-open" data-rnt-open>Ver certificado</button>
+      <span>{{footer.rnt}}</span>
+      <button type="button" class="rnt-open" data-rnt-open>{{footer.rnt_open}}</button>
     </div>
-    <dialog class="rnt-dialog" id="rntDialog" aria-label="Certificado del Registro Nacional de Turismo">
-      <button type="button" class="rnt-close" data-rnt-close aria-label="Cerrar">&times;</button>
-      <img src="/img/rnt-certificado.webp" alt="Certificado de inscripción en el Registro Nacional de Turismo No. 04090051209f a favor de Reyssi Travels, agencia de viajes" loading="lazy" width="1637" height="1262">
+    <dialog class="rnt-dialog" id="rntDialog" aria-label="{{footer.rnt_dialog}}">
+      <button type="button" class="rnt-close" data-rnt-close aria-label="{{common.close}}">&times;</button>
+      <img src="/img/rnt-certificado.webp" alt="{{footer.rnt_alt}}" loading="lazy" width="1637" height="1262">
     </dialog>
-    <div class="footer-bottom">&copy; 2026 Reyssi. Todos los derechos reservados.</div>
+    <div class="footer-bottom">{{footer.copyright}}</div>
   </div>
 </footer>
 
-<a class="whatsapp-widget" href="https://wa.me/525514846761" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+<a class="whatsapp-widget" href="https://wa.me/525514846761" target="_blank" rel="noopener" aria-label="{{common.open_whatsapp}}">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.14.82.84-3.06-.19-.32a8.13 8.13 0 0 1-1.27-4.27c0-4.5 3.66-8.16 8.16-8.16a8.11 8.11 0 0 1 8.15 8.16c0 4.5-3.66 8.15-8.06 8.15Zm4.48-6.11c-.24-.12-1.44-.71-1.67-.8-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.96-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
 </a>
 

@@ -91,4 +91,26 @@
   });
 
   switchTab('ofertas');
+
+  // El catálogo de Mega Travel tiene su propio scroll. Mientras no llene la
+  // pantalla, una capa transparente encima hace que el scroll baje la página;
+  // cuando ya está acoplado bajo el menú, la capa se quita y el scroll sigue
+  // dentro del catálogo. Tocar la capa lleva directo al catálogo.
+  var shield = document.getElementById('megaShield');
+  if (shield) {
+    var headerHeight = function() {
+      return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 0;
+    };
+    var isDocked = function() {
+      var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      return atBottom || wrapper.getBoundingClientRect().top <= headerHeight() + 2;
+    };
+    var sync = function() { shield.hidden = isDocked(); };
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    shield.addEventListener('click', function() {
+      window.scrollTo({ top: window.scrollY + wrapper.getBoundingClientRect().top - headerHeight(), behavior: 'smooth' });
+    });
+    sync();
+  }
 })();

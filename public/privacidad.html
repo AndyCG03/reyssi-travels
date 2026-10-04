@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{_lang.current}}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aviso de privacidad — Reyssi Travels</title>
-<meta name="description" content="Aviso de privacidad de Reyssi Travels.">
-<meta name="robots" content="index, follow"><link rel="canonical" href="https://reyssitravels.com/privacidad"><meta property="og:type" content="website"><meta property="og:title" content="Aviso de privacidad | Reyssi Travels"><meta property="og:description" content="Consulta el aviso de privacidad de Reyssi Travels."><meta property="og:url" content="https://reyssitravels.com/privacidad"><meta property="og:image" content="https://reyssitravels.com/img/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Aviso de privacidad | Reyssi Travels"><meta name="twitter:description" content="Consulta el aviso de privacidad de Reyssi Travels."><meta name="twitter:image" content="https://reyssitravels.com/img/logo.png">
+<title>{{meta.privacy.title}}</title>
+<meta name="description" content="{{meta.privacy.description}}">
+<meta name="robots" content="index, follow"><link rel="canonical" href="https://reyssitravels.com/privacidad"><meta property="og:type" content="website"><meta property="og:title" content="{{meta.privacy.og_title}}"><meta property="og:description" content="{{meta.privacy.og_description}}"><meta property="og:url" content="https://reyssitravels.com/privacidad"><meta property="og:image" content="https://reyssitravels.com/img/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{meta.privacy.og_title}}"><meta name="twitter:description" content="{{meta.privacy.og_description}}"><meta name="twitter:image" content="https://reyssitravels.com/img/logo.png">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,43 +19,43 @@
 
 <header class="header is-solid header-static" id="siteHeader">
   <div class="container">
-    <a href="/" class="logo" aria-label="Reyssi Travels, inicio">
+    <a href="/" class="logo" aria-label="{{nav.logo_home}}">
       <img src="/img/logo-blanco.png" alt="Reyssi Travels">
     </a>
     <nav>
       <ul class="nav-links">
-        <li><a href="/#hero">Inicio</a></li>
-        <li><a href="/#trust">Por qué confiar</a></li>
-        <li><a href="/#promociones">Promociones</a></li>
-        <li><a href="/viajes">Viajes</a></li>
-        <li><a href="/#testimonios">Clientes</a></li>
-        <li><a href="/#socios">Socios</a></li>
-        <li><a href="/#formulario-contacto">Contacto</a></li>
+        <li><a href="/#hero">{{nav.home}}</a></li>
+        <li><a href="/#trust">{{nav.trust}}</a></li>
+        <li><a href="/#promociones">{{nav.promos}}</a></li>
+        <li><a href="/viajes">{{nav.trips}}</a></li>
+        <li><a href="/#testimonios">{{nav.clients}}</a></li>
+        <li><a href="/#socios">{{nav.partners}}</a></li>
+        <li><a href="/#formulario-contacto">{{nav.contact}}</a></li><li class="nav-lang"><a href="?lang={{_lang.other}}" hreflang="{{_lang.other}}" lang="{{_lang.other}}" aria-label="{{lang.switch_aria}}">{{lang.switch}}</a></li>
       </ul>
     </nav>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+    <button class="menu-toggle" id="menuToggle" aria-label="{{nav.open_menu}}" aria-expanded="false">
       <svg class="icon-burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <ul>
-      <li><a href="/#hero">Inicio</a></li>
-      <li><a href="/#trust">Por qué confiar</a></li>
-      <li><a href="/#promociones">Promociones</a></li>
-      <li><a href="/viajes">Viajes</a></li>
-      <li><a href="/#testimonios">Clientes</a></li>
-        <li><a href="/#socios">Socios</a></li>
-      <li><a href="/#formulario-contacto">Contacto</a></li>
+      <li><a href="/#hero">{{nav.home}}</a></li>
+      <li><a href="/#trust">{{nav.trust}}</a></li>
+      <li><a href="/#promociones">{{nav.promos}}</a></li>
+      <li><a href="/viajes">{{nav.trips}}</a></li>
+      <li><a href="/#testimonios">{{nav.clients}}</a></li>
+        <li><a href="/#socios">{{nav.partners}}</a></li>
+      <li><a href="/#formulario-contacto">{{nav.contact}}</a></li><li class="nav-lang"><a href="?lang={{_lang.other}}" hreflang="{{_lang.other}}" lang="{{_lang.other}}" aria-label="{{lang.switch_aria}}">{{lang.switch}}</a></li>
     </ul>
   </div>
 </header>
 
 <section class="legal-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="/">Inicio</a> / Aviso de privacidad</div>
-    <h1>Aviso de privacidad</h1>
-    <p>En Reyssi Travels nos tomamos en serio la protección de tus datos personales. Conoce cómo los recopilamos, usamos y resguardamos.</p>
+    <div class="breadcrumb"><a href="/">{{nav.home}}</a> / {{footer.privacy}}</div>
+    <h1>{{footer.privacy}}</h1>
+    <p>{{privacy.intro}}</p>
   </div>
 </section>
 
@@ -68,9 +68,9 @@
           <div class="legal-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
-          <h2>1. Responsable</h2>
+          <h2>{{privacy.s1_title}}</h2>
         </div>
-        <p>Reyssi Travels, con domicilio en Ciudad de México, México, es el responsable del tratamiento y protección de tus datos personales. Nos comprometemos a cumplir con la legislación aplicable en materia de privacidad y protección de datos.</p>
+        <p>{{privacy.s1_p1}}</p>
       </div>
 
       <div class="legal-card reveal">
@@ -78,10 +78,10 @@
           <div class="legal-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
-          <h2>2. Datos recopilados</h2>
+          <h2>{{privacy.s2_title}}</h2>
         </div>
-        <p>Recopilamos la información necesaria para cotizar y gestionar tus viajes: nombre completo, correo electrónico, número telefónico, y en algunos casos datos de pasajeros requeridos por proveedores.</p>
-        <p>No recopilamos datos sensibles sin tu consentimiento expreso. Toda la información se obtiene de manera directa a través de nuestros formularios de contacto y cotización.</p>
+        <p>{{privacy.s2_p1}}</p>
+        <p>{{privacy.s2_p2}}</p>
       </div>
 
       <div class="legal-card reveal">
@@ -89,13 +89,10 @@
           <div class="legal-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
-          <h2>3. Finalidad</h2>
+          <h2>{{privacy.s3_title}}</h2>
         </div>
-        <p>Tus datos personales serán utilizados exclusivamente para las siguientes finalidades:</p>
-        <p>— Cotizar y gestionar viajes y paquetes turísticos solicitados.<br>
-        — Enviar promociones y ofertas especiales (solo si autorizaste previamente).<br>
-        — Mejorar nuestros servicios y atención al cliente.<br>
-        — Cumplir con obligaciones legales y regulatorias.</p>
+        <p>{{privacy.s3_p1}}</p>
+        <p>{{privacy.s3_p2}}</p>
       </div>
 
       <div class="legal-card reveal">
@@ -103,9 +100,9 @@
           <div class="legal-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
-          <h2>4. Protección</h2>
+          <h2>{{privacy.s4_title}}</h2>
         </div>
-        <p>Implementamos medidas de seguridad administrativas, técnicas y físicas para proteger tu información contra daño, pérdida, alteración, destrucción o acceso no autorizado. Tus datos se almacenan en sistemas seguros con acceso restringido.</p>
+        <p>{{privacy.s4_p1}}</p>
       </div>
 
       <div class="legal-card reveal">
@@ -113,10 +110,10 @@
           <div class="legal-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
-          <h2>5. Derechos ARCO</h2>
+          <h2>{{privacy.s5_title}}</h2>
         </div>
-        <p>Tienes derecho a ejercer tus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición</strong> (ARCO) en cualquier momento. Para ello, envía tu solicitud a <strong>reservas@reyssitravels.com</strong> y te atenderemos a la brevedad.</p>
-        <p>Tu solicitud deberá incluir nombre completo, correo electrónico registrado y una descripción clara del derecho que deseas ejercer.</p>
+        <p>{{privacy.s5_p1}}</p>
+        <p>{{privacy.s5_p2}}</p>
       </div>
 
       <div class="legal-card reveal">
@@ -124,10 +121,10 @@
           <div class="legal-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
           </div>
-          <h2>6. Cambios</h2>
+          <h2>{{privacy.s6_title}}</h2>
         </div>
-        <p>Este aviso de privacidad puede ser actualizado periódicamente. Cualquier cambio relevante será notificado a través de nuestro sitio web. Te recomendamos revisar esta página periódicamente para mantenerte informado.</p>
-        <p>Fecha de última actualización: <strong>julio de 2026</strong>.</p>
+        <p>{{privacy.s6_p1}}</p>
+        <p>{{privacy.s6_p2}}</p>
       </div>
 
     </div>
@@ -141,7 +138,7 @@
         <a href="/#hero" class="logo">
           <img src="/img/logo-blanco.png" alt="Reyssi Travels">
         </a>
-        <p>Creamos experiencias únicas para viajeros que buscan más viajes.</p>
+        <p>{{footer.tagline}}</p>
         <div class="social-row">
           <a href="/#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.7 0 3 .01 4.1.06 1.1.05 1.8.22 2.4.46.6.25 1.1.58 1.6 1.08.5.5.83 1 1.08 1.6.24.6.41 1.3.46 2.4.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4a4.3 4.3 0 0 1-1.08 1.6 4.3 4.3 0 0 1-1.6 1.08c-.6.24-1.3.41-2.4.46-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.1-.05-1.8-.22-2.4-.46a4.3 4.3 0 0 1-1.6-1.08 4.3 4.3 0 0 1-1.08-1.6c-.24-.6-.41-1.3-.46-2.4C2.01 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.1.22-1.8.46-2.4.25-.6.58-1.1 1.08-1.6.5-.5 1-.83 1.6-1.08.6-.24 1.3-.41 2.4-.46C9 2.01 9.3 2 12 2Zm0 1.8c-2.65 0-2.97.01-4 .06-.97.05-1.5.2-1.84.34-.46.18-.8.4-1.15.75-.35.35-.57.69-.75 1.15-.14.35-.29.87-.34 1.84-.05 1.03-.06 1.35-.06 4s.01 2.97.06 4c.05.97.2 1.5.34 1.84.18.46.4.8.75 1.15.35.35.69.57 1.15.75.35.14.87.29 1.84.34 1.03.05 1.35.06 4 .06s2.97-.01 4-.06c.97-.05 1.5-.2 1.84-.34.46-.18.8-.4 1.15-.75.35-.35.57-.69.75-1.15.14-.35.29-.87.34-1.84.05-1.03.06-1.35.06-4s-.01-2.97-.06-4c-.05-.97-.2-1.5-.34-1.84a3 3 0 0 0-.75-1.15 3 3 0 0 0-1.15-.75c-.35-.14-.87-.29-1.84-.34-1.03-.05-1.35-.06-4-.06Zm0 3.4a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 1.8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.1-2a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"/></svg></a>
           <a href="/#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v7h3v-7H16l1-3h-3.5V9.5c0-.3.2-.5.5-.5Z"/></svg></a>
@@ -150,42 +147,42 @@
         </div>
       </div>
       <div class="footer-col">
-        <h3>Enlaces</h3>
+        <h3>{{footer.links}}</h3>
         <ul>
-          <li><a href="/#hero">Inicio</a></li>
-          <li><a href="/#trust">Por qué confiar</a></li>
-          <li><a href="/#promociones">Promociones</a></li>
-          <li><a href="/viajes">Viajes</a></li>
-          <li><a href="/#testimonios">Clientes</a></li>
-        <li><a href="/#socios">Socios</a></li>
-          <li><a href="/#formulario-contacto">Contacto</a></li>
+          <li><a href="/#hero">{{nav.home}}</a></li>
+          <li><a href="/#trust">{{nav.trust}}</a></li>
+          <li><a href="/#promociones">{{nav.promos}}</a></li>
+          <li><a href="/viajes">{{nav.trips}}</a></li>
+          <li><a href="/#testimonios">{{nav.clients}}</a></li>
+        <li><a href="/#socios">{{nav.partners}}</a></li>
+          <li><a href="/#formulario-contacto">{{nav.contact}}</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h3>Nosotros</h3>
+        <h3>{{footer.about}}</h3>
         <ul>
-          <li><a href="/terminos">Términos y condiciones</a></li>
-          <li><a href="/privacidad">Aviso de privacidad</a></li>
+          <li><a href="/terminos">{{footer.terms}}</a></li>
+          <li><a href="/privacidad">{{footer.privacy}}</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h3>Contacto</h3>
+        <h3>{{nav.contact}}</h3>
         <ul class="footer-contact">
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Z"/></svg>+52 55 1484 6761</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>reservas@reyssitravels.com</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Ciudad de México, México</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{contact.location}}</li>
         </ul>
       </div>
     </div>
     <div class="footer-rnt">
-      <span>Registro Nacional de Turismo <strong>No. 04090051209f</strong> · Agencia de viajes · Vigencia al 01/07/2028</span>
-      <button type="button" class="rnt-open" data-rnt-open>Ver certificado</button>
+      <span>{{footer.rnt}}</span>
+      <button type="button" class="rnt-open" data-rnt-open>{{footer.rnt_open}}</button>
     </div>
-    <dialog class="rnt-dialog" id="rntDialog" aria-label="Certificado del Registro Nacional de Turismo">
-      <button type="button" class="rnt-close" data-rnt-close aria-label="Cerrar">&times;</button>
-      <img src="/img/rnt-certificado.webp" alt="Certificado de inscripción en el Registro Nacional de Turismo No. 04090051209f a favor de Reyssi Travels, agencia de viajes" loading="lazy" width="1637" height="1262">
+    <dialog class="rnt-dialog" id="rntDialog" aria-label="{{footer.rnt_dialog}}">
+      <button type="button" class="rnt-close" data-rnt-close aria-label="{{common.close}}">&times;</button>
+      <img src="/img/rnt-certificado.webp" alt="{{footer.rnt_alt}}" loading="lazy" width="1637" height="1262">
     </dialog>
-    <div class="footer-bottom">&copy; 2026 Reyssi. Todos los derechos reservados.</div>
+    <div class="footer-bottom">{{footer.copyright}}</div>
   </div>
 </footer>
 

@@ -358,3 +358,19 @@ html{ scroll-padding-top: calc(var(--header-height, 76px) + 16px); }
 .viajes-catalogo .reveal{ opacity: 1; transform: none; }
 .legal-card p, .legal-card li{ font-size: var(--fs-sm); line-height: 1.7; }
 .legal-card h2, .legal-card h3{ font-size: var(--fs-lg); }
+
+/* Cinta de destinos en diagonal, sin desvanecido en los bordes */
+html, body{ overflow-x: clip; }
+.dest-marquee{
+  mask-image: none; -webkit-mask-image: none;
+  position: relative; z-index: 2;
+  width: 110%; margin-left: -5%;
+  transform: rotate(-1.5deg);
+  margin-block: -34px 14px;
+  box-shadow: 0 10px 30px rgba(7,27,48,.18);
+}
+@media (max-width: 780px){
+  .dest-marquee{ transform: rotate(-3deg); padding-block: 12px; margin-block: -22px 8px; }
+  .dest-marquee__track span{ font-size: 1.1rem; padding-inline: 14px; gap: 28px; }
+  .dest-marquee__track{ animation-duration: 30s; }
+}

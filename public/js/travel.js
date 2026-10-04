@@ -8,12 +8,20 @@
   const slidesBox = document.getElementById('heroSlides');
   const destLabel = document.getElementById('heroDest');
   const dotsBox = document.getElementById('heroDots');
+  /* Solo destinos de las promociones de Mega Travel que sí operamos.
+     Coloca cada foto (descargada de Pixabay) en /img/hero/ con el nombre
+     indicado; las que aún no existan simplemente no se muestran. */
   const PIXABAY = [
-    { src: 'https://cdn.pixabay.com/photo/2016/11/29/04/19/ocean-1867285_1280.jpg', place: 'Playas del Caribe' },
-    { src: 'https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_1280.jpg', place: 'Maldivas' },
-    { src: 'https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_1280.jpg', place: 'Polinesia, Pacífico' },
-    { src: 'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg', place: 'Montañas de Canadá' },
-    { src: 'https://cdn.pixabay.com/photo/2016/11/14/03/38/achterwasser-1822668_1280.jpg', place: 'Atardeceres de Europa' }
+    { src: '/img/hero/capadocia.jpg', place: 'Capadocia, Turquía' },
+    { src: '/img/hero/estambul.jpg', place: 'Estambul, Turquía' },
+    { src: '/img/hero/dubai.jpg', place: 'Dubái, Emiratos Árabes' },
+    { src: '/img/hero/kioto.jpg', place: 'Kioto, Japón' },
+    { src: '/img/hero/seul.jpg', place: 'Seúl, Corea del Sur' },
+    { src: '/img/hero/madrid.jpg', place: 'Madrid, España' },
+    { src: '/img/hero/lisboa.jpg', place: 'Lisboa, Portugal' },
+    { src: '/img/hero/praga.jpg', place: 'Praga, República Checa' },
+    { src: '/img/hero/roma.jpg', place: 'Roma, Italia' },
+    { src: '/img/hero/fiordos.jpg', place: 'Fiordos, Noruega' }
   ];
 
   if(slidesBox){

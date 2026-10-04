@@ -2,7 +2,7 @@
 (function(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Hero con fotos de Pixabay ----------
+  /* ---------- Hero con fotos de Pixabay (descargadas en /img/hero, WebP) ----------
      Solo destinos que están en las promociones vigentes de Mega Travel
      (paquetes que sí vendemos). Si cambian las promociones, actualiza esta lista.
      La foto local (Hero.webp) queda debajo solo como respaldo mientras carga
@@ -12,16 +12,16 @@
   const destLabel = document.getElementById('heroDest');
   const dotsBox = document.getElementById('heroDots');
   const PIXABAY = [
-    { src: 'https://cdn.pixabay.com/photo/2015/10/14/17/57/paris-988112_1280.jpg', place: 'París, Francia' },
-    { src: 'https://cdn.pixabay.com/photo/2016/11/29/12/12/architecture-1869398_1280.jpg', place: 'Kioto, Japón' },
-    { src: 'https://cdn.pixabay.com/photo/2025/03/31/21/30/italy-9505450_1280.jpg', place: 'Roma, Italia' },
-    { src: 'https://cdn.pixabay.com/photo/2016/08/08/06/55/thailand-1577767_1280.jpg', place: 'Phuket, Tailandia' },
-    { src: 'https://cdn.pixabay.com/photo/2016/12/27/09/24/grand-canal-1933559_1280.jpg', place: 'Venecia, Italia' },
-    { src: 'https://cdn.pixabay.com/photo/2016/11/19/15/03/buildings-1839726_1280.jpg', place: 'Dubái, Emiratos Árabes' },
-    { src: 'https://cdn.pixabay.com/photo/2020/04/01/07/46/desert-4990324_1280.jpg', place: 'Sahara, Marruecos' },
-    { src: 'https://cdn.pixabay.com/photo/2023/07/05/18/13/mountains-8108961_1280.jpg', place: 'Fiordos de Noruega' },
-    { src: 'https://cdn.pixabay.com/photo/2014/11/01/18/46/dubrovnik-512798_1280.jpg', place: 'Dubrovnik, Croacia' },
-    { src: 'https://cdn.pixabay.com/photo/2017/12/16/16/37/great-wall-of-china-3022907_1280.jpg', place: 'Gran Muralla, China' }
+    { src: '/img/hero/paris.webp', place: 'París, Francia' },
+    { src: '/img/hero/kioto.webp', place: 'Kioto, Japón' },
+    { src: '/img/hero/roma.webp', place: 'Roma, Italia' },
+    { src: '/img/hero/phuket.webp', place: 'Phuket, Tailandia' },
+    { src: '/img/hero/venecia.webp', place: 'Venecia, Italia' },
+    { src: '/img/hero/dubai.webp', place: 'Dubái, Emiratos Árabes' },
+    { src: '/img/hero/sahara.webp', place: 'Sahara, Marruecos' },
+    { src: '/img/hero/noruega.webp', place: 'Fiordos de Noruega' },
+    { src: '/img/hero/dubrovnik.webp', place: 'Dubrovnik, Croacia' },
+    { src: '/img/hero/gran-muralla.webp', place: 'Gran Muralla, China' }
   ];
 
   if(slidesBox){

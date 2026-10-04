@@ -42,8 +42,9 @@
   };
 
   var TABS = {
-    ofertas: { url: BASE_OFERTAS, params: OFERTAS_COLORS },
-    promos:  { url: BASE_DEST, params: DEST_COLORS }
+    // 'Promociones vigentes' (vi.php sin Dest) redirige a la misma lista que ofertas,
+    // por eso solo queda esta pestaña.
+    ofertas: { url: BASE_OFERTAS, params: OFERTAS_COLORS }
   };
 
   [1,2,3,4,5,6,7,8,9,10,11,12,13].forEach(function(d) {

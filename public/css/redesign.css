@@ -443,3 +443,15 @@ html, body{ overflow-x: clip; }
 .socios-track{ gap: 0; }
 .socios-track .socio{ margin-right: 14px; }
 @media (max-width: 480px){ .socios-track{ gap: 0; } .socios-track .socio{ margin-right: 10px; } }
+
+/* Hero: sin punto parpadeante y todas las fotos con el mismo degradado que la primera */
+.hero-dest__pin{ display: none; }
+.hero-slides{ z-index: 1; }
+.hero-slides::after{
+  background: linear-gradient(90deg, rgba(7,27,48,.94) 0%, rgba(7,27,48,.70) 50%, rgba(7,27,48,.28) 100%);
+}
+@media (max-width: 780px){
+  .hero-slides::after{
+    background: linear-gradient(to bottom, rgba(7,27,48,.82) 0%, rgba(7,27,48,.64) 54%, rgba(7,27,48,.42) 100%);
+  }
+}

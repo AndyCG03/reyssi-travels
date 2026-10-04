@@ -75,10 +75,16 @@
         }
         renderDots();
         if(!timer) restart();
-        loadNext(n + 1);
+        continueAfter(n + 1);
       };
-      img.onerror = () => loadNext(n + 1);
+      img.onerror = () => continueAfter(n + 1);
       img.src = item.src;
+    };
+    // Las fotos 2..N esperan al evento load: si no, retrasan ese evento
+    // (y con él la pantalla de carga) hasta bajar todas las fotos del hero.
+    const continueAfter = n => {
+      if(document.readyState === 'complete') loadNext(n);
+      else window.addEventListener('load', () => setTimeout(() => loadNext(n), 0), { once: true });
     };
     loadNext(0);
   }

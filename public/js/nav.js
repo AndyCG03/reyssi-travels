@@ -54,3 +54,12 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   sections.forEach(s => observer.observe(s));
 })();
+
+// Certificado del Registro Nacional de Turismo en el pie de página.
+(function(){
+  const dialog = document.getElementById('rntDialog');
+  if(!dialog) return;
+  document.querySelectorAll('[data-rnt-open]').forEach(b => b.addEventListener('click', () => dialog.showModal()));
+  dialog.querySelector('[data-rnt-close]').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', e => { if(e.target === dialog) dialog.close(); });
+})();

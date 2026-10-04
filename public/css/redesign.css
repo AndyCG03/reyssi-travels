@@ -259,21 +259,6 @@ html{ scroll-padding-top: calc(var(--header-height, 76px) + 16px); }
 .dest-marquee:hover .dest-marquee__track{ animation-play-state: paused; }
 @keyframes marquee{ to{ transform: translateX(-50%); } }
 
-/* ---------- Confianza: banda oscura ---------- */
-.trust{ background: var(--azul-oscuro); color: #fff; }
-.trust h2{ color: #fff; }
-.trust-eyebrow{ color: var(--cielo); }
-.trust-item{
-  padding: 28px 22px; border-radius: var(--radius-md);
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-  transition: transform .5s var(--ease-premium), background .4s, border-color .4s;
-}
-.trust-item:hover{ background: rgba(255,255,255,.08); border-color: rgba(139,212,244,.4); transform: translateY(-6px); }
-.trust-item h3{ color: #fff; }
-.trust-item p{ color: rgba(255,255,255,.72); }
-.trust-icon{ background: rgba(139,212,244,.14); color: var(--cielo); }
-.trust-item:hover .trust-icon{ background: var(--sol); color: var(--azul-medianoche); }
-
 /* ---------- Carruseles genéricos (scroll-snap) ---------- */
 .snap-track{
   display: grid; grid-auto-flow: column; gap: 20px;
@@ -310,16 +295,6 @@ html{ scroll-padding-top: calc(var(--header-height, 76px) + 16px); }
 .reveal{ transform: translateY(32px) scale(.98); }
 .reveal.is-visible{ transform: none; }
 
-/* CTA final con brillo en movimiento */
-.home-paquetes-cta{ position: relative; overflow: hidden; }
-.home-paquetes-cta::before{
-  content: ''; position: absolute; width: 60vw; aspect-ratio: 1; max-width: 100%;
-  right: -20vw; top: -30vw; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,181,71,.22), transparent 65%);
-  animation: drift 14s ease-in-out infinite alternate; pointer-events: none;
-}
-.home-paquetes-cta .container{ position: relative; }
-@keyframes drift{ to{ transform: translate(-18vw, 14vw); } }
 
 @media (max-width: 1024px){
   .testimonios-grid.snap-track{ grid-auto-columns: calc((100% - 20px) / 2); }
@@ -328,10 +303,9 @@ html{ scroll-padding-top: calc(var(--header-height, 76px) + 16px); }
   .hero{ padding-block: calc(var(--header-height, 64px) + 24px) 48px; }
   .hero-dest{ margin-top: 28px; flex-wrap: wrap; }
   .testimonios-grid.snap-track{ grid-auto-columns: 86%; }
-  .trust-grid.snap-track{ grid-template-columns: none; grid-auto-columns: 78%; gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce){
-  .hero-slides img.is-active, .dest-marquee__track, .home-paquetes-cta::before, .hero-dest__pin{ animation: none; }
+  .hero-slides img.is-active, .dest-marquee__track, .hero-dest__pin{ animation: none; }
 }
 
 .contacto-grid > *{ min-width: 0; }
@@ -340,3 +314,47 @@ html{ scroll-padding-top: calc(var(--header-height, 76px) + 16px); }
   .form-grupo-row{ grid-template-columns: 1fr; }
   .hero h1{ font-size: clamp(2.6rem, 12vw, 3rem); }
 }
+
+/* =====================================================================
+   CONSISTENCIA ENTRE PÁGINAS
+   Las páginas internas (viajes, términos, privacidad) usan el mismo
+   encabezado oscuro con foto que la portada, la misma cinta y el mismo pie.
+   ===================================================================== */
+.header.header-static{ background: var(--azul-medianoche); -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+.legal-hero,
+.viajes-catalogo > .container{
+  position: relative; isolation: isolate; color: #fff;
+}
+.legal-hero{
+  padding-block: calc(var(--header-height, 76px) + 56px) 56px;
+  background:
+    linear-gradient(0deg, rgba(7,27,48,.94), rgba(7,27,48,.72)),
+    url('../img/Hero.webp') center / cover no-repeat;
+  animation: heroIn .9s var(--ease-premium) both;
+}
+.legal-hero h1{ color: #fff; font-family: var(--font-display); font-size: var(--fs-2xl); line-height: 1.02; letter-spacing: -1px; }
+.legal-hero p{ color: rgba(255,255,255,.8); font-size: var(--fs-lg); }
+.legal-hero .breadcrumb{ color: rgba(255,255,255,.7); font-size: var(--fs-xs); }
+.legal-hero .breadcrumb a{ color: var(--cielo); }
+.legal-section{ padding-block: clamp(40px, 5vw, 64px); }
+.legal-card{ transition: transform .5s var(--ease-premium), box-shadow .5s var(--ease-premium); }
+.legal-card:hover{ transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.viajes-catalogo{
+  padding-top: 0;
+  background:
+    linear-gradient(0deg, rgba(7,27,48,.94), rgba(7,27,48,.72)),
+    url('../img/Hero.webp') center / cover no-repeat;
+}
+.viajes-catalogo > .container{ padding-block: calc(var(--header-height, 76px) + 56px) 40px; }
+.viajes-catalogo .section-head h2{ color: #fff; }
+.viajes-catalogo .section-eyebrow{ color: var(--cielo); }
+.viajes-catalogo .section-subtitle, .catalogo-status{ color: rgba(255,255,255,.8); }
+.viajes-catalogo .mega-tab{ background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); color: #fff; font-size: .95rem; transition: background .3s, border-color .3s, transform .3s var(--ease-premium); }
+.viajes-catalogo .mega-tab:hover{ border-color: var(--cielo); color: #fff; transform: translateY(-2px); }
+.viajes-catalogo .mega-tab.is-active{ background: var(--azul-rey); border-color: var(--azul-rey); }
+.mega-catalogo-frame{ border-top: 0; }
+.viajes-catalogo .reveal{ opacity: 1; transform: none; }
+.legal-card p, .legal-card li{ font-size: var(--fs-sm); line-height: 1.7; }
+.legal-card h2, .legal-card h3{ font-size: var(--fs-lg); }

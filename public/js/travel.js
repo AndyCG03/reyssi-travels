@@ -124,5 +124,5 @@
   }
 
   makeCarousel(document.querySelector('.testimonios-grid'), { auto: true });
-  makeCarousel(document.querySelector('.trust-grid'), { onlyBelow: 780 });
+
 })();

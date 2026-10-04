@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "og_locale": "es_MX",
+    "home": {
+      "title": "Reyssi Travels - Viajes que se convierten en historias",
+      "description": "Reyssi Travels diseña paquetes, promociones y viajes personalizados con atención experta, contacto rápido y asesoría para reservar tu próxima aventura.",
+      "keywords": "viajes, paquetes turísticos, promociones de viajes, agencia de viajes, Reyssi Travels, Mega Travel, viajes personalizados, reservaciones de viaje, viajes a México, viajes internacionales",
+      "og_description": "Paquetes, promociones y asesoría personalizada para tu próximo viaje con Reyssi Travels.",
+      "image_alt": "Experiencias de viaje con Reyssi Travels",
+      "ld_description": "Agencia de viajes especializada en paquetes, promociones y experiencias personalizadas."
+    },
+    "trips": {
+      "title": "Viajes y paquetes | Reyssi Travels",
+      "description": "Explora promociones y paquetes de viaje de Reyssi Travels. Encuentra tu próxima aventura o personaliza un itinerario a tu medida.",
+      "og_description": "Explora promociones y paquetes de viaje de Reyssi Travels.",
+      "image_alt": "Paquetes de viaje de Reyssi Travels"
+    },
+    "terms": {
+      "title": "Términos y condiciones — Reyssi Travels",
+      "description": "Términos y condiciones de uso de Reyssi Travels.",
+      "og_title": "Términos y condiciones | Reyssi Travels",
+      "og_description": "Consulta los términos y condiciones de uso de Reyssi Travels."
+    },
+    "privacy": {
+      "title": "Aviso de privacidad — Reyssi Travels",
+      "description": "Aviso de privacidad de Reyssi Travels.",
+      "og_title": "Aviso de privacidad | Reyssi Travels",
+      "og_description": "Consulta el aviso de privacidad de Reyssi Travels."
+    }
+  },
+  "lang": {
+    "switch": "English",
+    "switch_aria": "Ver el sitio en inglés"
+  },
+  "nav": {
+    "home": "Inicio",
+    "trust": "Por qué confiar",
+    "promos": "Promociones",
+    "trips": "Viajes",
+    "clients": "Clientes",
+    "partners": "Socios",
+    "contact": "Contacto",
+    "open_menu": "Abrir menú",
+    "logo_home": "Reyssi Travels, inicio"
+  },
+  "hero": {
+    "title": "Viajes que se<br>convierten en<br><em>historias.</em>",
+    "text": "Diseñamos experiencias únicas para viajeros que buscan más que un destino, buscan recuerdos.",
+    "cta_plan": "Planea tu viaje",
+    "cta_packages": "Ver paquetes →",
+    "cta_packages_aria": "Ver paquetes de viaje"
+  },
+  "regions": {
+    "europe": "Europa",
+    "japan": "Japón",
+    "italy": "Italia",
+    "thailand": "Tailandia",
+    "middle_east": "Medio Oriente",
+    "canada": "Canadá",
+    "asia": "Asia",
+    "africa": "África",
+    "pacific": "Pacífico",
+    "south_america": "Sudamérica",
+    "usa": "Estados Unidos",
+    "central_america": "Centroamérica",
+    "cuba_caribbean": "Cuba y Caribe",
+    "national": "Nacionales",
+    "special_events": "Eventos especiales",
+    "cruises": "Cruceros"
+  },
+  "trust": {
+    "eyebrow": "Viaja tranquilo, nosotros nos encargamos",
+    "title": "¿Por qué confiar en nosotros?",
+    "i1_title": "Atención personalizada",
+    "i1_text": "Te acompañamos antes, durante y después de tu viaje.",
+    "i2_title": "Pagos seguros",
+    "i2_text": "Tus pagos están protegidos y respaldados.",
+    "i3_title": "Asistencia 24/7",
+    "i3_text": "Estamos contigo en todo momento de tu viaje.",
+    "i4_title": "Viajes a tu medida",
+    "i4_text": "Itinerarios diseñados para ti, según tus sueños y necesidades."
+  },
+  "promos": {
+    "eyebrow": "Ofertas exclusivas",
+    "title": "Promociones del momento",
+    "text": "Actualizadas diariamente con las mejores ofertas.",
+    "alt1": "Oferta de viaje promocional a un destino internacional",
+    "alt2": "Paquete vacacional promocional con hotel y actividades",
+    "alt3": "Promoción de escapada turística y experiencias de viaje",
+    "alt4": "Oferta especial para reservar un paquete de vacaciones",
+    "alt5": "Promoción de viaje para descubrir nuevos destinos",
+    "alt6": "Paquete turístico promocional para tu próxima aventura",
+    "alt7": "Promoción de vacaciones familiares y actividades guiadas",
+    "alt8": "Oferta de viaje para una escapada inolvidable",
+    "alt9": "Promoción de paquete turístico con experiencias únicas"
+  },
+  "testimonials": {
+    "eyebrow": "Testimonios",
+    "title": "Lo que dicen nuestros clientes",
+    "q1": "El viaje a Japón superó todas mis expectativas. La atención y los detalles fueron increíbles.",
+    "q2": "Italia fue un sueño hecho realidad. Todo estuvo perfectamente planeado.",
+    "q3": "Tailandia nos cambió la vida. Una experiencia que nunca olvidaremos."
+  },
+  "partners": {
+    "eyebrow": "Socios comerciales",
+    "title": "Viajamos con los mejores"
+  },
+  "contact": {
+    "title": "Envíanos un mensaje",
+    "info_title": "Información de contacto",
+    "info_text": "Estamos disponibles para resolver tus dudas y ayudarte a planear el viaje de tus sueños.",
+    "email_label": "Correo electrónico",
+    "location_label": "Ubicación",
+    "location": "Ciudad de México, México",
+    "form_intro": "Déjanos tus datos y te contactaremos en menos de 24 horas."
+  },
+  "form": {
+    "name": "Nombre completo",
+    "name_ph": "Ej. María García",
+    "email_ph": "ejemplo@correo.com",
+    "phone": "Teléfono",
+    "interest": "¿Qué te interesa?",
+    "opt_select": "Selecciona una opción",
+    "opt_packages": "Paquetes de viaje",
+    "opt_flights": "Vuelos",
+    "opt_hotels": "Hoteles",
+    "opt_tour": "Tour personalizado",
+    "opt_other": "Otro",
+    "message": "Mensaje",
+    "message_ph": "Cuéntanos sobre el viaje que tienes en mente...",
+    "submit": "Enviar por WhatsApp",
+    "success_title": "¡Listo! Te abrimos WhatsApp",
+    "success_text": "Solo presiona enviar en WhatsApp y te responderemos a la brevedad."
+  },
+  "cta": {
+    "eyebrow": "Paquetes a tu medida",
+    "title": "Tu próxima aventura empieza con una buena idea.",
+    "text": "Explora todos nuestros paquetes o cuéntanos qué tienes en mente y lo diseñamos contigo.",
+    "customize": "Personalizar mi paquete",
+    "all_packages": "Ver todos los paquetes"
+  },
+  "wa": {
+    "customize": "Hola, quiero personalizar mi paquete de viaje con Reyssi Travels."
+  },
+  "catalog": {
+    "eyebrow": "Catálogo vivo",
+    "title": "Todos los paquetes",
+    "text": "Filtra por región y encuentra la ruta que mejor encaja contigo.",
+    "status": "Disponibilidad actualizada",
+    "best_offers": "Mejores ofertas",
+    "loading": "Cargando paquetes...",
+    "iframe_title": "Catálogo completo de paquetes Reyssi Travels",
+    "shield": "Toca para explorar el catálogo"
+  },
+  "footer": {
+    "tagline": "Creamos experiencias únicas para viajeros que buscan más viajes.",
+    "links": "Enlaces",
+    "about": "Nosotros",
+    "terms": "Términos y condiciones",
+    "privacy": "Aviso de privacidad",
+    "rnt": "Registro Nacional de Turismo <strong>No. 04090051209f</strong> · Agencia de viajes · Vigencia al 01/07/2028",
+    "rnt_open": "Ver certificado",
+    "rnt_dialog": "Certificado del Registro Nacional de Turismo",
+    "rnt_alt": "Certificado de inscripción en el Registro Nacional de Turismo No. 04090051209f a favor de Reyssi Travels, agencia de viajes",
+    "copyright": "&copy; 2026 Reyssi. Todos los derechos reservados."
+  },
+  "common": {
+    "close": "Cerrar",
+    "open_whatsapp": "Abrir WhatsApp"
+  },
+  "notfound": {
+    "title": "Página no encontrada | Reyssi Travels",
+    "heading": "Este destino no está en el mapa",
+    "text": "La página que buscas no existe o cambió de lugar. Te ayudamos a retomar el rumbo.",
+    "home": "Volver al inicio",
+    "packages": "Ver paquetes",
+    "whatsapp": "Escríbenos por WhatsApp"
+  },
+  "js": {
+    "places": {
+      "paris": "París, Francia",
+      "kioto": "Kioto, Japón",
+      "roma": "Roma, Italia",
+      "phuket": "Phuket, Tailandia",
+      "venecia": "Venecia, Italia",
+      "dubai": "Dubái, Emiratos Árabes",
+      "sahara": "Sahara, Marruecos",
+      "noruega": "Fiordos de Noruega",
+      "dubrovnik": "Dubrovnik, Croacia",
+      "gran_muralla": "Gran Muralla, China"
+    },
+    "ui": {
+      "loading": "Cargando",
+      "skip": "Saltar al contenido",
+      "to_top": "Volver arriba",
+      "prev": "Anterior",
+      "next": "Siguiente",
+      "go_to": "Ir a",
+      "see_packages": "Ver paquetes",
+      "see_packages_aria": "Ver paquetes de viaje"
+    },
+    "wa": {
+      "greeting": "¡Hola, Reyssi Travels! Quiero información para un viaje.",
+      "name": "Nombre",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "interest": "Me interesa",
+      "message": "Mensaje"
+    }
+  },
+  "terms": {
+    "intro": "Al usar nuestros servicios aceptas los siguientes términos. Te recomendamos leerlos detenidamente antes de contratar cualquier servicio.",
+    "s1_title": "1. Aceptación de los términos",
+    "s1_p1": "Al acceder y utilizar el sitio web de Reyssi Travels, aceptas cumplir con estos términos y condiciones. Si no estás de acuerdo con alguna parte de los mismos, te pedimos que no uses nuestros servicios.",
+    "s2_title": "2. Reservas y pagos",
+    "s2_p1": "Las reservas están sujetas a disponibilidad y confirmación por parte de nuestros proveedores. El pago total o parcial deberá realizarse conforme a lo acordado en la cotización enviada.",
+    "s2_p2": "Reyssi Travels actúa como intermediario y no se responsabiliza por cambios de último minuto por parte de proveedores externos como aerolíneas, hoteles o transportistas. Cualquier cargo adicional por modificaciones será notificado antes de aplicar.",
+    "s3_title": "3. Cancelaciones y reembolsos",
+    "s3_p1": "Las políticas de cancelación varían según el paquete turístico y el proveedor correspondiente. Los detalles específicos se indicarán al momento de la cotización y antes de realizar el pago.",
+    "s3_p2": "Reyssi Travels cobrará una tarifa administrativa sobre cualquier reembolso aplicable. No se realizarán reembolsos por no presentación (no-show) el día del viaje.",
+    "s4_title": "4. Responsabilidad",
+    "s4_p1": "Reyssi Travels actúa exclusivamente como intermediario entre el viajero y los proveedores de servicios turísticos (aerolíneas, hoteles, operadores, etc.). No nos hacemos responsables por retrasos, cancelaciones, pérdidas o incidentes fuera de nuestro control directo.",
+    "s4_p2": "Es responsabilidad del viajero contar con la documentación requerida (pasaporte vigente, visas, etc.) para los destinos seleccionados.",
+    "s5_title": "5. Propiedad intelectual",
+    "s5_p1": "Todo el contenido del sitio web —incluyendo textos, imágenes, logotipos, gráficos y diseño— es propiedad de Reyssi Travels o se utiliza con licencia. No puede ser reproducido, distribuido o modificado sin autorización previa por escrito.",
+    "s6_title": "6. Contacto",
+    "s6_p1": "Para cualquier duda, aclaración o solicitud relacionada con estos términos, puedes escribirnos a <strong>reservas@reyssitravels.com</strong> o contactarnos directamente por WhatsApp. Estaremos encantados de atenderte."
+  },
+  "privacy": {
+    "intro": "En Reyssi Travels nos tomamos en serio la protección de tus datos personales. Conoce cómo los recopilamos, usamos y resguardamos.",
+    "s1_title": "1. Responsable",
+    "s1_p1": "Reyssi Travels, con domicilio en Ciudad de México, México, es el responsable del tratamiento y protección de tus datos personales. Nos comprometemos a cumplir con la legislación aplicable en materia de privacidad y protección de datos.",
+    "s2_title": "2. Datos recopilados",
+    "s2_p1": "Recopilamos la información necesaria para cotizar y gestionar tus viajes: nombre completo, correo electrónico, número telefónico, y en algunos casos datos de pasajeros requeridos por proveedores.",
+    "s2_p2": "No recopilamos datos sensibles sin tu consentimiento expreso. Toda la información se obtiene de manera directa a través de nuestros formularios de contacto y cotización.",
+    "s3_title": "3. Finalidad",
+    "s3_p1": "Tus datos personales serán utilizados exclusivamente para las siguientes finalidades:",
+    "s3_p2": "— Cotizar y gestionar viajes y paquetes turísticos solicitados.<br>— Enviar promociones y ofertas especiales (solo si autorizaste previamente).<br>— Mejorar nuestros servicios y atención al cliente.<br>— Cumplir con obligaciones legales y regulatorias.",
+    "s4_title": "4. Protección",
+    "s4_p1": "Implementamos medidas de seguridad administrativas, técnicas y físicas para proteger tu información contra daño, pérdida, alteración, destrucción o acceso no autorizado. Tus datos se almacenan en sistemas seguros con acceso restringido.",
+    "s5_title": "5. Derechos ARCO",
+    "s5_p1": "Tienes derecho a ejercer tus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición</strong> (ARCO) en cualquier momento. Para ello, envía tu solicitud a <strong>reservas@reyssitravels.com</strong> y te atenderemos a la brevedad.",
+    "s5_p2": "Tu solicitud deberá incluir nombre completo, correo electrónico registrado y una descripción clara del derecho que deseas ejercer.",
+    "s6_title": "6. Cambios",
+    "s6_p1": "Este aviso de privacidad puede ser actualizado periódicamente. Cualquier cambio relevante será notificado a través de nuestro sitio web. Te recomendamos revisar esta página periódicamente para mantenerte informado.",
+    "s6_p2": "Fecha de última actualización: <strong>julio de 2026</strong>."
+  }
+}

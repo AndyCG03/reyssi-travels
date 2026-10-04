@@ -1,8 +1,10 @@
+// Textos traducibles: window.__t(clave, respaldo) lo define el servidor (i18n.js).
+window.__t = window.__t || function(k, fb){ return fb; };
 // Dinamismo del rediseño: hero con fotos que rotan, cinta de destinos y carruseles.
 (function(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Hero con fotos de Pixabay ----------
+  /* ---------- Hero con fotos de Pixabay (descargadas en /img/hero, WebP) ----------
      Solo destinos que están en las promociones vigentes de Mega Travel
      (paquetes que sí vendemos). Si cambian las promociones, actualiza esta lista.
      La foto local (Hero.webp) queda debajo solo como respaldo mientras carga
@@ -12,16 +14,16 @@
   const destLabel = document.getElementById('heroDest');
   const dotsBox = document.getElementById('heroDots');
   const PIXABAY = [
-    { src: 'https://cdn.pixabay.com/photo/2015/10/14/17/57/paris-988112_1280.jpg', place: 'París, Francia' },
-    { src: 'https://cdn.pixabay.com/photo/2016/11/29/12/12/architecture-1869398_1280.jpg', place: 'Kioto, Japón' },
-    { src: 'https://cdn.pixabay.com/photo/2025/03/31/21/30/italy-9505450_1280.jpg', place: 'Roma, Italia' },
-    { src: 'https://cdn.pixabay.com/photo/2016/08/08/06/55/thailand-1577767_1280.jpg', place: 'Phuket, Tailandia' },
-    { src: 'https://cdn.pixabay.com/photo/2016/12/27/09/24/grand-canal-1933559_1280.jpg', place: 'Venecia, Italia' },
-    { src: 'https://cdn.pixabay.com/photo/2016/11/19/15/03/buildings-1839726_1280.jpg', place: 'Dubái, Emiratos Árabes' },
-    { src: 'https://cdn.pixabay.com/photo/2020/04/01/07/46/desert-4990324_1280.jpg', place: 'Sahara, Marruecos' },
-    { src: 'https://cdn.pixabay.com/photo/2023/07/05/18/13/mountains-8108961_1280.jpg', place: 'Fiordos de Noruega' },
-    { src: 'https://cdn.pixabay.com/photo/2014/11/01/18/46/dubrovnik-512798_1280.jpg', place: 'Dubrovnik, Croacia' },
-    { src: 'https://cdn.pixabay.com/photo/2017/12/16/16/37/great-wall-of-china-3022907_1280.jpg', place: 'Gran Muralla, China' }
+    { src: '/img/hero/paris.webp', place: __t('places.paris', 'París, Francia') },
+    { src: '/img/hero/kioto.webp', place: __t('places.kioto', 'Kioto, Japón') },
+    { src: '/img/hero/roma.webp', place: __t('places.roma', 'Roma, Italia') },
+    { src: '/img/hero/phuket.webp', place: __t('places.phuket', 'Phuket, Tailandia') },
+    { src: '/img/hero/venecia.webp', place: __t('places.venecia', 'Venecia, Italia') },
+    { src: '/img/hero/dubai.webp', place: __t('places.dubai', 'Dubái, Emiratos Árabes') },
+    { src: '/img/hero/sahara.webp', place: __t('places.sahara', 'Sahara, Marruecos') },
+    { src: '/img/hero/noruega.webp', place: __t('places.noruega', 'Fiordos de Noruega') },
+    { src: '/img/hero/dubrovnik.webp', place: __t('places.dubrovnik', 'Dubrovnik, Croacia') },
+    { src: '/img/hero/gran-muralla.webp', place: __t('places.gran_muralla', 'Gran Muralla, China') }
   ];
 
   if(slidesBox){
@@ -105,8 +107,8 @@
     const nav = document.createElement('div');
     nav.className = 'carousel-nav';
     nav.innerHTML = '<div class="carousel-dots"></div><div class="carousel-arrows">' +
-      '<button type="button" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg></button>' +
-      '<button type="button" aria-label="Siguiente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button></div>';
+      '<button type="button" aria-label="' + __t('ui.prev', 'Anterior') + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg></button>' +
+      '<button type="button" aria-label="' + __t('ui.next', 'Siguiente') + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button></div>';
     track.after(nav);
     const dots = nav.querySelector('.carousel-dots');
     const [prev, next] = nav.querySelectorAll('.carousel-arrows button');
@@ -114,7 +116,7 @@
     items.forEach((item, i) => {
       const d = document.createElement('button');
       d.type = 'button';
-      d.setAttribute('aria-label', 'Ir a ' + (i + 1));
+      d.setAttribute('aria-label', __t('ui.go_to', 'Ir a') + ' ' + (i + 1));
       d.addEventListener('click', () => scrollToItem(i));
       dots.appendChild(d);
     });

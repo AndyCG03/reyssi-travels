@@ -48,3 +48,22 @@ Luego abre http://localhost:3000
   siempre que lo llames igual o ajustes la ruta.
 - Efectos premium: header con glassmorphism al hacer scroll, parallax sutil en el hero, reveal-on-scroll
   con easing tipo Apple, hover states con elevación y sombra progresiva.
+
+## Idiomas (multiidioma)
+
+Todos los textos del sitio viven en `locales/`:
+
+- `locales/es.json` — español (idioma por defecto)
+- `locales/en.json` — inglés
+
+Las páginas en `public/*.html` son plantillas: en lugar de texto tienen marcadores
+como `{{hero.title}}`, que `server.js` (con `i18n.js`) reemplaza antes de enviar la página.
+
+- **Cambiar un texto:** edita el valor en `locales/es.json` (y su traducción en `en.json`).
+  No hace falta reiniciar el servidor.
+- **Cambiar de idioma:** `?lang=en` o `?lang=es` en cualquier URL; la elección se guarda en
+  una cookie. El menú tiene el botón "English / Español".
+- **Agregar un idioma:** copia `es.json` como `<codigo>.json`, tradúcelo y añade el código
+  a `SUPPORTED` en `i18n.js`.
+- Los textos que usa el JavaScript están en la rama `"js"` del JSON.
+- El catálogo de Mega Travel (iframe) es de un tercero y siempre se muestra en español.

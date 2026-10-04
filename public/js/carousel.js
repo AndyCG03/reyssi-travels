@@ -1,3 +1,5 @@
+// Textos traducibles: window.__t(clave, respaldo) lo define el servidor (i18n.js).
+window.__t = window.__t || function(k, fb){ return fb; };
 function initCarrusel(id, cardClass){
   const carrusel = document.getElementById(id);
   const prevBtn = document.getElementById(id.replace('Carrusel', 'CarruselPrev'));
@@ -31,8 +33,8 @@ initCarrusel('viajesCarrusel', '.viaje-card');
       const link = document.createElement('a');
       link.className = 'mega-slider-link';
       link.href = '/viajes#catalogo';
-      link.textContent = 'Ver paquetes';
-      link.setAttribute('aria-label', 'Ver paquetes de viaje');
+      link.textContent = __t('ui.see_packages', 'Ver paquetes');
+      link.setAttribute('aria-label', __t('ui.see_packages_aria', 'Ver paquetes de viaje'));
       overlay.appendChild(link);
     }
   });

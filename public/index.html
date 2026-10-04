@@ -83,6 +83,7 @@
 
 <section class="hero" id="hero">
   <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-slides" id="heroSlides" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-content">
       <span class="hero-eyebrow reveal">Reyssi Travels</span>
@@ -92,9 +93,16 @@
         <a href="#formulario-contacto" class="btn btn-primary">Planea tu viaje</a>
         <a href="/viajes" class="btn btn-outline" aria-label="Ver paquetes de viaje">Ver paquetes →</a>
       </div>
+      <div class="hero-dest" aria-hidden="true"><span class="hero-dest__pin"></span><span id="heroDest">Santorini, Grecia</span><span class="hero-dest__dots" id="heroDots"></span></div>
     </div>
   </div>
 </section>
+
+<div class="dest-marquee" aria-hidden="true">
+  <div class="dest-marquee__track">
+    <span>Europa</span><span>Japón</span><span>Italia</span><span>Tailandia</span><span>Medio Oriente</span><span>Canadá</span><span>Asia</span><span>África</span><span>Pacífico</span><span>Sudamérica</span><span>Estados Unidos</span><span>Centroamérica</span><span>Cuba y Caribe</span><span>Cruceros</span>
+  </div>
+</div>
 
 <section class="trust" id="trust">
   <div class="container">
@@ -405,6 +413,7 @@
 
 <script src="/js/animations.js"></script>
 <script src="/js/nav.js"></script>
+<script src="/js/travel.js"></script>
 <script src="/js/carousel.js"></script>
 <script>
 function handleForm(event) {
